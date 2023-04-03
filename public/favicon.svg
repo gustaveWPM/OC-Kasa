@@ -1,0 +1,12 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37" width="33" height="37">
+	<title>Group-svg-svg</title>
+	<style>
+		.s0 { fill: #ffffff } 
+		.s1 { fill: #ff6060 } 
+	</style>
+	<path id="Calque 1" class="s0" d="m25.7 31.1l5.2-3h-6.5z"/>
+	<path id="Forme 1" class="s0" d="m23.8 9.2l-8.4 13.6 0.1 14.2 16.4-9.5v-13z"/>
+	<path id="Forme 2" class="s0" d="m17.2 36.1l5.4-3.2h-5.9z"/>
+	<path id="Layer" class="s1" d="m22.1 24.4v8.8l3.7-2.2v-8.7z"/>
+	<path id="Layer" class="s1" d="m32.3 13.8l-15.1-8.8-8.4-4.9-8.3 14.5 0.1 13.6 15 8.8 1.6-0.9v-12.8l6.7-11.9 6.8 4v12.8l1.6-0.9z"/>
+</svg>
