@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { KasaPublicRoutes } from '../../components/KasaRouter';
 import { getRouteParams as getHousingSheetsRouteParams } from '../../pagesInner/HousingSheets';
 import { VocabAccessor } from '../vocab/VocabAccessor';
+import { KasaPublicRoutes } from './types';
 
 export const DAMERAU_LEVENSHTEIN_RESCUE_REDIRECT_DISTANCE_THRESHOLD: number = 3;
 export const DAMERAU_LEVENSHTEIN_RESCUE_SUGGEST_DISTANCE_THRESHOLD: number = 4;
@@ -27,5 +27,5 @@ export const PARAMS_ROUTES: { route: string; params: ReactElement }[] = [
 ];
 
 export type KasaPublicRouteElementKey = keyof KasaPublicRoutes;
-export type { default as IDamLevRouteBestScore } from '../../etc/IDamLevRouteBestScore';
+export type { default as IDamLevRouteBestScore } from '../../dev/math/IDamLevRouteBestScore';
 export default kasaPublicRoutes;

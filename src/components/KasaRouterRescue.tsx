@@ -8,11 +8,16 @@ import kasaPublicRoutes, {
   MINIMAL_AMOUNT_OF_CHARACTERS_IN_USER_TRIED_ROUTE_TO_FORCE_A_SUGGEST,
   SKIPPED_FROM_404_SUGGESTIONS_ROUTES
 } from '../config/router/KasaPublicRoutes';
-import damerauLevenshtein from '../etc/DamerauLevenshtein';
+import damerauLevenshtein from '../dev/math/DamerauLevenshtein';
+import wpmDebugger from '../dev/wpmDebugger';
+
+const DEBUGGER_LABEL = 'Kasa Router Rescue (React Component)';
 
 interface KasaRouterRescueProps {}
 
-const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => {
+export const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => {
+  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
   const { pathname } = useLocation();
   let bestScoreData: IDamLevRouteBestScore = {};
 

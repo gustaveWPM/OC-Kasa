@@ -4,17 +4,9 @@ import KasaRouterRescue from './KasaRouterRescue';
 
 import kasaPublicRoutes, { KasaPublicRouteElementKey, PARAMS_ROUTES } from '../config/router/KasaPublicRoutes';
 import kasaPublicRoutesComponents from '../config/router/KasaPublicRoutesComponents';
+import wpmDebugger from '../dev/wpmDebugger';
 
-export interface KasaPublicRoutes {
-  HOME_PAGE: string;
-  ABOUT_PAGE: string;
-  NOTFOUND_PAGE: string;
-  HOUSING_SHEETS_PAGE: string;
-}
-
-export type KasaPublicRoutesReactElements = {
-  [Property in keyof KasaPublicRoutes]: ReactElement;
-};
+const DEBUGGER_LABEL = 'Kasa Router (React Component)';
 
 interface KasaRouterProps {}
 
@@ -28,6 +20,7 @@ function routesGenerator() {
           {paramRoute.params}
         </Route>
       );
+
       if (route === paramRoute.route) {
         return buildParametredRoute();
       }
@@ -45,6 +38,8 @@ function routesGenerator() {
 }
 
 export const KasaRouter: FunctionComponent<KasaRouterProps> = () => {
+  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
   return (
     <BrowserRouter>
       <Routes>

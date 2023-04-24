@@ -3,10 +3,15 @@ import { Link, useLocation } from 'react-router-dom';
 
 import kasaPublicRoutes, { KasaPublicRouteElementKey, kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
+import wpmDebugger from '../dev/wpmDebugger';
+
+const DEBUGGER_LABEL = 'Not Found Page (React Component)';
 
 interface NotFoundInnerProps {}
 
 export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
+  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
   let renderSuggestLink: ReactNode = false;
   const { state } = useLocation();
   if (state) {

@@ -1,6 +1,9 @@
 import { FunctionComponent, ReactElement, useEffect } from 'react';
 import { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
+import wpmDebugger from '../dev/wpmDebugger';
+
+const DEBUGGER_LABEL = 'Page Effects (React Component)';
 
 export function setPageTitle(title: string) {
   document.title = title;
@@ -28,6 +31,8 @@ interface OnPageChangeEffectsProps {
 }
 
 export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = ({ title, children }) => {
+  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
   useEffect(() => {
     if (title !== null) {
       setPageTitle(title);

@@ -1,9 +1,9 @@
-import { KasaPublicRoutesReactElements } from '../../components/KasaRouter';
-import AboutPageInner from '../../pagesInner/AboutPage';
-import HomePageInner from '../../pagesInner/HomePage';
+import AboutPageInner from '../../pagesInner/About';
+import HomePageInner from '../../pagesInner/Home';
 import HousingSheetsInner from '../../pagesInner/HousingSheets';
 import NotFoundInner from '../../pagesInner/NotFound';
 import OnPageChangeEffects, { strictPageTitleBuilder, weakPageTitleBuilder } from '../../pagesInner/_PageEffects';
+import { KasaPublicRoutesReactElements } from './types';
 
 export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
   HOME_PAGE: (
