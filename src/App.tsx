@@ -1,7 +1,9 @@
+import KasaRouter from './components/KasaRouter';
+
 export function App() {
   return (
     <>
-      <h1>Hello world</h1>
+      <KasaRouter />
     </>
   );
 }

@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
-import './styles/navbar';
+import './styles/navbar.scss';
 
 interface NavbarProps {}
 
-const Navbar: FunctionComponent<NavbarProps> = () => {
+export const Navbar: FunctionComponent<NavbarProps> = () => {
   return <></>;
 };
 

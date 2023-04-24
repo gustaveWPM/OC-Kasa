@@ -1,8 +1,9 @@
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 // A private Vite plugin for generating .htaccess dynamically
-function generateHtaccess() {
+function generateHtaccess () {
+
   // Resolved Vite configuration, including "base" option
   let viteConfig;
 
@@ -23,11 +24,11 @@ function generateHtaccess() {
     // See https://vitejs.dev/guide/api-plugin.html#configresolved
     configResolved(resolvedConfig) {
       viteConfig = resolvedConfig;
-    }
+    },
   };
 }
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), generateHtaccess()]
-});
+  plugins: [react(), generateHtaccess()],
+})
