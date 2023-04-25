@@ -1,7 +1,8 @@
-const LABEL_PREFIX = 'Kasa App: ';
-const IGNORE_ERRORS = false;
-const IGNORE_WARNINGS = true;
-const IGNORE_INFOS = false;
+const LABEL_PREFIX: string = 'Kasa App: ';
+const IGNORE_ERRORS: boolean = false;
+const IGNORE_WARNINGS: boolean = true;
+const IGNORE_INFOS: boolean = false;
+const MUTE: boolean = false;
 
 enum ErrorCode {
   IS_ERROR = 2,
@@ -20,9 +21,12 @@ export const DEV_CTX: boolean = import.meta.env.DEV;
 
 export function wpmDebugger(label: string, msg: string | any[], options: WpmDebuggerOptions = { debugMode: DEV_CTX, errorCodeKey: 'IS_INFO' }) {
   function skipCurrentDebuggerCall(): boolean {
-    // if (import.meta.env.PROD || options.debugMode === false) {
-    //   return true;
-    // }
+    if (MUTE) {
+      return true;
+    }
+    if (import.meta.env.PROD || options.debugMode === false) {
+      return true;
+    }
     if (options.errorCodeKey === 'IS_INFO' && IGNORE_INFOS) {
       return true;
     } else if (options.errorCodeKey === 'IS_WARNING' && IGNORE_WARNINGS) {

@@ -16,5 +16,6 @@ export interface DbEntityMetadatas {
 
 export type DbEntityMetadatasField = keyof DbEntityMetadatas;
 export type DbEntitiesMetadatasFields = DbEntityMetadatasField[];
+export type DbEntitiesMetadatasFieldsWithoutId = Exclude<keyof DbEntityMetadatas, 'id'>[];
 
 export default DbEntityMetadatas;

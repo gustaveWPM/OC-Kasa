@@ -1,3 +1,4 @@
+import { DatabaseProvider } from '../../contexts/DatabaseContext';
 import AboutPageInner from '../../pagesInner/About';
 import HomePageInner from '../../pagesInner/Home';
 import HousingSheetsInner from '../../pagesInner/HousingSheets';
@@ -8,7 +9,9 @@ import { KasaPublicRoutesReactElements } from './types';
 export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
   HOME_PAGE: (
     <OnPageChangeEffects title={strictPageTitleBuilder('HOME_PAGE_LABEL')}>
-      <HomePageInner />
+      <DatabaseProvider>
+        <HomePageInner />
+      </DatabaseProvider>
     </OnPageChangeEffects>
   ),
 

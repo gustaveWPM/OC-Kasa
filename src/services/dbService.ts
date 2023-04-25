@@ -1,7 +1,6 @@
-import DbEntityMetadatas, { DbEntitiesMetadatasFields } from '../config/metadatasSchema';
-import { DbContext } from '../contexts/DatabaseContext';
+import DbEntityMetadatas, { DbEntitiesMetadatasFieldsWithoutId } from '../config/metadatasSchema';
 
-function fetchCurrentPartialElement(element: Partial<DbEntityMetadatas>, fields: DbEntitiesMetadatasFields) {
+function fetchCurrentPartialElement(element: Partial<DbEntityMetadatas>, fields: DbEntitiesMetadatasFieldsWithoutId) {
   const partialElement: Partial<DbEntityMetadatas> = { id: element.id };
   for (const field of fields) {
     partialElement[field] = element[field] as any;
@@ -9,12 +8,15 @@ function fetchCurrentPartialElement(element: Partial<DbEntityMetadatas>, fields:
   return partialElement;
 }
 
-export function getDbPartialElements(ctx: DbContext, ids: string[], fields: DbEntitiesMetadatasFields): Partial<DbEntityMetadatas>[] {
-  const dbRepresentation = ctx.dbRepresentation;
+export function getDbPartialElements(
+  dbRepresentation: DbEntityMetadatas[],
+  ids: string[],
+  fields: DbEntitiesMetadatasFieldsWithoutId
+): Partial<DbEntityMetadatas>[] {
   const elements: Partial<DbEntityMetadatas>[] = [];
 
   dbRepresentation.forEach((element) => {
-    if (ids.includes(element.id as string)) {
+    if (ids.includes(element.id)) {
       const currentPartialElement = fetchCurrentPartialElement(element, fields);
       elements.push(currentPartialElement);
     }
@@ -22,15 +24,15 @@ export function getDbPartialElements(ctx: DbContext, ids: string[], fields: DbEn
   return elements;
 }
 
-export function getDbEntityById(ctx: DbContext, targetId: string): DbEntityMetadatas | null {
-  const result = ctx.dbRepresentation.filter(({ id }) => id === targetId);
+export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId: string): DbEntityMetadatas | null {
+  const result = dbRepresentation.filter(({ id }) => id === targetId);
   if (result.length === 0) {
     return null;
   }
   return result[0];
 }
 
-export function getDbCtxEntitiesIds(ctx: DbContext) {
-  const ids = Object.values(ctx.dbRepresentation).map((obj) => obj.id);
+export function getDbCtxEntitiesIds(dbRepresentation: DbEntityMetadatas[]) {
+  const ids = Object.values(dbRepresentation).map((obj) => obj.id);
   return ids;
 }

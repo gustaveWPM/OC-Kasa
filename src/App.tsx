@@ -1,11 +1,7 @@
 import KasaRouter from './components/KasaRouter';
 
-export function App() {
-  return (
-    <>
-      <KasaRouter />
-    </>
-  );
-}
+const App = () => {
+  return <KasaRouter />;
+};
 
 export default App;

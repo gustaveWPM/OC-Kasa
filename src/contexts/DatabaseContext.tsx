@@ -1,41 +1,41 @@
-import { createContext, useCallback, useContext } from 'react';
-import DbEntityMetadatas from '../config/metadatasSchema';
-import tryUseFetch, { TLoadingState } from '../dev/hooks/tryUseFetch';
+import { createContext, FunctionComponent, ReactNode, useContext, useEffect, useState } from 'react';
+import { getData } from '../dev/hooks/tryUseFetch';
 import { DB_FETCH_ENDPOINT } from '../dev/hooks/_conf/consts';
+import { getCachedDatabase, updateCachedDatabase } from '../dev/namespaces/cache';
+import { CachedData } from '../dev/namespaces/_types';
 import wpmDebugger from '../dev/wpmDebugger';
 
-type UnloadedDbRepresentation = [];
-type DbRepresentation = DbEntityMetadatas[] | UnloadedDbRepresentation;
-const dbRepresentationInitialState: UnloadedDbRepresentation = [];
-const DEBUGGER_LABEL = 'Database Context';
+const DEBUGGER_LABEL = 'DatabaseContext (React Context)';
 
-export interface DbContext {
-  loadingState: TLoadingState;
-  dbRepresentation: DbRepresentation | UnloadedDbRepresentation;
+const DatabaseContext = createContext<CachedData>(getCachedDatabase());
+
+interface DatabaseProviderProps {
+  children: ReactNode;
 }
 
-export const dbInitialContext: DbContext = {
-  loadingState: 'LOADING',
-  dbRepresentation: dbRepresentationInitialState
+const databasePromise = fetch(DB_FETCH_ENDPOINT);
+export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ children }) => {
+  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+  const [data, setData] = useState(getCachedDatabase());
+
+  useEffect(() => {
+    async function dataFetch() {
+      await getData({ url: DB_FETCH_ENDPOINT }, databasePromise, setData);
+    }
+    dataFetch();
+  }, []);
+
+  const dataLoadingStateAsDeps = [data && data.loadingState];
+  useEffect(() => {
+    function processCacheUpdate() {
+      if (data && data.loadingState === 'LOADED') {
+        updateCachedDatabase(data);
+      }
+    }
+    processCacheUpdate();
+  }, dataLoadingStateAsDeps);
+
+  return <DatabaseContext.Provider value={data}>{children}</DatabaseContext.Provider>;
 };
 
-export let DatabaseContext = createContext<DbContext>(dbInitialContext);
-
-export function useFreshDatabaseContext() {
-  const currentCtx: DbContext = useContext(DatabaseContext);
-  const [loadingState, db] = tryUseFetch(DB_FETCH_ENDPOINT);
-  const doUseFreshDatabaseContext = useCallback(() => {
-    const loadState: TLoadingState = loadingState;
-    if (loadState === 'FAILED_TO_LOAD') {
-      wpmDebugger(DEBUGGER_LABEL, 'La base de données il est TOUT CASSÉ', { errorCodeKey: 'IS_ERROR' });
-    }
-    if (loadState === 'LOADED') {
-      const freshCtx = { ...currentCtx, loadingState: loadState, dbRepresentation: db };
-      DatabaseContext = createContext<DbContext>(freshCtx);
-    }
-    return useContext(DatabaseContext);
-  }, [loadingState, db]);
-  return doUseFreshDatabaseContext();
-}
-
-export default DatabaseContext;
+export const useDatabase = () => useContext(DatabaseContext);
