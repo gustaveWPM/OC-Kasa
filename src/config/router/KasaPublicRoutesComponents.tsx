@@ -9,12 +9,18 @@ import { KasaPublicRoutesReactElements } from './types';
 export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
   HOME_PAGE: (
     <OnPageChangeEffects title={strictPageTitleBuilder('HOME_PAGE_LABEL')}>
-      <DatabaseProvider>
+      <DatabaseProvider key="homepageCtx">
         <HomePageInner />
       </DatabaseProvider>
     </OnPageChangeEffects>
   ),
-
+  HOUSING_SHEETS_PAGE: (
+    <OnPageChangeEffects title={null}>
+      <DatabaseProvider key="housingSheetsCtx">
+        <HousingSheetsInner />
+      </DatabaseProvider>
+    </OnPageChangeEffects>
+  ),
   ABOUT_PAGE: (
     <OnPageChangeEffects title={strictPageTitleBuilder('ABOUT_PAGE_LABEL')}>
       <AboutPageInner />
@@ -23,11 +29,6 @@ export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
   NOTFOUND_PAGE: (
     <OnPageChangeEffects title={weakPageTitleBuilder('404')}>
       <NotFoundInner />
-    </OnPageChangeEffects>
-  ),
-  HOUSING_SHEETS_PAGE: (
-    <OnPageChangeEffects title={null}>
-      <HousingSheetsInner />
     </OnPageChangeEffects>
   )
 };
