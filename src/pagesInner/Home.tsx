@@ -3,21 +3,20 @@ import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/metadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
-import { getCachedDatabase } from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
+import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
 import HomepageLoadingScreen from './loadingScreens/Home';
 import './styles/homepage.scss';
 
 const DEBUGGER_LABEL = 'HomePage (React Component)';
-
-type FilteredElement = { id: string; title: string; cover: string }[];
+type FilteredEntities = { id: string; title: string; cover: string }[];
 
 interface HomePageInnerProps {}
 
 function kasaCardsGenerator(entities: DbEntityMetadatas[]) {
   const ids = getDbCtxEntitiesIds(entities);
-  const filteredEntities: FilteredElement = getDbPartialElements(entities, ids, ['title', 'cover']) as FilteredElement;
+  const filteredEntities: FilteredEntities = getDbPartialElements(entities, ids, ['title', 'cover']) as FilteredEntities;
   return (
     <ul>
       {filteredEntities.map(({ id, title, cover }) => (
@@ -51,14 +50,11 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
   const database = useDatabase();
 
-  if (database === undefined) {
-    return <HomepageLoadingScreen loadingState={'LOADING'} cachedData={getCachedDatabase()} />;
+  const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HomepageLoadingScreen, {});
+  if (adHocPlaceholder) {
+    return adHocPlaceholder;
   }
   const castedData = database as FetchResponseSchema;
-  if (castedData.loadingState !== 'LOADED') {
-    return <HomepageLoadingScreen loadingState={castedData.loadingState} cachedData={getCachedDatabase()} />;
-  }
-
   return <>{componentBody(castedData.responseData as DbEntityMetadatas[])}</>;
 };
 

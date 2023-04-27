@@ -15,7 +15,7 @@ export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
     </OnPageChangeEffects>
   ),
   HOUSING_SHEETS_PAGE: (
-    <OnPageChangeEffects title={null}>
+    <OnPageChangeEffects>
       <DatabaseProvider key="housingSheetsCtx">
         <HousingSheetsInner />
       </DatabaseProvider>

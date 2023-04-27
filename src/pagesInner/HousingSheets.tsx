@@ -1,14 +1,13 @@
-import { FunctionComponent, memo, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/metadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
-import { getCachedDatabase } from '../dev/namespaces/cache';
-import { CacheCtxKey } from '../dev/namespaces/_types';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbEntityById } from '../services/dbService';
+import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
@@ -29,31 +28,27 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
   }
 }
 
-export function componentBody(entities: DbEntityMetadatas[], sheetId: string, cacheCtx: CacheCtxKey) {
-  const entity: DbEntityMetadatas = getDbEntityById(entities, sheetId) as DbEntityMetadatas;
-  if (entity === null) {
-    if (cacheCtx === 'NOT_CACHE_CTX') {
-      return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
-    } else if (cacheCtx === 'CACHE_CTX') {
-      return firstLoadPlaceholders('LOADING');
-    }
+export function componentBody(entities: DbEntityMetadatas[], sheetId: string) {
+  const entity = getDbEntityById(entities, sheetId);
+  if (!entity) {
+    return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
+  } else {
+    return (
+      <>
+        <HousingSheet
+          title={entity.title}
+          cover={entity.cover}
+          pictures={entity.pictures}
+          description={entity.description}
+          host={entity.host}
+          rating={entity.rating}
+          location={entity.location}
+          equipments={entity.equipments}
+          tags={entity.tags}
+        />
+      </>
+    );
   }
-
-  return (
-    <>
-      <HousingSheet
-        title={entity.title}
-        cover={entity.cover}
-        pictures={entity.pictures}
-        description={entity.description}
-        host={entity.host}
-        rating={entity.rating}
-        location={entity.location}
-        equipments={entity.equipments}
-        tags={entity.tags}
-      />
-    </>
-  );
 }
 
 export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = () => {
@@ -64,15 +59,14 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   if (sheet_id === undefined) {
     return doRedirect(kasaPublicRoutes.HOME_PAGE);
   }
-  if (database === undefined) {
-    return <HousingSheetLoadingScreen loadingState={'LOADING'} cachedData={getCachedDatabase()} sheetId={sheet_id} />;
-  }
-  const castedData = database as FetchResponseSchema;
-  if (castedData.loadingState !== 'LOADED') {
-    return <HousingSheetLoadingScreen loadingState={castedData.loadingState} cachedData={getCachedDatabase()} sheetId={sheet_id} />;
+
+  const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HousingSheetLoadingScreen, { sheetId: sheet_id });
+  if (adHocPlaceholder) {
+    return adHocPlaceholder;
   }
 
-  return <>{componentBody(castedData.responseData as DbEntityMetadatas[], sheet_id, 'NOT_CACHE_CTX')}</>;
+  const castedData = database as FetchResponseSchema;
+  return <>{componentBody(castedData.responseData as DbEntityMetadatas[], sheet_id)}</>;
 };
 
 export function getRouteParams(): ReactElement {
@@ -83,4 +77,4 @@ export function getRouteParams(): ReactElement {
   );
 }
 
-export default memo(HousingSheetsInner);
+export default HousingSheetsInner;

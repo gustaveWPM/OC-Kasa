@@ -1,17 +1,13 @@
 import { FunctionComponent } from 'react';
 import DbEntityMetadatas from '../../config/metadatasSchema';
-import { TLoadingState } from '../../dev/hooks/tryUseFetch';
-import { CachedData } from '../../dev/namespaces/_types';
 
 import { componentBody as homepageComponentBody, firstLoadPlaceholders as homepageFirstLoadPlaceholders } from '../Home';
+import { LoadingScreenPropsBase } from './_types';
 
-interface HomepageLoadingScreenProps {
-  loadingState: TLoadingState;
-  cachedData: CachedData;
-}
+interface HomepageLoadingScreenProps extends LoadingScreenPropsBase {}
 
 export const HomepageLoadingScreen: FunctionComponent<HomepageLoadingScreenProps> = ({ loadingState, cachedData }) => {
-  if (cachedData === undefined) {
+  if (!cachedData) {
     return homepageFirstLoadPlaceholders(loadingState);
   } else {
     return <div style={{ opacity: 0.5 }}>{homepageComponentBody(cachedData.responseData as DbEntityMetadatas[])}</div>;

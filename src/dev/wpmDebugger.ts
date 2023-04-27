@@ -18,13 +18,11 @@ export interface WpmDebuggerOptions {
 }
 
 export const DEV_CTX: boolean = import.meta.env.DEV;
+const DEFAULT_DEBUGGER_OPTIONS: WpmDebuggerOptions = { debugMode: DEV_CTX, errorCodeKey: 'IS_INFO' };
 
-export function wpmDebugger(label: string, msg: string | any[], options: WpmDebuggerOptions = { debugMode: DEV_CTX, errorCodeKey: 'IS_INFO' }) {
+export function wpmDebugger(label: string, msg: string | any[], options: WpmDebuggerOptions = DEFAULT_DEBUGGER_OPTIONS) {
   function skipCurrentDebuggerCall(): boolean {
-    if (MUTE) {
-      return true;
-    }
-    if (import.meta.env.PROD || options.debugMode === false) {
+    if (MUTE || import.meta.env.PROD || options.debugMode === false) {
       return true;
     }
     if (options.errorCodeKey === 'IS_INFO' && IGNORE_INFOS) {

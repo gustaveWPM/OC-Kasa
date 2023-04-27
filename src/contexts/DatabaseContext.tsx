@@ -1,13 +1,13 @@
 import { createContext, FunctionComponent, ReactNode, useContext, useEffect, useState } from 'react';
 import { getData } from '../dev/hooks/tryUseFetch';
 import { DB_FETCH_ENDPOINT } from '../dev/hooks/_conf/consts';
-import { getCachedDatabase, updateCachedDatabase } from '../dev/namespaces/cache';
-import { CachedData } from '../dev/namespaces/_types';
+import { cachedDatabase } from '../dev/namespaces/cache';
+import CachedData from '../dev/namespaces/_types';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'DatabaseContext (React Context)';
 
-const DatabaseContext = createContext<CachedData>(getCachedDatabase());
+const DatabaseContext = createContext<CachedData>(cachedDatabase() as CachedData);
 
 interface DatabaseProviderProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ interface DatabaseProviderProps {
 const databasePromise = fetch(DB_FETCH_ENDPOINT);
 export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ children }) => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
-  const [data, setData] = useState(getCachedDatabase());
+  const [data, setData] = useState(cachedDatabase());
 
   useEffect(() => {
     async function dataFetch() {
@@ -28,14 +28,18 @@ export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ chi
   const dataLoadingStateAsDeps = [data && data.loadingState];
   useEffect(() => {
     function processCacheUpdate() {
-      if (data && data.loadingState === 'LOADED') {
-        updateCachedDatabase(data);
+      if (data) {
+        if (data.loadingState === 'LOADED') {
+          cachedDatabase(data);
+        } else if (data.loadingState === 'FAILED_TO_LOAD') {
+          cachedDatabase(null);
+        }
       }
     }
     processCacheUpdate();
   }, dataLoadingStateAsDeps);
 
-  return <DatabaseContext.Provider value={data}>{children}</DatabaseContext.Provider>;
+  return <DatabaseContext.Provider value={data as CachedData}>{children}</DatabaseContext.Provider>;
 };
 
 export const useDatabase = () => useContext(DatabaseContext);

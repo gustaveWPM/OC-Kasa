@@ -26,7 +26,7 @@ export function weakPageTitleBuilder(labelKey: string, rescueMode: boolean = fal
 }
 
 interface OnPageChangeEffectsProps {
-  title: string | null;
+  title?: string;
   children: ReactElement;
 }
 
@@ -34,7 +34,7 @@ export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = 
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
 
   useEffect(() => {
-    if (title !== null) {
+    if (title !== undefined) {
       setPageTitle(title);
     }
   }, [title]);

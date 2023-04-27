@@ -1,10 +1,5 @@
 import { FetchResponseSchema } from '../hooks/tryUseFetch';
 
-export type CachedData = FetchResponseSchema | undefined;
+export type CachedData = FetchResponseSchema | null;
 
-enum CacheCtx {
-  CACHE_CTX,
-  NOT_CACHE_CTX
-}
-
-export type CacheCtxKey = keyof typeof CacheCtx;
+export default CachedData;
