@@ -1,5 +1,6 @@
 import { FunctionComponent, memo, ReactElement } from 'react';
-import { Link, Navigate, Route, useParams } from 'react-router-dom';
+import { Navigate, Route, useParams } from 'react-router-dom';
+import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/metadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { useDatabase } from '../contexts/DatabaseContext';
@@ -29,7 +30,7 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
 }
 
 export function componentBody(entities: DbEntityMetadatas[], sheetId: string, cacheCtx: CacheCtxKey) {
-  const entity = getDbEntityById(entities, sheetId);
+  const entity: DbEntityMetadatas = getDbEntityById(entities, sheetId) as DbEntityMetadatas;
   if (entity === null) {
     if (cacheCtx === 'NOT_CACHE_CTX') {
       return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
@@ -40,10 +41,17 @@ export function componentBody(entities: DbEntityMetadatas[], sheetId: string, ca
 
   return (
     <>
-      <div className="sidebar sidebar-base">{JSON.stringify(entity)}</div>
-      <br></br>
-      <hr />
-      <Link to="/">TEST</Link>
+      <HousingSheet
+        title={entity.title}
+        cover={entity.cover}
+        pictures={entity.pictures}
+        description={entity.description}
+        host={entity.host}
+        rating={entity.rating}
+        location={entity.location}
+        equipments={entity.equipments}
+        tags={entity.tags}
+      />
     </>
   );
 }

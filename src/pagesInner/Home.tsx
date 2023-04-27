@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
+import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/metadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
@@ -11,16 +11,18 @@ import './styles/homepage.scss';
 
 const DEBUGGER_LABEL = 'HomePage (React Component)';
 
+type FilteredElement = { id: string; title: string; cover: string }[];
+
 interface HomePageInnerProps {}
 
 function kasaCardsGenerator(entities: DbEntityMetadatas[]) {
   const ids = getDbCtxEntitiesIds(entities);
-  const filteredEntities = getDbPartialElements(entities, ids, ['title', 'cover']);
+  const filteredEntities: FilteredElement = getDbPartialElements(entities, ids, ['title', 'cover']) as FilteredElement;
   return (
     <ul>
       {filteredEntities.map(({ id, title, cover }) => (
-        <li key={id}>
-          <Link to={`/housing-sheets/${id}`}>{title}</Link>
+        <li className="kasa-card" key={id}>
+          <KasaCard id={id} title={title} cover={cover} />
         </li>
       ))}
     </ul>
@@ -40,10 +42,7 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
 export function componentBody(entities: DbEntityMetadatas[]) {
   return (
     <>
-      <div className="sidebar sidebar-base">{kasaCardsGenerator(entities)}</div>
-      <br></br>
-      <hr />
-      <Link to="/about-us">TEST</Link>
+      <div className="cards-grid">{kasaCardsGenerator(entities)}</div>
     </>
   );
 }
