@@ -5,6 +5,7 @@ import KasaRouterRescue from './KasaRouterRescue';
 import kasaPublicRoutes, { KasaPublicRouteElementKey, PARAMS_ROUTES } from '../config/router/KasaPublicRoutes';
 import kasaPublicRoutesComponents from '../config/router/KasaPublicRoutesComponents';
 import wpmDebugger from '../dev/wpmDebugger';
+import KasaFooter from './KasaFooter';
 import KasaNavbar from './KasaNavbar';
 
 const DEBUGGER_LABEL = 'Kasa Router (React Component)';
@@ -42,13 +43,16 @@ export const KasaRouter: FunctionComponent<KasaRouterProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
 
   return (
-    <BrowserRouter>
-      <KasaNavbar />
-      <Routes>
-        {routesGenerator()}
-        <Route path="*" element={<KasaRouterRescue />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <KasaNavbar />
+        <Routes>
+          {routesGenerator()}
+          <Route path="*" element={<KasaRouterRescue />} />
+        </Routes>
+      </BrowserRouter>
+      <KasaFooter />
+    </>
   );
 };
 
