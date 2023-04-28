@@ -1,4 +1,4 @@
-import DbEntityMetadatas, { DbEntitiesMetadatasFieldsWithoutId } from '../config/metadatasSchema';
+import DbEntityMetadatas, { DbEntitiesMetadatasFieldsWithoutId } from '../config/MetadatasSchema';
 
 function fetchCurrentPartialElement(element: Partial<DbEntityMetadatas>, fields: DbEntitiesMetadatasFieldsWithoutId) {
   const partialElement: Partial<DbEntityMetadatas> = { id: element.id };

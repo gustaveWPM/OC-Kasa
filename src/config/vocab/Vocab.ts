@@ -1,5 +1,5 @@
 import frenchDictionnary from '../dictionnaries/fr';
-import DbEntityMetadatas from '../metadatasSchema';
+import DbEntityMetadatas from '../MetadatasSchema';
 
 export interface VocabSchema {
   LANG: string;

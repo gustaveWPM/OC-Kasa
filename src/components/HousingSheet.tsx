@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import DbEntityMetadatas from '../config/metadatasSchema';
+import DbEntityMetadatas from '../config/MetadatasSchema';
 import { setPageTitle, weakPageTitleBuilder } from '../pagesInner/_PageEffects';
 
 interface HousingSheetProps extends Omit<DbEntityMetadatas, 'id'> {}

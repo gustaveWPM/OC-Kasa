@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactElement } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
-import DbEntityMetadatas from '../config/metadatasSchema';
+import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';

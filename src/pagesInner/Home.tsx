@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import KasaCard from '../components/KasaCard';
-import DbEntityMetadatas from '../config/metadatasSchema';
+import DbEntityMetadatas from '../config/MetadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
 import wpmDebugger from '../dev/wpmDebugger';

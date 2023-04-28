@@ -12,6 +12,7 @@ export enum ELoadingState {
 
 export type TLoadingState = keyof typeof ELoadingState;
 type ResponseData = unknown;
+type InitialUrlAndReq = { url: string; req?: RequestInit };
 
 export interface FetchResponseSchema {
   responseData: ResponseData;
@@ -36,7 +37,7 @@ async function getFetchResponse(promise: Promise<Response>) {
 }
 
 export async function getData(
-  initialUrlAndReq: { url: string; req?: RequestInit },
+  initialUrlAndReq: InitialUrlAndReq,
   promise: Promise<Response>,
   setStateFnPtr: Function,
   maxRetry: number = TryUseFetchConsts.DEFAULT_MAX_FETCH_RETRY,

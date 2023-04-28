@@ -5,6 +5,7 @@ import KasaRouterRescue from './KasaRouterRescue';
 import kasaPublicRoutes, { KasaPublicRouteElementKey, PARAMS_ROUTES } from '../config/router/KasaPublicRoutes';
 import kasaPublicRoutesComponents from '../config/router/KasaPublicRoutesComponents';
 import wpmDebugger from '../dev/wpmDebugger';
+import KasaNavbar from './KasaNavbar';
 
 const DEBUGGER_LABEL = 'Kasa Router (React Component)';
 
@@ -42,6 +43,7 @@ export const KasaRouter: FunctionComponent<KasaRouterProps> = () => {
 
   return (
     <BrowserRouter>
+      <KasaNavbar />
       <Routes>
         {routesGenerator()}
         <Route path="*" element={<KasaRouterRescue />} />

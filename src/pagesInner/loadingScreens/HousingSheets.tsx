@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import DbEntityMetadatas from '../../config/metadatasSchema';
+import DbEntityMetadatas from '../../config/MetadatasSchema';
 
 import { componentBody as housingSheetsComponentBody, firstLoadPlaceholders as housingSheetsFirstLoadPlaceholders } from '../HousingSheets';
 import { LoadingScreenPropsBase } from './_types';
