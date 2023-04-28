@@ -1,5 +1,5 @@
 import { createContext, FunctionComponent, ReactNode, useContext, useEffect, useState } from 'react';
-import { getData } from '../dev/hooks/tryUseFetch';
+import { useGetData } from '../dev/hooks/useFetch';
 import { DB_FETCH_ENDPOINT } from '../dev/hooks/_conf/consts';
 import { cachedDatabase } from '../dev/namespaces/cache';
 import CachedData from '../dev/namespaces/_types';
@@ -7,7 +7,7 @@ import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'DatabaseContext (React Context)';
 
-const DatabaseContext = createContext<CachedData>(cachedDatabase() as CachedData);
+const DatabaseContext = createContext<CachedData>(cachedDatabase());
 
 interface DatabaseProviderProps {
   children: ReactNode;
@@ -20,7 +20,7 @@ export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ chi
 
   useEffect(() => {
     async function dataFetch() {
-      await getData({ url: DB_FETCH_ENDPOINT }, databasePromise, setData);
+      await useGetData({ url: DB_FETCH_ENDPOINT }, databasePromise, setData);
     }
     dataFetch();
   }, []);
@@ -39,7 +39,7 @@ export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ chi
     processCacheUpdate();
   }, dataLoadingStateAsDeps);
 
-  return <DatabaseContext.Provider value={data as CachedData}>{children}</DatabaseContext.Provider>;
+  return <DatabaseContext.Provider value={data}>{children}</DatabaseContext.Provider>;
 };
 
 export const useDatabase = () => useContext(DatabaseContext);

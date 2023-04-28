@@ -1,4 +1,4 @@
-import { FetchResponseSchema } from '../hooks/tryUseFetch';
+import { FetchResponseSchema } from '../hooks/useFetch';
 
 export type CachedData = FetchResponseSchema | null;
 

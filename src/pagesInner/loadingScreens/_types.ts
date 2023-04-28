@@ -1,5 +1,5 @@
 import { Attributes, ReactElement } from 'react';
-import { TLoadingState } from '../../dev/hooks/tryUseFetch';
+import { TLoadingState } from '../../dev/hooks/useFetch';
 import CachedData from '../../dev/namespaces/_types';
 
 export interface LoadingScreenPropsBase {

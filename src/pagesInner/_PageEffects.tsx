@@ -18,6 +18,9 @@ export function strictPageTitleBuilder(labelKey: VocabSchemaElementKey) {
 }
 
 export function weakPageTitleBuilder(labelKey: string, rescueMode: boolean = false) {
+  if (labelKey === undefined) {
+    return document.title;
+  }
   if (rescueMode && isVocabSchemaElementKey(labelKey)) {
     return strictPageTitleBuilder(labelKey as VocabSchemaElementKey);
   }

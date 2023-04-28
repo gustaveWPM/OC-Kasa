@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 import { Link } from 'react-router-dom';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import wpmDebugger from '../dev/wpmDebugger';
@@ -27,4 +27,4 @@ const KasaCard: FunctionComponent<KasaCardProps> = ({ id, title, cover }) => {
   );
 };
 
-export default KasaCard;
+export default memo(KasaCard);

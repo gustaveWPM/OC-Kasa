@@ -1,7 +1,7 @@
 import wpmDebugger from '../wpmDebugger';
-import { TryUseFetchConsts } from './_conf/consts';
+import { UseFetchConsts } from './_conf/consts';
 
-const DEBUGGER_LABEL = 'tryUseFetch';
+const DEBUGGER_LABEL = 'useFetch';
 
 export enum ELoadingState {
   LOADING,
@@ -36,12 +36,12 @@ async function getFetchResponse(promise: Promise<Response>) {
   return response;
 }
 
-export async function getData(
+export async function useGetData(
   initialUrlAndReq: InitialUrlAndReq,
   promise: Promise<Response>,
   setStateFnPtr: Function,
-  maxRetry: number = TryUseFetchConsts.DEFAULT_MAX_FETCH_RETRY,
-  delayBeforeEachRetry: number = TryUseFetchConsts.DEFAULT_DELAY_BEFORE_EACH_RETRY
+  maxRetry: number = UseFetchConsts.DEFAULT_MAX_FETCH_RETRY,
+  delayBeforeEachRetry: number = UseFetchConsts.DEFAULT_DELAY_BEFORE_EACH_RETRY
 ) {
   function throwIfNotGreaterOrEqualThan(n: number, x: number, vLabel: string) {
     if (n <= x) {
@@ -97,14 +97,14 @@ export async function getData(
   }
 }
 
-export async function tryUseFetch(url: string, setStateFnPtr: Function, options?: TryToUseFetchOptions) {
+export async function useFetch(url: string, setStateFnPtr: Function, options?: TryToUseFetchOptions) {
   const req: RequestInit | undefined = options?.request;
   const promise = fetch(url, req);
 
   const initialUrlAndReq = { url, req };
-  const maxRetry: number = options?.maxRetry || TryUseFetchConsts.DEFAULT_MAX_FETCH_RETRY;
+  const maxRetry: number = options?.maxRetry || UseFetchConsts.DEFAULT_MAX_FETCH_RETRY;
 
-  await getData(initialUrlAndReq, promise, setStateFnPtr, maxRetry);
+  await useGetData(initialUrlAndReq, promise, setStateFnPtr, maxRetry);
 }
 
-export default tryUseFetch;
+export default useFetch;

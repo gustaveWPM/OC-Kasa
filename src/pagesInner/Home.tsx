@@ -1,8 +1,9 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
-import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
+import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
+import { cachedDatabase } from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
@@ -10,16 +11,15 @@ import HomepageLoadingScreen from './loadingScreens/Home';
 import './styles/homepage.scss';
 
 const DEBUGGER_LABEL = 'HomePage (React Component)';
-type FilteredEntities = { id: string; title: string; cover: string }[];
+type FilteredEntities = Pick<DbEntityMetadatas, 'id' | 'title' | 'cover'>[];
+type FilteredEntitiesAdHocSumType = DbEntityMetadatas[] | FilteredEntities;
 
 interface HomePageInnerProps {}
 
-function kasaCardsGenerator(entities: DbEntityMetadatas[]) {
-  const ids = getDbCtxEntitiesIds(entities);
-  const filteredEntities: FilteredEntities = getDbPartialElements(entities, ids, ['title', 'cover']) as FilteredEntities;
+function kasaCardsGenerator(entities: FilteredEntities) {
   return (
     <ul>
-      {filteredEntities.map(({ id, title, cover }) => (
+      {entities.map(({ id, title, cover }) => (
         <li className="kasa-card" key={id}>
           <KasaCard id={id} title={title} cover={cover} />
         </li>
@@ -38,7 +38,7 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
   }
 }
 
-export function componentBody(entities: DbEntityMetadatas[]) {
+export function componentBody(entities: FilteredEntities) {
   return (
     <>
       <div className="cards-grid">{kasaCardsGenerator(entities)}</div>
@@ -49,13 +49,33 @@ export function componentBody(entities: DbEntityMetadatas[]) {
 export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
   const database = useDatabase();
+  let entitiesBase: DbEntityMetadatas[] = [];
+  let fEntities: FilteredEntities | {} = {};
+
+  const [filteredEntities, setFilteredEntities]: [FilteredEntitiesAdHocSumType, any] = useState(entitiesBase);
+  const jsonDepsNotEqual = (): boolean => JSON.stringify(fEntities) !== JSON.stringify(filteredEntities);
+  const computingFilteredEntities = (): boolean => filteredEntities.length === 0;
+  useEffect(() => {
+    async function getFilteredEntities() {
+      const ids = getDbCtxEntitiesIds(entitiesBase);
+      fEntities = (await getDbPartialElements(entitiesBase, ids, ['title', 'cover'])) as FilteredEntities;
+      if (jsonDepsNotEqual()) {
+        setFilteredEntities(fEntities);
+      }
+    }
+    getFilteredEntities();
+  }, [entitiesBase]);
 
   const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HomepageLoadingScreen, {});
   if (adHocPlaceholder) {
     return adHocPlaceholder;
   }
-  const castedData = database as FetchResponseSchema;
-  return <>{componentBody(castedData.responseData as DbEntityMetadatas[])}</>;
+  entitiesBase = (database as FetchResponseSchema).responseData as DbEntityMetadatas[];
+
+  if (computingFilteredEntities()) {
+    return <HomepageLoadingScreen loadingState="LOADING" cachedData={cachedDatabase()} />;
+  }
+  return <>{componentBody(filteredEntities)}</>;
 };
 
 export default HomePageInner;

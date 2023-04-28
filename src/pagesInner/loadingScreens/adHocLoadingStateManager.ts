@@ -1,5 +1,5 @@
 import { createElement, FunctionComponent, ReactElement } from 'react';
-import { FetchResponseSchema, TLoadingState } from '../../dev/hooks/tryUseFetch';
+import { FetchResponseSchema, TLoadingState } from '../../dev/hooks/useFetch';
 import { cachedDatabase } from '../../dev/namespaces/cache';
 import CachedData from '../../dev/namespaces/_types';
 

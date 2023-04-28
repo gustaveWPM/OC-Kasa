@@ -4,10 +4,9 @@ namespace Cache {
   export let databasePtr: CachedData = null;
 }
 
-export function cachedDatabase(newCache?: CachedData): CachedData | void {
+export function cachedDatabase(newCache?: CachedData): CachedData {
   if (newCache !== undefined) {
     Cache.databasePtr = newCache;
-    return;
   }
   return Cache.databasePtr;
 }

@@ -1,16 +1,19 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { useDatabase } from '../contexts/DatabaseContext';
-import { FetchResponseSchema, TLoadingState } from '../dev/hooks/tryUseFetch';
+import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
+import { cachedDatabase } from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
-import { getDbEntityById } from '../services/dbService';
+import { getDbEntityById, getDbEntityByIdJIT, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
+type FilteredEntityAdHocSumType = DbEntityMetadatas | {};
+type EntityOrMaybeEntitiesAdHocSumType = GetDbEntityByIdResult | DbEntityMetadatas[];
 
 function doRedirect(route: string) {
   return <Navigate to={route} replace />;
@@ -28,11 +31,20 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
   }
 }
 
-export function componentBody(entities: DbEntityMetadatas[], sheetId: string) {
-  const entity = getDbEntityById(entities, sheetId);
-  if (!entity) {
+export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocSumType, sheetIdForCacheRuntimeCtx?: string) {
+  const cacheCtx = sheetIdForCacheRuntimeCtx !== undefined;
+
+  let entityOrMaybeJITEntity: EntityOrMaybeEntitiesAdHocSumType = null;
+  if (cacheCtx) {
+    const entities = entityOrMaybeEntities as DbEntityMetadatas[];
+    entityOrMaybeJITEntity = getDbEntityByIdJIT(entities, sheetIdForCacheRuntimeCtx);
+  } else {
+    entityOrMaybeJITEntity = entityOrMaybeEntities as GetDbEntityByIdResult;
+  }
+  if (!entityOrMaybeJITEntity) {
     return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
   } else {
+    const entity = entityOrMaybeJITEntity as GetDbEntityByIdSuccessfulResult;
     return (
       <>
         <HousingSheet
@@ -55,6 +67,25 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
   const database = useDatabase();
   const { sheet_id } = useParams();
+  let entitiesBase: DbEntityMetadatas[] = [];
+  let fEntity: GetDbEntityByIdResult | {} = {};
+
+  const [filteredEntity, setFilteredEntity]: [FilteredEntityAdHocSumType, any] = useState(fEntity);
+  const jsonDepsNotEqual = (): boolean => JSON.stringify(fEntity) !== JSON.stringify(filteredEntity);
+  const computingFilteredEntity = (): boolean => filteredEntity !== null && Object.keys(filteredEntity).length === 0;
+  const fetchingDatabase = (): boolean => entitiesBase.length === 0;
+  useEffect(() => {
+    const cancelEffectCtx = sheet_id === undefined || fetchingDatabase();
+    async function getFilteredEntity() {
+      fEntity = await getDbEntityById(entitiesBase, sheet_id as string);
+      if (jsonDepsNotEqual()) {
+        setFilteredEntity(fEntity);
+      }
+    }
+    if (!cancelEffectCtx) {
+      getFilteredEntity();
+    }
+  }, [entitiesBase]);
 
   if (sheet_id === undefined) {
     return doRedirect(kasaPublicRoutes.HOME_PAGE);
@@ -64,9 +95,13 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   if (adHocPlaceholder) {
     return adHocPlaceholder;
   }
+  entitiesBase = (database as FetchResponseSchema).responseData as DbEntityMetadatas[];
 
-  const castedData = database as FetchResponseSchema;
-  return <>{componentBody(castedData.responseData as DbEntityMetadatas[], sheet_id)}</>;
+  if (computingFilteredEntity()) {
+    return <HousingSheetLoadingScreen loadingState="LOADING" cachedData={cachedDatabase()} sheetId={sheet_id} />;
+  }
+
+  return <>{componentBody(filteredEntity as GetDbEntityByIdResult)}</>;
 };
 
 export function getRouteParams(): ReactElement {
@@ -77,4 +112,4 @@ export function getRouteParams(): ReactElement {
   );
 }
 
-export default HousingSheetsInner;
+export default memo(HousingSheetsInner);
