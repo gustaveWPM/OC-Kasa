@@ -1,13 +1,14 @@
 import kasaPublicRoutes from './router/KasaPublicRoutes';
 import { VocabAccessor } from './vocab/VocabAccessor';
 
-export const NavData: { title: string; path: string }[] = [
+type NavDataEntities = { title: () => string; path: string }[];
+export const NavData: NavDataEntities = [
   {
-    title: VocabAccessor('HOME_PAGE_LABEL'),
+    title: () => VocabAccessor('HOME_PAGE_LABEL'),
     path: kasaPublicRoutes.HOME_PAGE
   },
   {
-    title: VocabAccessor('ABOUT_PAGE_LABEL'),
+    title: () => VocabAccessor('ABOUT_PAGE_LABEL'),
     path: kasaPublicRoutes.ABOUT_PAGE
   }
 ];

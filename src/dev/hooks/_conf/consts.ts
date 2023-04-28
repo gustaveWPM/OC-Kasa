@@ -4,4 +4,4 @@ export namespace UseFetchConsts {
   export const DEFAULT_DELAY_BEFORE_EACH_RETRY = TOTAL_RETRIES_DURATION / DEFAULT_MAX_FETCH_RETRY;
 }
 
-export const DB_FETCH_ENDPOINT = '/logements.json';
+export const FORCE_UPDATE_STATE_LIMIT_TO_AVOID_HUGE_NUMBER_IN_RAM = 99;

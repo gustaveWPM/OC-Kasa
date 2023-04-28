@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
+import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
@@ -7,7 +7,7 @@ import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import { cachedDatabase } from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
-import { getDbEntityById, getDbEntityByIdJIT, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
+import { getDbEntityById, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 
@@ -37,7 +37,7 @@ export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocS
   let entityOrMaybeJITEntity: EntityOrMaybeEntitiesAdHocSumType = null;
   if (cacheCtx) {
     const entities = entityOrMaybeEntities as DbEntityMetadatas[];
-    entityOrMaybeJITEntity = getDbEntityByIdJIT(entities, sheetIdForCacheRuntimeCtx);
+    entityOrMaybeJITEntity = getDbEntityById(entities, sheetIdForCacheRuntimeCtx);
   } else {
     entityOrMaybeJITEntity = entityOrMaybeEntities as GetDbEntityByIdResult;
   }
@@ -75,14 +75,14 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   const computingFilteredEntity = (): boolean => filteredEntity !== null && Object.keys(filteredEntity).length === 0;
   const fetchingDatabase = (): boolean => entitiesBase.length === 0;
   useEffect(() => {
-    const cancelEffectCtx = sheet_id === undefined || fetchingDatabase();
-    async function getFilteredEntity() {
-      fEntity = await getDbEntityById(entitiesBase, sheet_id as string);
+    function getFilteredEntity() {
+      fEntity = getDbEntityById(entitiesBase, sheet_id as string);
       if (jsonDepsNotEqual()) {
         setFilteredEntity(fEntity);
       }
     }
-    if (!cancelEffectCtx) {
+    const cancelCurrentEffectCtx = sheet_id === undefined || fetchingDatabase();
+    if (!cancelCurrentEffectCtx) {
       getFilteredEntity();
     }
   }, [entitiesBase]);
@@ -112,4 +112,4 @@ export function getRouteParams(): ReactElement {
   );
 }
 
-export default memo(HousingSheetsInner);
+export default HousingSheetsInner;

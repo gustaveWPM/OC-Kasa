@@ -56,9 +56,9 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   const jsonDepsNotEqual = (): boolean => JSON.stringify(fEntities) !== JSON.stringify(filteredEntities);
   const computingFilteredEntities = (): boolean => filteredEntities.length === 0;
   useEffect(() => {
-    async function getFilteredEntities() {
+    function getFilteredEntities() {
       const ids = getDbCtxEntitiesIds(entitiesBase);
-      fEntities = (await getDbPartialElements(entitiesBase, ids, ['title', 'cover'])) as FilteredEntities;
+      fEntities = getDbPartialElements(entitiesBase, ids, ['title', 'cover']) as FilteredEntities;
       if (jsonDepsNotEqual()) {
         setFilteredEntities(fEntities);
       }

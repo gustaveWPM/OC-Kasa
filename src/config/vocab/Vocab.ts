@@ -1,5 +1,5 @@
+import americanEnglishDictionnary from '../dictionnaries/en-us';
 import frenchDictionnary from '../dictionnaries/fr';
-import DbEntityMetadatas from '../MetadatasSchema';
 
 export interface VocabSchema {
   LANG: string;
@@ -18,22 +18,16 @@ export interface VocabSchema {
 
 interface VocabStrings {
   fr: VocabSchema;
+  'en-us': VocabSchema;
 }
 
 const Vocab: VocabStrings = {
-  fr: frenchDictionnary
+  fr: frenchDictionnary,
+  'en-us': americanEnglishDictionnary
 };
 
-export const DEFAULT_LANGUAGE: VocabLanguageSymbol = 'fr';
 export type VocabSchemaElementKey = keyof VocabSchema;
 export type VocabLanguageSymbol = keyof VocabStrings;
-export type i18nDbVocab = Omit<
-  {
-    [Property in keyof VocabStrings]: Partial<DbEntityMetadatas>[];
-  },
-  typeof DEFAULT_LANGUAGE
->;
-
-export type i18nDbVocabSymbol = keyof i18nDbVocab;
+export const DEFAULT_LANGUAGE: VocabLanguageSymbol = 'fr';
 
 export default Vocab;

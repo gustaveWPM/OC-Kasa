@@ -52,7 +52,7 @@
       "Parking",
       "Sèche Cheveux",
       "Machine à laver",
-      "Wi-fi",
+      "WIFI",
       "Cuisine équipée",
       "Télévision"
     ],
@@ -80,7 +80,7 @@
     "rating": "3",
     "location": "Ile de France - Paris 20e",
     "equipments": [
-      "Wi-fi",
+      "WIFI",
       "Cuisine équipée",
       "Télévision",
       "Sèche Cheveux"
@@ -110,7 +110,7 @@
     "location": "Ile de France - Paris 11e",
     "equipments": [
       "Micro-Ondes",
-      "Wi-fi",
+      "WIFI",
       "Chambre Séparée",
       "Climatisation",
       "Télévision"
@@ -144,7 +144,7 @@
     "equipments": [
       "Frigo Américain",
       "Sèche Cheveux",
-      "Wi-fi",
+      "WIFI",
       "Chambre Séparée",
       "Parking"
     ],
@@ -201,7 +201,7 @@
     "equipments": [
       "Salle de bains",
       "Frigo",
-      "Wi-fi",
+      "WIFI",
       "Sèche Cheveux",
       "Bureau",
       "Parking"
@@ -232,7 +232,7 @@
     "rating": "5",
     "location": "Ile de France - Paris 6e",
     "equipments": [
-      "Wi-fi",
+      "WIFI",
       "Sèche Cheveux",
       "Machine à laver",
       "Parking",
@@ -268,7 +268,7 @@
       "Climatisation",
       "Machine à laver",
       "Sèche Cheveux",
-      "Wi-fi",
+      "WIFI",
       "Parking"
     ],
     "tags": [
@@ -299,7 +299,7 @@
       "Chauffage",
       "Sèche linge",
       "Sèche Cheveux",
-      "Wi-fi",
+      "WIFI",
       "Ascenseur"
     ],
     "tags": [
@@ -330,7 +330,7 @@
       "Clic-clac",
       "Four",
       "Sèche Cheveux",
-      "Wi-fi"
+      "WIFI"
     ],
     "tags": [
       "Marais",
@@ -359,7 +359,7 @@
       "Rangements",
       "Lit",
       "Sèche Cheveux",
-      "Wi-fi",
+      "WIFI",
       "TV",
       "Bouilloire"
     ],
@@ -390,7 +390,7 @@
     "rating": "5",
     "location": "Ile de France - Ecouen",
     "equipments": [
-      "SDB",
+      "Salle de bains",
       "Cuisine équipée",
       "Toilettes sèches",
       "Frigo",
@@ -413,7 +413,7 @@
       "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-13-5.jpg",
       "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-13-6.jpg"
     ],
-    "description": "Vous chercher un endroit pour fêter un anniversaire entre amis tout en restant proche de Paris ? Ne cherchez plus ! Entièrement équipée, cette maison est l'endroit idéal pour se regrouper.",
+    "description": "Vous cherchez un endroit pour fêter un anniversaire entre amis tout en restant proche de Paris ? Ne cherchez plus ! Entièrement équipée, cette maison est l'endroit idéal pour se regrouper.",
     "host": {
       "name": "Karen Guillet",
       "picture": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/profile-picture-9.jpg"
@@ -421,7 +421,7 @@
     "rating": "4",
     "location": "Ile de France - Arnouville",
     "equipments": [
-      "SDB",
+      "Salle de bains",
       "Cuisine équipée",
       "Frigo",
       "Bouilloire",
@@ -456,7 +456,7 @@
     "location": "Ile de France - Arnouville",
     "equipments": [
       "Bouilloire",
-      "SDB",
+      "Salle de bains",
       "Cuisine équipée",
       "Frigo",
       "WIFI",
@@ -495,7 +495,7 @@
       "Télévision",
       "Four",
       "Frigo",
-      "Wi-fi",
+      "WIFI",
       "Micro-Ondes",
       "Parking"
     ],
@@ -507,7 +507,7 @@
   },
   {
     "id": "1e180563",
-    "title": "Charmant apt aux portes de Paris",
+    "title": "Charmant appartement aux portes de Paris",
     "cover": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-16-1.jpg",
     "pictures": [
       "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-16-1.jpg",
@@ -528,17 +528,17 @@
       "Four",
       "Frigo",
       "Hotte",
-      "Wi-fi",
+      "WIFI",
       "Micro-Ondes"
     ],
     "tags": [
       "Vue Parc",
-      "Apt de Charme"
+      "Appartement de Charme"
     ]
   },
   {
     "id": "2139a317",
-    "title": "Cheap - Chambre Paris 20",
+    "title": "Cheap - Chambre Paris 20e",
     "cover": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-17-1.jpg",
     "pictures": [
       "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-17-1.jpg"
@@ -552,7 +552,7 @@
     "location": "Ile de France - Paris 20e",
     "equipments": [
       "Bouilloire",
-      "Wi-fi",
+      "WIFI",
       "Micro-Ondes"
     ],
     "tags": [
@@ -580,18 +580,18 @@
       "Équipements de base",
       "Four",
       "Frigo",
-      "Wi-fi",
+      "WIFI",
       "Micro-Ondes"
     ],
     "tags": [
       "Studio",
-      "Charmant",
+      "Charmant studio",
       "13e"
     ]
   },
   {
     "id": "cb02d69b",
-    "title": "Magnifique appartement Rivoli",
+    "title": "Magnifique appartement - Rivoli",
     "cover": "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg",
     "pictures": [
       "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg"
@@ -604,7 +604,7 @@
     "rating": "4",
     "location": "Ile de France - Paris 13e",
     "equipments": [
-      "Wi-fi",
+      "WIFI",
       "Équipements de base",
       "Micro-Ondes",
       "Frigo",

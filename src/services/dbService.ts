@@ -27,18 +27,12 @@ export function getDbPartialElements(
   return elements;
 }
 
-export function getDbEntityByIdJIT(dbRepresentation: DbEntityMetadatas[], targetId: string): GetDbEntityByIdResult {
+export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId: string): GetDbEntityByIdResult {
   const result = dbRepresentation.filter(({ id }) => id === targetId);
   if (result.length === 0) {
     return null;
   }
   return result[0];
-}
-
-// * ... [ToDo i18n feature]: refactor this to an async function which translates just-in-time the database i18nable fields via DeepL ?
-// * ... => https://github.com/gustaveWPM/DeepL-Driver/
-export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId: string): GetDbEntityByIdResult {
-  return getDbEntityByIdJIT(dbRepresentation, targetId);
 }
 
 export function getDbCtxEntitiesIds(dbRepresentation: DbEntityMetadatas[]) {

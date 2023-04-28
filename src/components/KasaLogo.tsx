@@ -27,9 +27,9 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
     const width = logoPxDimsDictionnary[UseCase[currentUseCase]].width;
     const height = logoPxDimsDictionnary[UseCase[currentUseCase]].height;
     if (currentUseCase === 'FOOTER') {
-      return <img src="/logo-dark.svg" draggable="false" width={width} height={height} alt="" />;
+      return <img src="/img/logo-dark.svg" draggable="false" width={width} height={height} alt="" />;
     }
-    return <img src="/logo-light.svg" draggable="false" width={width} height={height} alt="" />;
+    return <img src="/img/logo-light.svg" draggable="false" width={width} height={height} alt="" />;
   };
 
   const getLogo = (): ReactElement => {
