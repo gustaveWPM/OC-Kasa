@@ -3,6 +3,7 @@ import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
+import { i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import { cachedDatabase } from '../dev/namespaces/cache';
@@ -88,7 +89,7 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   }, [entitiesBase]);
 
   if (sheet_id === undefined) {
-    return doRedirect(kasaPublicRoutes.HOME_PAGE);
+    return doRedirect(i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE));
   }
 
   const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HousingSheetLoadingScreen, { sheetId: sheet_id });

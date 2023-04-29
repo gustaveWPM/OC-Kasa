@@ -22,6 +22,7 @@ export const kasaPublicRoutesTitles: KasaPublicRoutes = {
 };
 
 export const SKIPPED_FROM_404_SUGGESTIONS_ROUTES: string[] = [kasaPublicRoutes.NOTFOUND_PAGE, kasaPublicRoutes.HOME_PAGE];
+export const SKIPPED_FROM_i18n_ROUTES: string[] = [kasaPublicRoutes.NOTFOUND_PAGE];
 export const PARAMS_ROUTES: { route: string; params: ReactElement }[] = [
   { route: kasaPublicRoutes.HOUSING_SHEETS_PAGE, params: getHousingSheetsRouteParams() }
 ];

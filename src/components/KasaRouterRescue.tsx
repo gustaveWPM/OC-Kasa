@@ -8,23 +8,19 @@ import kasaPublicRoutes, {
   MINIMAL_AMOUNT_OF_CHARACTERS_IN_USER_TRIED_ROUTE_TO_FORCE_A_SUGGEST,
   SKIPPED_FROM_404_SUGGESTIONS_ROUTES
 } from '../config/router/KasaPublicRoutes';
+import { i18nRouteAccessor, routeWithoutI18nAccessor } from '../config/vocab/VocabAccessor';
 import damerauLevenshtein from '../dev/math/DamerauLevenshtein';
-import wpmDebugger from '../dev/wpmDebugger';
-
-const DEBUGGER_LABEL = 'Kasa Router Rescue (React Component)';
 
 interface KasaRouterRescueProps {}
 
-export const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => {
-  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
-
+const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => {
   const { pathname } = useLocation();
   let bestScoreData: IDamLevRouteBestScore = {};
 
   for (const routeKey in kasaPublicRoutes) {
     const currentRouteKey = routeKey as KasaPublicRouteElementKey;
-    const currentRoute: string = kasaPublicRoutes[currentRouteKey];
-    const currentPathname: string = pathname;
+    const currentRoute: string = routeWithoutI18nAccessor(kasaPublicRoutes[currentRouteKey]);
+    const currentPathname: string = routeWithoutI18nAccessor(pathname);
     const currentScore: number = damerauLevenshtein(currentPathname, currentRoute);
 
     const haveToSkipRoute = (): boolean => SKIPPED_FROM_404_SUGGESTIONS_ROUTES.includes(currentRoute);
@@ -78,7 +74,7 @@ export const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => 
   let rState: { bestScoreData: IDamLevRouteBestScore } = { bestScoreData: {} };
   if (bestScoreData.ROUTE_KEY && bestScoreData.SCORE) {
     if (bestScoreData.SCORE <= DAMERAU_LEVENSHTEIN_RESCUE_REDIRECT_DISTANCE_THRESHOLD) {
-      rTo = kasaPublicRoutes[bestScoreData.ROUTE_KEY];
+      rTo = i18nRouteAccessor(kasaPublicRoutes[bestScoreData.ROUTE_KEY]);
     } else if (bestScoreData.FORCED_SUGGEST_ROUTE_KEY || bestScoreData.SCORE <= DAMERAU_LEVENSHTEIN_RESCUE_SUGGEST_DISTANCE_THRESHOLD) {
       rState = { bestScoreData };
     }

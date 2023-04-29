@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import kasaPublicRoutes, { KasaPublicRouteElementKey, kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
-import { VocabAccessor } from '../config/vocab/VocabAccessor';
+import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'Not Found Page (React Component)';
@@ -25,7 +25,7 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
     }
   }
 
-  const rTo = kasaPublicRoutes.HOME_PAGE;
+  const rTo = i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE);
   return (
     <div className="not-found-wrapper">
       <section className="not-found-main">

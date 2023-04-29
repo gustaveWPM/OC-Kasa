@@ -1,9 +1,8 @@
-import { FunctionComponent, memo, ReactElement, useState } from 'react';
+import { FunctionComponent, memo, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavData from '../config/NavData';
-import { FORCE_UPDATE_STATE_LIMIT_TO_AVOID_HUGE_NUMBER_IN_RAM } from '../dev/hooks/_conf/consts';
 import wpmDebugger from '../dev/wpmDebugger';
-import ChangeLanguageBtn, { Mutators } from './ChangeLanguageButton';
+import ChangeLanguageBtn from './ChangeLanguageButton';
 import KasaLogo from './KasaLogo';
 import './styles/navbar.scss';
 
@@ -12,20 +11,17 @@ interface KasaNavbarProps {}
 
 export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
-  const [forceUpdate, doForceUpdate] = useState(0);
   function navbarItemsGenerator(): ReactElement[] {
-    return NavData.map(({ path, title }): ReactElement => {
-      const rTo = path;
+    return NavData.map(({ getPath, getTitle }): ReactElement => {
+      const rTo = getPath();
       return (
-        <li key={path + title()} className="no-animation-on-pageload">
-          <NavLink to={rTo}>{title()}</NavLink>
+        <li key={rTo + getTitle()} className="no-animation-on-pageload">
+          <NavLink to={rTo}>{getTitle()}</NavLink>
         </li>
       );
     });
   }
 
-  const [dummyState, fnPtr] = [(forceUpdate + 1) % FORCE_UPDATE_STATE_LIMIT_TO_AVOID_HUGE_NUMBER_IN_RAM, doForceUpdate];
-  const ms: Mutators = { dummyState, fnPtr };
   return (
     <>
       <div className="navbar-unscrolled-page-height-diff"></div>
@@ -36,8 +32,8 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
             <ul className="navbar-menu-elements">{navbarItemsGenerator()}</ul>
           </nav>
         </div>
-        <ChangeLanguageBtn targetLang="fr" mutators={ms} />
-        <ChangeLanguageBtn targetLang="en-us" mutators={ms} />
+        <ChangeLanguageBtn targetLang="fr" />
+        <ChangeLanguageBtn targetLang="en-us" />
       </div>
     </>
   );

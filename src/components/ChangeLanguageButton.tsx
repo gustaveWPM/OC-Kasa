@@ -6,23 +6,19 @@ import { useAppContext } from '../contexts/AppContext';
 export type Mutators = { dummyState: number; fnPtr: Function } | null;
 interface ChangeLanguageBtnProps {
   targetLang: VocabLanguageSymbol;
-  mutators: Mutators;
 }
 
-const ChangeLanguageBtn: FunctionComponent<ChangeLanguageBtnProps> = ({ targetLang, mutators = null }) => {
+const ChangeLanguageBtn: FunctionComponent<ChangeLanguageBtnProps> = ({ targetLang }) => {
   const { dispatch } = useAppContext();
-  const testi18n = (lang: VocabLanguageSymbol) => {
+  const changeLang = (lang: VocabLanguageSymbol) => {
     if (alreadyCurrentUserVocabLanguageSymbol(lang)) {
       return;
     }
     setCurrentLanguageInLocalStorage(lang);
-    if (mutators) {
-      mutators.fnPtr(mutators.dummyState);
-    }
     dispatch({ event: 'FORCE_UPDATE' });
   };
 
-  return <button onClick={() => testi18n(targetLang)}>{targetLang.toUpperCase()}</button>;
+  return <button onClick={() => changeLang(targetLang)}>{targetLang.toUpperCase()}</button>;
 };
 
 export default ChangeLanguageBtn;

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactElement } from 'react';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
-import { VocabAccessor } from '../config/vocab/VocabAccessor';
+import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
 
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
 
   const getLogo = (): ReactElement => {
     if (currentUseCase === 'HEADER') {
-      return <Link to={kasaPublicRoutes.HOME_PAGE}>{getThemedLogoElement()}</Link>;
+      return <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)}>{getThemedLogoElement()}</Link>;
     }
     return <>{getThemedLogoElement()}</>;
   };
