@@ -16,7 +16,7 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
   const { state } = useLocation();
   if (state) {
     const bestScoreData = state.bestScoreData;
-    if (bestScoreData && (bestScoreData.ROUTE_KEY || bestScoreData.FORCED_SUGGEST_ROUTE_KEY)) {
+    if (bestScoreData?.ROUTE_KEY || bestScoreData?.FORCED_SUGGEST_ROUTE_KEY) {
       const routeKey = (
         bestScoreData.FORCED_SUGGEST_ROUTE_KEY ? bestScoreData.FORCED_SUGGEST_ROUTE_KEY : bestScoreData.ROUTE_KEY
       ) as KasaPublicRouteElementKey;

@@ -13,8 +13,8 @@ interface DatabaseProviderProps {
 }
 
 const getUrl = () => getDbFetchEndpoint();
+const databasePromise = fetch(getUrl());
 export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ children }) => {
-  const databasePromise = fetch(getUrl());
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
   const [data, setData] = useState(cachedDatabase());
 
@@ -25,12 +25,13 @@ export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ chi
     dataFetch();
   }, []);
 
-  const dataLoadingStateAsDeps = [data && data.loadingState];
+  const dataLoadingStateAsDeps = [data?.loadingState];
   useEffect(() => {
     function processCacheUpdate() {
       if (data) {
         if (data.loadingState === 'LOADED') {
-          cachedDatabase(data);
+          const cache: CachedData = { ...data, loadingState: 'LOADING' };
+          cachedDatabase(cache);
         } else if (data.loadingState === 'FAILED_TO_LOAD') {
           cachedDatabase(null);
         }

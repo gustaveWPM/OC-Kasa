@@ -2,7 +2,7 @@ const LABEL_PREFIX: string = 'Kasa App: ';
 const IGNORE_ERRORS: boolean = false;
 const IGNORE_WARNINGS: boolean = true;
 const IGNORE_INFOS: boolean = false;
-const MUTE: boolean = false;
+const MUTE: boolean = true;
 
 enum ErrorCode {
   IS_ERROR = 2,

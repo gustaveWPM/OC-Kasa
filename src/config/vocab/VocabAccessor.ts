@@ -33,7 +33,7 @@ function initializeLangLocalStorage() {
   setCurrentLanguageInLocalStorage(DEFAULT_LANGUAGE);
 }
 
-function getCurrentUserVocabLanguageSymbol(): VocabLanguageSymbol {
+export function getCurrentUserVocabLanguageSymbol(): VocabLanguageSymbol {
   initializeLangLocalStorage();
   const curLang: VocabLanguageSymbol | null = getCurrentLanguageInLocalStorage();
   if (!curLang) {
@@ -55,7 +55,6 @@ export function VocabAccessor(vocabSchemaElementKey: VocabSchemaElementKey): str
 }
 
 export function getDbFetchEndpoint(): string {
-  console.log(getCurrentUserVocabLanguageSymbol());
   return `/json/logements.${getCurrentUserVocabLanguageSymbol()}.json`;
 }
 

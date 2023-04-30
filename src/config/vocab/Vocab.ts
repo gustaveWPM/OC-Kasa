@@ -16,7 +16,7 @@ export interface VocabSchema {
   KASA_CATCHPHRASE_SECOND_LINE: string;
 }
 
-interface VocabStrings {
+export interface VocabStrings {
   fr: VocabSchema;
   'en-us': VocabSchema;
 }
