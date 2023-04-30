@@ -33,7 +33,8 @@ export const DatabaseProvider: FunctionComponent<DatabaseProviderProps> = ({ chi
           const cache: CachedData = { ...data, loadingState: 'LOADING' };
           cachedDatabase(cache);
         } else if (data.loadingState === 'FAILED_TO_LOAD') {
-          cachedDatabase(null);
+          const invalidatedCache: CachedData = { ...data, loadingState: 'EXPIRED' };
+          cachedDatabase(invalidatedCache);
         }
       }
     }

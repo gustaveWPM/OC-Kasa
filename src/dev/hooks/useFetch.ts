@@ -7,7 +7,8 @@ export enum ELoadingState {
   LOADING,
   LOADED,
   RETRYING_TO_LOAD,
-  FAILED_TO_LOAD
+  FAILED_TO_LOAD,
+  EXPIRED
 }
 
 export type TLoadingState = keyof typeof ELoadingState;

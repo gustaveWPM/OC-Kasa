@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
@@ -28,7 +28,7 @@ function kasaCardsGenerator(entities: FilteredEntities) {
   );
 }
 
-export function firstLoadPlaceholders(loadingState: TLoadingState) {
+export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement {
   if (loadingState === 'FAILED_TO_LOAD') {
     return <p>OH C'EST TOUT CASSÉ LÀ</p>;
   } else if (loadingState === 'LOADING') {
