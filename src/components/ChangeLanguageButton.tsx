@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
-import { VocabLanguageSymbol } from '../config/vocab/Vocab';
+import { FunctionComponent, ReactElement } from 'react';
+import { Vocab, VocabLanguageSymbol } from '../config/vocab/Vocab';
 import { alreadyCurrentUserVocabLanguageSymbol, setCurrentLanguageInLocalStorage } from '../config/vocab/VocabAccessor';
 import { useAppContext } from '../contexts/AppContext';
 
@@ -20,5 +20,19 @@ const ChangeLanguageBtn: FunctionComponent<ChangeLanguageBtnProps> = ({ targetLa
 
   return <button onClick={() => changeLang(targetLang)}>{targetLang.toUpperCase()}</button>;
 };
+
+export function changeLanguageBtnsGenerator() {
+  const btns: ReactElement[] = [];
+  for (const vKey in Vocab) {
+    const key = vKey as VocabLanguageSymbol;
+    btns.push(
+      <li key={`change-language-btn-${key}`}>
+        <ChangeLanguageBtn targetLang={key} />
+      </li>
+    );
+  }
+
+  return <ul>{btns}</ul>;
+}
 
 export default ChangeLanguageBtn;

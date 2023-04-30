@@ -3,44 +3,58 @@ import { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
 import wpmDebugger from '../dev/wpmDebugger';
 
-const DEBUGGER_LABEL = 'Page Effects (React Component)';
+const DEBUGGER_LABEL = 'Page Effects (React Hook)';
+const RESCUE_MODE = true;
 
 export function setPageTitle(title: string) {
   document.title = title;
 }
 
 export function strictPageTitleBuilder(labelKey: VocabSchemaElementKey) {
-  if (labelKey === 'HOME_PAGE_LABEL') {
-    return `Kasa | ${VocabAccessor(labelKey)}`;
+  if (!isVocabSchemaElementKey(labelKey)) {
+    throw new Error('strictPageTitleBuilder: Invalid labelKey');
   }
 
-  return `${VocabAccessor(labelKey as VocabSchemaElementKey)} | Kasa`;
+  if (labelKey === 'HOME_PAGE_LABEL') {
+    return `${VocabAccessor('BRAND')} | ${VocabAccessor(labelKey)}`;
+  }
+
+  return `${VocabAccessor(labelKey as VocabSchemaElementKey)} | ${VocabAccessor('BRAND')}`;
 }
 
 export function weakPageTitleBuilder(labelKey: string, rescueMode: boolean = false) {
   if (labelKey === undefined) {
     return document.title;
   }
-  if (rescueMode && isVocabSchemaElementKey(labelKey)) {
-    return strictPageTitleBuilder(labelKey as VocabSchemaElementKey);
+  if (rescueMode) {
+    try {
+      return strictPageTitleBuilder(labelKey as VocabSchemaElementKey);
+    } catch {}
   }
 
-  return `${labelKey} | Kasa`;
+  return `${labelKey} | ${VocabAccessor('BRAND')}`;
 }
 
 interface OnPageChangeEffectsProps {
-  title?: string;
+  labelKey?: string;
+  pageTitleBuilderStrictMode?: boolean;
   children: ReactElement;
 }
 
-export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = ({ title, children }) => {
-  wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = ({ labelKey, pageTitleBuilderStrictMode, children }) => {
+  wpmDebugger(DEBUGGER_LABEL, 'Called!');
 
   useEffect(() => {
-    if (title !== undefined) {
-      setPageTitle(title);
+    if (labelKey !== undefined) {
+      if (pageTitleBuilderStrictMode === undefined) {
+        setPageTitle(weakPageTitleBuilder(labelKey, RESCUE_MODE));
+      } else if (pageTitleBuilderStrictMode) {
+        setPageTitle(strictPageTitleBuilder(labelKey as VocabSchemaElementKey));
+      } else {
+        setPageTitle(weakPageTitleBuilder(labelKey));
+      }
     }
-  }, [title]);
+  }, [labelKey]);
 
   window.scrollTo(0, 0);
   return children;

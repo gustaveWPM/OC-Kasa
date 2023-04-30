@@ -3,6 +3,7 @@ import frenchDictionnary from '../dictionnaries/fr';
 
 export interface VocabSchema {
   LANG: string;
+  BRAND: string;
   HOME_PAGE_LABEL: string;
   ABOUT_PAGE_LABEL: string;
   HOUSING_SHEETS_PAGE_LABEL: string;
@@ -21,7 +22,7 @@ export interface VocabStrings {
   'en-us': VocabSchema;
 }
 
-const Vocab: VocabStrings = {
+export const Vocab: VocabStrings = {
   fr: frenchDictionnary,
   'en-us': americanEnglishDictionnary
 };
