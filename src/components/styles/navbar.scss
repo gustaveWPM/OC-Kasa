@@ -1,0 +1,163 @@
+@import '../../design/breakpoints';
+@import '../../design/noPageOnloadAnimationsSpecs';
+@import '../../design/navbarSharedVariables';
+@import '../../design/pageWrapperSharedVariables';
+@import './navbarThemes';
+
+$navbar-link-font-weight: 500;
+
+@include responsive(base) {
+  .navbar,
+  .navbar-content,
+  .navbar-menu,
+  .navbar-menu-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .navbar-menu-elements {
+    list-style: none;
+  }
+
+  .navbar,
+  .navbar-unscrolled-page-height-diff {
+    z-index: 3;
+  }
+
+  .navbar-unscrolled-page-height-diff {
+    position: relative;
+    min-height: $navbar-h-unscrolled-page-initial-offset;
+    width: 100%;
+  }
+
+  .navbar {
+    position: sticky;
+    align-self: flex-start;
+    top: 0;
+    min-height: $navbar-mobile-min-height;
+    padding-top: $navbar-h-padding-base;
+    padding-bottom: $navbar-h-padding-base;
+    padding-left: $main-wrapper-padding;
+    padding-right: $main-wrapper-padding;
+    transition: padding-top calc($no-page-onload-animation-duration * 2), min-height calc($no-page-onload-animation-duration * 2) ease-in-out;
+    transition-delay: calc($no-page-onload-animation-duration / 0.75);
+
+    .navbar-content {
+      align-self: flex-start;
+      position: sticky;
+      width: 100%;
+      flex-wrap: wrap;
+      align-items: baseline;
+      height: fit-content;
+
+      .navbar-menu-wrapper {
+        display: flex;
+        position: relative;
+        min-width: 30%;
+        font-size: 1em;
+        bottom: 0.7em;
+
+        .navbar-menu-elements {
+          width: 100%;
+          justify-content: space-between;
+
+          a {
+            &.active {
+              text-decoration: underline;
+            }
+
+            font-weight: $navbar-link-font-weight;
+            text-decoration: none;
+            color: inherit;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responsive(notMobiles, $kasa-logo-mobile-media-query-width-offset) {
+  .navbar {
+    min-height: $navbar-desktop-min-height;
+    padding-top: $navbar-h-padding-base;
+    padding-bottom: $navbar-h-padding-base;
+
+    .navbar-content {
+      .navbar-menu-wrapper {
+        width: auto;
+        font-size: clamp(1.5em, max(1.5vw, 1.5vh), 2vw);
+        bottom: 0.45em;
+
+        .navbar-menu-elements {
+          width: 30vw;
+          min-width: calc(15vw + 130px);
+          max-width: 375px;
+
+          a {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $navbar-flex-column-media-max-width) {
+  .navbar {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    .navbar-content {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .navbar-menu {
+        width: 100%;
+        justify-content: center;
+
+        .navbar-menu-elements {
+          margin-top: max(4vw, 1.5em);
+          width: 100vw;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          li {
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .navbar .navbar-content .navbar-menu .navbar-menu-elements {
+    a:hover {
+      font-weight: 600;
+    }
+  }
+}
+
+@include responsive(mobiles, $kasa-logo-mobile-media-query-width-offset) {
+  .navbar {
+    min-height: $navbar-desktop-min-height;
+  }
+
+  .navbar .navbar-content .navbar-menu {
+    .navbar-menu-elements {
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 194px) {
+  .navbar-content .navbar-menu .navbar-menu-elements {
+    li {
+      margin: 15px;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
-import { cachedDatabase } from '../dev/namespaces/cache';
+import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbEntityById, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';

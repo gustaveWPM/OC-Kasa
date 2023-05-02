@@ -1,0 +1,32 @@
+@import '../../design/colors';
+@import '../../design/themes';
+
+@include themes(light) {
+  .navbar-unscrolled-page-height-diff,
+  .navbar {
+    background-color: $body-bg-color;
+  }
+
+  .navbar {
+    box-shadow: 0 max(3px, 0.25vw) 0 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .navbar-menu-elements {
+    color: $body-font-color;
+  }
+}
+
+@include themes(dark) {
+  .navbar-unscrolled-page-height-diff,
+  .navbar {
+    background-color: $dark-body-bg-color;
+  }
+
+  .navbar {
+    box-shadow: 0 max(3px, 0.25vw) 0 0 rgba(24, 26, 27, 0.35);
+  }
+
+  .navbar-menu-elements {
+    color: $dark-body-font-color;
+  }
+}

@@ -4,7 +4,7 @@ import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
-import { cachedDatabase } from '../dev/namespaces/cache';
+import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';

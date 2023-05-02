@@ -4,6 +4,7 @@ import NavData from '../config/NavData';
 import wpmDebugger from '../dev/wpmDebugger';
 import { changeLanguageBtnsGenerator } from './ChangeLanguageButton';
 import KasaLogo from './KasaLogo';
+
 import './styles/navbar.scss';
 
 const DEBUGGER_LABEL = 'Kasa Navbar (React Component)';
@@ -15,7 +16,7 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
     return NavData.map(({ getPath, getTitle }): ReactElement => {
       const rTo = getPath();
       return (
-        <li key={rTo + getTitle()} className="no-animation-on-pageload">
+        <li key={rTo + getTitle()}>
           <NavLink to={rTo}>{getTitle()}</NavLink>
         </li>
       );
@@ -28,11 +29,13 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
       <div className="navbar">
         <div className="navbar-content">
           <KasaLogo currentUseCase="HEADER" />
-          <nav className="navbar-menu">
-            <ul className="navbar-menu-elements">{navbarItemsGenerator()}</ul>
-          </nav>
+          <div className="navbar-menu-wrapper">
+            <nav className="navbar-menu">
+              <ul className="navbar-menu-elements">{navbarItemsGenerator()}</ul>
+            </nav>
+            {changeLanguageBtnsGenerator()}
+          </div>
         </div>
-        {changeLanguageBtnsGenerator()}
       </div>
     </>
   );

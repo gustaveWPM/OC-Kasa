@@ -21,4 +21,4 @@ export function cachedDatabase(newCache?: CachedData): CachedData {
   return cacheAccessor(newCache);
 }
 
-export default Cache;
+export default cachedDatabase;

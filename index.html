@@ -9,22 +9,9 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
     onload="this.rel='stylesheet'">
   <title>Kasa | Chez vous, partout et ailleurs</title>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => setTimeout(() => {
-      document.querySelector('#no-animation-on-pageload').remove();
-    }, 351));
-  </script>
 </head>
 
 <body class="light-theme">
-  <style id="no-animation-on-pageload">
-    .no-animation-on-pageload {
-      animation-duration: 0s !important;
-      -webkit-animation-duration: 0s !important;
-      transition: all 0s !important;
-    }
-  </style>
-
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

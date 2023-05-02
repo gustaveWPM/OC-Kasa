@@ -1,7 +1,7 @@
 import { createContext, FunctionComponent, ReactNode, useContext, useEffect, useState } from 'react';
 import { getDbFetchEndpoint } from '../config/vocab/VocabAccessor';
 import { useGetData } from '../dev/hooks/useFetch';
-import { cachedDatabase } from '../dev/namespaces/cache';
+import cachedDatabase from '../dev/namespaces/cache';
 import CachedData from '../dev/namespaces/_types';
 import wpmDebugger from '../dev/wpmDebugger';
 

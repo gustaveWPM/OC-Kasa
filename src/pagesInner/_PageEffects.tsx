@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, useEffect } from 'react';
+import { FunctionComponent, memo, ReactElement, useEffect } from 'react';
 import { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
 import wpmDebugger from '../dev/wpmDebugger';
@@ -60,4 +60,4 @@ export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = 
   return children;
 };
 
-export default OnPageChangeEffects;
+export default memo(OnPageChangeEffects);
