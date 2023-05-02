@@ -1,8 +1,9 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import kasaPublicRoutes, { KasaPublicRouteElementKey, kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
 import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { useForceUpdate } from '../dev/hooks/useForceUpdate';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'Not Found Page (React Component)';
@@ -14,6 +15,10 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
 
   let renderSuggestLink: ReactNode = false;
   const { state } = useLocation();
+
+  const [forcedUpdateState, setForcedUpdateState] = useState(0);
+  useForceUpdate(forcedUpdateState, setForcedUpdateState);
+
   if (state) {
     const bestScoreData = state.bestScoreData;
     if (bestScoreData?.ROUTE_KEY || bestScoreData?.FORCED_SUGGEST_ROUTE_KEY) {
@@ -21,7 +26,7 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
         bestScoreData.FORCED_SUGGEST_ROUTE_KEY ? bestScoreData.FORCED_SUGGEST_ROUTE_KEY : bestScoreData.ROUTE_KEY
       ) as KasaPublicRouteElementKey;
       const rTo = kasaPublicRoutes[routeKey];
-      renderSuggestLink = <Link to={rTo}>{kasaPublicRoutesTitles[routeKey]}</Link>;
+      renderSuggestLink = <Link to={rTo}>{kasaPublicRoutesTitles[routeKey]()}</Link>;
     }
   }
 

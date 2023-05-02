@@ -1,3 +1,5 @@
+import americanEnglishDictionnary from './dictionnaries/en-us';
+import frenchDictionnary from './dictionnaries/fr';
 import { VocabStrings } from './vocab/Vocab';
 
 type ButtonData = {
@@ -11,11 +13,11 @@ type ButtonsLabelsAndTxt = {
 
 export const changeLanguagesBtns: ButtonsLabelsAndTxt = {
   fr: {
-    label: 'Afficher le site en Français',
+    label: `Afficher le site en ${frenchDictionnary.LANG}`,
     txt: '🇫🇷'
   },
   'en-us': {
-    label: 'Display the website in English',
+    label: `Display the website in ${americanEnglishDictionnary.LANG}`,
     txt: '🇺🇸'
   }
 };
