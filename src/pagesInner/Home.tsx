@@ -1,4 +1,5 @@
-import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
+import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
+import HomepageHeader from '../components/HomepageHeader';
 import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { useDatabase } from '../contexts/DatabaseContext';
@@ -8,6 +9,7 @@ import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
 import HomepageLoadingScreen from './loadingScreens/Home';
+
 import './styles/homepage.scss';
 
 const DEBUGGER_LABEL = 'HomePage (React Component)';
@@ -18,30 +20,40 @@ interface HomePageInnerProps {}
 
 function kasaCardsGenerator(entities: FilteredEntities) {
   return (
-    <ul>
+    <>
       {entities.map(({ id, title, cover }) => (
-        <li className="kasa-card" key={id}>
+        <article className="kasa-card" key={id}>
           <KasaCard id={id} title={title} cover={cover} />
-        </li>
+        </article>
       ))}
-    </ul>
+    </>
   );
 }
 
 export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement {
+  const header = <HomepageHeader />;
+  let body;
   if (loadingState === 'FAILED_TO_LOAD') {
-    return <p>OH C'EST TOUT CASSÉ LÀ</p>;
+    body = <p>OH C'EST TOUT CASSÉ LÀ</p>;
   } else if (loadingState === 'LOADING') {
-    return <p>Loading...</p>;
+    body = <p>Loading...</p>;
   } else {
-    return <p>Retrying to load...</p>;
+    body = <p>Retrying to load...</p>;
   }
+  return (
+    <>
+      {header}
+      {body}
+    </>
+  );
 }
 
 export function componentBody(entities: FilteredEntities) {
   return (
     <>
-      <div className="cards-grid">{kasaCardsGenerator(entities)}</div>
+      <div className="housing-sheets-grid-gallery-wrapper">
+        <section className="housing-sheets-grid-gallery">{kasaCardsGenerator(entities)}</section>
+      </div>
     </>
   );
 }
@@ -75,7 +87,12 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   if (computingFilteredEntities()) {
     return <HomepageLoadingScreen loadingState="LOADING" cachedData={cachedDatabase()} />;
   }
-  return <>{componentBody(filteredEntities)}</>;
+  return (
+    <>
+      <HomepageHeader />
+      {componentBody(filteredEntities)}
+    </>
+  );
 };
 
-export default HomePageInner;
+export default memo(HomePageInner);

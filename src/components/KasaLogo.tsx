@@ -1,8 +1,7 @@
 import { FunctionComponent, ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
-
-import { Link } from 'react-router-dom';
 
 enum UseCase {
   HEADER,
@@ -27,9 +26,9 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
     const width = logoPxDimsDictionnary[UseCase[currentUseCase]].width;
     const height = logoPxDimsDictionnary[UseCase[currentUseCase]].height;
     if (currentUseCase === 'FOOTER') {
-      return <img src="/img/logo-dark.svg" draggable="false" width={width} height={height} alt="" />;
+      return <img src="/img/icons/logo-dark.svg" draggable="false" width={width} height={height} alt="" />;
     }
-    return <img src="/img/logo-light.svg" draggable="false" width={width} height={height} alt="" />;
+    return <img src="/img/icons/logo-light.svg" draggable="false" width={width} height={height} alt="" />;
   };
 
   const getLogo = (): ReactElement => {

@@ -22,14 +22,12 @@ const KasaRouter: FunctionComponent<KasaRouterProps> = () => {
     <>
       <BrowserRouter>
         <KasaNavbar />
-        <div className="main-wrapper">
-          <main>
-            <Routes>
-              {i18nRoutesGenerator()}
-              <Route path="*" element={<KasaRouterRescue />} />
-            </Routes>
-          </main>
-        </div>
+        <main className="main-wrapper">
+          <Routes>
+            {i18nRoutesGenerator()}
+            <Route path="*" element={<KasaRouterRescue />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </>
   );

@@ -1,0 +1,8 @@
+@import './reset';
+@import './generalStyle';
+@import './pageWrapperSharedVariables';
+
+.main-wrapper {
+  padding-left: $main-wrapper-padding;
+  padding-right: $main-wrapper-padding;
+}

@@ -1,0 +1,89 @@
+@import '../../design/breakpoints';
+
+@include responsive(base) {
+  .header-wrapper {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: max(2vw, 30px);
+    max-width: 100%;
+    height: 20vw;
+    border-radius: max(15px, 2.5vw);
+    overflow: hidden;
+
+    .header-background-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+
+      .header-background {
+        position: relative;
+        background: url('/img/banner.webp') no-repeat;
+        background-attachment: fixed;
+        width: 100%;
+        height: 100%;
+        background-position: 50% calc(40% - 20vw);
+        background-size: max(1920px, 100vw);
+      }
+    }
+
+    .header-content {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .header-title {
+        z-index: 1;
+        width: 100%;
+        color: #fff;
+        padding: 1.5vw;
+        text-align: center;
+        font-size: 4.9vw;
+        font-weight: 500;
+      }
+    }
+
+    .header-content::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+$homepage-responsive-header-width-offset: 195px;
+
+@include responsive(mobiles, $homepage-responsive-header-width-offset) {
+  .header-wrapper {
+    height: 30vw;
+    min-height: 6.75em;
+
+    .header-content {
+      .header-title {
+        font-size: clamp(1.5em, 5.5vw, 38px);
+        text-align: left;
+        padding: min(2vw, 25px);
+      }
+
+      .header-title-linebreak {
+        display: block;
+      }
+    }
+
+    .header-background-wrapper {
+      .header-background {
+        background-size: cover;
+        background-position: 1px -120px;
+        background-attachment: scroll;
+        transform: scale(1.8);
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@mixin themes($usecase) {
+  @if $usecase == light {
+    body.light-theme {
+      @content;
+    }
+  }
+
+  @if $usecase == dark {
+    body.dark-theme {
+      @content;
+    }
+  }
+}

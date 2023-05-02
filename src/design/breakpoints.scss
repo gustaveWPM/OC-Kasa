@@ -1,0 +1,44 @@
+$mobiles-breakpoint: 480px;
+$tablets-breakpoint: 768px;
+
+@mixin responsive($usecase, $width_offset: 0px) {
+  @if $usecase == base {
+    @content;
+  }
+
+  @if $usecase == desktops {
+    @media (min-width: calc($tablets-breakpoint + 1px + $width_offset)) {
+      @content;
+    }
+  }
+
+  @if $usecase == tablets {
+    @media (max-width: calc($tablets-breakpoint + $width_offset)) {
+      @content;
+    }
+  }
+
+  @if $usecase == mobiles {
+    @media (max-width: calc($mobiles-breakpoint + $width_offset)) {
+      @content;
+    }
+  }
+
+  @if $usecase == notDesktops {
+    @media (max-width: calc($tablets-breakpoint + $width_offset)) {
+      @content;
+    }
+  }
+
+  @if $usecase == notTablets {
+    @media (min-width: calc($tablets-breakpoint + 1px + $width_offset)) or (min-width: calc($mobiles-breakpoint + $width_offset)) {
+      @content;
+    }
+  }
+
+  @if $usecase == notMobiles {
+    @media (min-width: calc($mobiles-breakpoint + 1px + $width_offset)) {
+      @content;
+    }
+  }
+}

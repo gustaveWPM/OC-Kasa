@@ -1,0 +1,43 @@
+@import './fontSizes';
+@import './navbarSharedVariables';
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 115%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-wrapper {
+  min-height: calc(100vh - $navbar-desktop-min-height - $navbar-h-unscrolled-page-initial-offset);
+}

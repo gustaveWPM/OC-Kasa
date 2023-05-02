@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import DbEntityMetadatas from '../../config/MetadatasSchema';
 import adHocLoadingScreen from './adHocLoadingScreen';
 
+import HomepageHeader from '../../components/HomepageHeader';
 import { componentBody as homepageComponentBody, firstLoadPlaceholders as homepageFirstLoadPlaceholders } from '../Home';
 import { LoadingScreenPropsBase } from './_types';
 
@@ -13,7 +14,12 @@ export const HomepageLoadingScreen: FunctionComponent<HomepageLoadingScreenProps
   if (maybeForcedPlaceholder) {
     return maybeForcedPlaceholder;
   } else {
-    return <div style={{ opacity: 0.5 }}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
+    return (
+      <>
+        <HomepageHeader />
+        <div style={{ opacity: 0.5 }}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
+      </>
+    );
   }
 };
 

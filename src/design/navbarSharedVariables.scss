@@ -1,0 +1,22 @@
+@import './breakpoints';
+
+$navbar-h-padding-base: 40px;
+$navbar-h-unscrolled-page-initial-offset: 20px;
+
+$navbar-mobile-min-height: 44px;
+$navbar-desktop-min-height: 112px;
+
+$kasa-logo-mobile-media-query-width-offset: 49px;
+$navbar-flex-column-media-max-width: calc($mobiles-breakpoint - $kasa-logo-mobile-media-query-width-offset + 1px);
+
+:root {
+  --navbar-h-padding-quotient: 2;
+}
+
+@media (max-width: $navbar-flex-column-media-max-width) {
+  :root {
+    --navbar-h-padding-quotient: 3;
+  }
+}
+
+$navbar-h-padding-base: calc($navbar-h-padding-base / var(--navbar-h-padding-quotient));
