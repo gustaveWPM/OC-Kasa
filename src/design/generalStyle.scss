@@ -1,5 +1,6 @@
 @import './fontSizes';
 @import './navbarSharedVariables';
+@import './colors';
 
 h1 {
   font-size: $h1-font-size;
@@ -36,6 +37,10 @@ h6 {
 
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+body.dark-theme {
+  background-color: $dark-body-bg-color;
 }
 
 .main-wrapper {

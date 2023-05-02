@@ -1,27 +1,23 @@
 @import '../../design/colors';
 @import '../../design/themes';
 
-@include themes(light) {
-  .housing-sheets-grid-gallery {
-    background-color: $housing-sheets-grid-bg-color;
-  }
-
+@include themes(base) {
   .housing-sheets-grid-gallery .housing-sheets-grid-gallery-item {
-    background-color: $housing-sheets-grid-item-bg-color;
     color: $housing-sheets-grid-item-font-color;
+    background-color: $housing-sheets-grid-item-bg-color;
   }
 }
 
-@media (max-width: 1350px) {
+@media (min-width: 1350px) {
   @include themes(light) {
     .housing-sheets-grid-gallery {
-      background-color: transparent;
+      background-color: $housing-sheets-grid-bg-color;
     }
   }
 
   @include themes(dark) {
     .housing-sheets-grid-gallery {
-      background-color: transparent;
+      background-color: $dark-housing-sheets-grid-bg-color;
     }
   }
 }

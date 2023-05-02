@@ -1,5 +1,6 @@
 # Custom
 vite.config.ts.*
+package-lock.json
 
 # Logs
 logs

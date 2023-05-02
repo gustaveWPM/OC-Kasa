@@ -1,15 +1,16 @@
 import Vocab, { DEFAULT_LANGUAGE, VocabLanguageSymbol, VocabSchemaElementKey } from './Vocab';
+const LOCAL_STORAGE_LANG_KEY: string = 'lang';
 
 function isVocabLanguageSymbol(s: string) {
   return s in Vocab;
 }
 
 export function setCurrentLanguageInLocalStorage(value: VocabLanguageSymbol) {
-  window.localStorage.setItem('lang', value);
+  window.localStorage.setItem(LOCAL_STORAGE_LANG_KEY, value);
 }
 
 function getCurrentLanguageInLocalStorage(): VocabLanguageSymbol | null {
-  const data: string | null = window.localStorage.getItem('lang');
+  const data: string | null = window.localStorage.getItem(LOCAL_STORAGE_LANG_KEY);
   if (!data) {
     return null;
   }

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import NavData from '../config/NavData';
 import wpmDebugger from '../dev/wpmDebugger';
 import { changeLanguageBtnsGenerator } from './ChangeLanguageButton';
+import ChangeThemeButton from './ChangeThemeButton';
 import KasaLogo from './KasaLogo';
 
 import './styles/navbar.scss';
@@ -12,6 +13,7 @@ interface KasaNavbarProps {}
 
 export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
   function navbarItemsGenerator(): ReactElement[] {
     return NavData.map(({ getPath, getTitle }): ReactElement => {
       const rTo = getPath();
@@ -34,6 +36,7 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
               <ul className="navbar-menu-elements">{navbarItemsGenerator()}</ul>
             </nav>
             {changeLanguageBtnsGenerator()}
+            <ChangeThemeButton />
           </div>
         </div>
       </div>
