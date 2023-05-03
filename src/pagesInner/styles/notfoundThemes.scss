@@ -1,0 +1,14 @@
+@import '../../design/colors';
+@import '../../design/themes';
+
+@include themes(light) {
+  .not-found-wrapper {
+    color: $body-font-color;
+  }
+}
+
+@include themes(dark) {
+  .not-found-wrapper {
+    color: $dark-body-font-color;
+  }
+}

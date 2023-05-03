@@ -6,6 +6,8 @@ import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor'
 import { useForceUpdate } from '../dev/hooks/useForceUpdate';
 import wpmDebugger from '../dev/wpmDebugger';
 
+import './styles/notfound.scss';
+
 const DEBUGGER_LABEL = 'Not Found Page (React Component)';
 
 interface NotFoundInnerProps {}
@@ -25,7 +27,7 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
       const routeKey = (
         bestScoreData.FORCED_SUGGEST_ROUTE_KEY ? bestScoreData.FORCED_SUGGEST_ROUTE_KEY : bestScoreData.ROUTE_KEY
       ) as KasaPublicRouteElementKey;
-      const rTo = kasaPublicRoutes[routeKey];
+      const rTo = i18nRouteAccessor(kasaPublicRoutes[routeKey]);
       renderSuggestLink = <Link to={rTo}>{kasaPublicRoutesTitles[routeKey]()}</Link>;
     }
   }

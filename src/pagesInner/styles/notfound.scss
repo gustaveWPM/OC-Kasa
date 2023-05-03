@@ -1,0 +1,65 @@
+@import '../../design/breakpoints';
+@import '../../design/navbarSharedVariables';
+@import './notfoundThemes.scss';
+
+$not-found-h2-font-size: 2.25em;
+
+@include responsive(base) {
+  .not-found-wrapper {
+    margin: auto;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+      margin-bottom: 0.27em;
+      font-size: clamp(4em, 20vw, 14em);
+      font-weight: 700;
+      line-height: 70%;
+    }
+
+    h2 {
+      font-size: $not-found-h2-font-size;
+      font-weight: 500;
+    }
+
+    a {
+      color: inherit;
+      font-weight: 500;
+    }
+
+    .not-found-main {
+      min-height: 40vh;
+      .notfound-page-suggestion {
+        font-style: italic;
+        font-weight: 500;
+        margin-top: 12px;
+        margin-bottom: 25px;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+@include responsive(mobiles) {
+  .not-found-wrapper {
+    .not-found-main {
+      min-height: 25vh;
+      .notfound-page-suggestion {
+        font-size: 0.95em;
+        font-weight: 600;
+      }
+    }
+
+    h2 {
+      font-size: calc($not-found-h2-font-size / 2);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .not-found-wrapper {
+    a:hover {
+      font-weight: 600;
+    }
+  }
+}
