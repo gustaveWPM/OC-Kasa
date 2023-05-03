@@ -13,6 +13,10 @@ export const frenchDictionnary: VocabSchema = {
   KASA_LOGO_ALT: `Logo de ${BRAND}`,
   KASA_CATCHPHRASE_FIRST_LINE: 'Chez vous,',
   KASA_CATCHPHRASE_SECOND_LINE: 'partout et ailleurs',
+  HOME_PAGE_LOADING_CARDS_LABEL: 'Chargement en cours...',
+  HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL: 'Encore un instant...',
+  MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
+  MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
   BRAND,
   KASA_COPYRIGHT
 };

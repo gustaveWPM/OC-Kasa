@@ -2,18 +2,6 @@
 @import './navbarSharedVariables';
 @import './colors';
 
-@keyframes hackishFadeIn {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 0;
-  }
-  70% {
-    opacity: 1;
-  }
-}
-
 h1 {
   font-size: $h1-font-size;
 }
@@ -56,5 +44,7 @@ body.dark-theme {
 }
 
 .main-wrapper {
+  display: flex;
+  flex-direction: column;
   min-height: calc(100vh - $navbar-desktop-min-height - $navbar-h-unscrolled-page-initial-offset);
 }

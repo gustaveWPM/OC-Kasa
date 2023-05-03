@@ -13,6 +13,10 @@ export const americanEnglishDictionnary: VocabSchema = {
   KASA_LOGO_ALT: `${BRAND}'s logo`,
   KASA_CATCHPHRASE_FIRST_LINE: 'Be at home,',
   KASA_CATCHPHRASE_SECOND_LINE: 'everywhere and anywhere',
+  HOME_PAGE_LOADING_CARDS_LABEL: 'Loading...',
+  HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL: 'Please, just hold on a second...',
+  MAINTENANCE_MESSAGE: 'This page is under maintenance!',
+  MAINTENANCE_ADVICE: 'Please, come back later.',
   BRAND,
   KASA_COPYRIGHT
 };

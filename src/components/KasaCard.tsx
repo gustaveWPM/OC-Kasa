@@ -7,23 +7,43 @@ import wpmDebugger from '../dev/wpmDebugger';
 const DEBUGGER_LABEL = 'Kasa Card (React Component)';
 
 interface KasaCardProps {
-  id: string;
+  id?: string;
   title: string;
-  cover: string;
+  cover?: string;
 }
 
-const KasaCard: FunctionComponent<KasaCardProps> = ({ id, title, cover }) => {
+const DummyKasaCard: FunctionComponent<KasaCardProps> = ({ title }) => {
+  return (
+    <>
+      <article className="housing-sheets-grid-gallery-item">
+        <div className="housing-sheets-grid-gallery-item-title-wrapper">
+          <h3 className="housing-sheets-grid-gallery-item-title">{title}</h3>
+        </div>
+      </article>
+    </>
+  );
+};
+
+export const KasaCard: FunctionComponent<KasaCardProps> = ({ id, title, cover }) => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
+
+  if (id && cover) {
+    return (
+      <>
+        <Link to={`${i18nRouteAccessor(kasaPublicRoutes.HOUSING_SHEETS_PAGE)}/${id}`}>
+          <article className="housing-sheets-grid-gallery-item" style={{ backgroundImage: `url(${cover})`, backgroundSize: 'cover' }}>
+            <div className="housing-sheets-grid-gallery-item-title-wrapper">
+              <h3 className="housing-sheets-grid-gallery-item-title">{title}</h3>
+            </div>
+          </article>
+        </Link>
+      </>
+    );
+  }
 
   return (
     <>
-      <Link to={`${i18nRouteAccessor(kasaPublicRoutes.HOUSING_SHEETS_PAGE)}/${id}`}>
-        <article className="housing-sheets-grid-gallery-item" style={{ backgroundImage: `url(${cover})`, backgroundSize: 'cover' }}>
-          <div className="housing-sheets-grid-gallery-item-title-wrapper">
-            <h3 className="housing-sheets-grid-gallery-item-title">{title}</h3>
-          </div>
-        </article>
-      </Link>
+      <DummyKasaCard title={title} />
     </>
   );
 };

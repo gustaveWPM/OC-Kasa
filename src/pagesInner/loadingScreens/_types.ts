@@ -10,3 +10,7 @@ export interface LoadingScreenPropsBase {
 export type ReactExpectedProps<T> = Attributes & T;
 export type AdHocLoadingStateManagerExpectedProps<T> = Omit<ReactExpectedProps<T>, keyof LoadingScreenPropsBase>;
 export type AdHocLoadingStateManagerPlaceholdersFnPtr = (v: TLoadingState) => ReactElement;
+
+export const defaultHomepageCardsPlaceholdersAmount: number = 20;
+export const loadingCls: string = 'loading';
+export const retryingToLoadCls: string = 'retrying-to-load';

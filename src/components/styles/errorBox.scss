@@ -1,0 +1,22 @@
+@import '../../design/colors.scss';
+
+.error-box {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin: auto;
+
+  .msg {
+    background-color: $error-box-bg-color;
+    user-select: none;
+    line-height: 150%;
+    border-radius: max(12.5px, 0.5vw);
+    padding: max(25px, 1vw) max(50px, 2vw);
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: max(2vh, 2vw);
+    width: fit-content;
+    box-shadow: 0px max(1vw, 1vh) max(1vw, 1vh) rgba(0, 0, 0, 0.2);
+  }
+}

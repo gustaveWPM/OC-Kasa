@@ -1,7 +1,9 @@
-import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
+import { FunctionComponent, memo, ReactElement, ReactNode, useEffect, useState } from 'react';
+import ErrorBox from '../components/ErrorBox';
 import HomepageHeader from '../components/HomepageHeader';
 import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
+import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
@@ -9,6 +11,7 @@ import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 import HomepageLoadingScreen from './loadingScreens/Home';
+import { defaultHomepageCardsPlaceholdersAmount, loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 
 import './styles/homepage.scss';
 
@@ -30,16 +33,33 @@ function kasaCardsGenerator(entities: FilteredEntities) {
   );
 }
 
+function dummyCardsGenerator(amount: number, cls: string, title: string): ReactNode {
+  const elements: ReactElement[] = [];
+  for (let i = 0; i < amount; i++) {
+    elements.push(
+      <article className={`${cls} kasa-card`} key={`kasa-dummy-card-${title}-${i}`}>
+        <KasaCard title={title} />
+      </article>
+    );
+  }
+  return (
+    <div className="housing-sheets-grid-gallery-wrapper">
+      <section className="housing-sheets-grid-gallery">{elements}</section>
+    </div>
+  );
+}
+
 export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement {
   const header = <HomepageHeader />;
-  let body;
+  let body: ReactNode;
   if (loadingState === 'FAILED_TO_LOAD') {
-    body = <p>OH C'EST TOUT CASSÉ LÀ</p>;
+    body = <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
-    body = <p>Loading...</p>;
+    body = dummyCardsGenerator(defaultHomepageCardsPlaceholdersAmount, loadingCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'));
   } else {
-    body = <p>Retrying to load...</p>;
+    body = dummyCardsGenerator(defaultHomepageCardsPlaceholdersAmount, retryingToLoadCls, VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL'));
   }
+
   return (
     <>
       {header}
