@@ -1,13 +1,13 @@
 import { createElement, FunctionComponent, ReactElement } from 'react';
-import { FetchResponseSchema, TLoadingState } from '../../dev/hooks/useFetch';
-import cachedDatabase from '../../dev/namespaces/cache';
-import CachedData from '../../dev/namespaces/_types';
+import { FetchResponseSchema, TLoadingState } from '../../../dev/hooks/useFetch';
+import cachedDatabase from '../../../dev/namespaces/cache';
+import CachedData from '../../../dev/namespaces/_types';
 
 import {
   AdHocLoadingStateManagerExpectedProps as ExpectedProps,
   AdHocLoadingStateManagerPlaceholdersFnPtr as PlaceholdersFnPtr,
   ReactExpectedProps
-} from './_types';
+} from '../_types';
 
 export function adHocLoadingStateManager<T extends {}>(
   database: CachedData,

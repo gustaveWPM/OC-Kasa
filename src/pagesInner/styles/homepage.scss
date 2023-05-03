@@ -1,6 +1,9 @@
 @import '../../design/breakpoints';
 @import './homepagesThemes';
 
+$unfocused-card-title-bg-color: rgba(0, 0, 0, 0.3);
+$focused-or-hovered-card-title-bg-color: rgba(0, 0, 0, 0.6);
+
 @include responsive(base) {
   .housing-sheets-grid-gallery {
     max-width: max(1920px, 60vw);
@@ -29,7 +32,6 @@
         left: 0;
         bottom: 0;
         padding-top: 2.5%;
-        background-color: rgba(0, 0, 0, 0.3);
         transition: background-color 0.5s ease-in-out;
       }
 
@@ -61,6 +63,14 @@
       z-index: 1;
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.01) 100%);
     }
+  }
+
+  .kasa-card .housing-sheets-grid-gallery-item-title-wrapper {
+    background-color: $unfocused-card-title-bg-color;
+  }
+
+  .kasa-card:focus-within .housing-sheets-grid-gallery-item-title-wrapper {
+    background-color: $focused-or-hovered-card-title-bg-color;
   }
 }
 
@@ -98,7 +108,7 @@
 @media (hover: hover) {
   .housing-sheets-grid-gallery-item:hover {
     .housing-sheets-grid-gallery-item-title-wrapper {
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: $focused-or-hovered-card-title-bg-color;
     }
   }
 }

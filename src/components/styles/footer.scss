@@ -1,0 +1,36 @@
+@import '../../design/breakpoints';
+@import '../../design/colors';
+
+@include responsive(base) {
+  .footer-copyright {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-weight: 500;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: $body-bg-color;
+    background-color: $footer-bg-color;
+    text-align: center;
+    min-height: 210px;
+  }
+}
+
+@include responsive(mobiles) {
+  .footer-copyright {
+    position: static;
+    font-size: 0.75em;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@media (max-width: 404px) {
+  .footer-copyright-mention {
+    display: block;
+  }
+}

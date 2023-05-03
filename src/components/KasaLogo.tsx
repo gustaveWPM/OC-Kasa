@@ -1,7 +1,8 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, memo, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { moveToTop } from '../dev/plainJS/cameraManager';
 
 enum UseCase {
   HEADER,
@@ -33,7 +34,11 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
 
   const getLogo = (): ReactElement => {
     if (currentUseCase === 'HEADER') {
-      return <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)}>{getThemedLogoElement()}</Link>;
+      return (
+        <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)} onClick={moveToTop}>
+          {getThemedLogoElement()}
+        </Link>
+      );
     }
     return <>{getThemedLogoElement()}</>;
   };
@@ -49,4 +54,4 @@ KasaLogo.defaultProps = {
   currentUseCase: defaultUseCase
 };
 
-export default KasaLogo;
+export default memo(KasaLogo);

@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'About Page (React Component)';
@@ -14,4 +14,4 @@ export const AboutPageInner: FunctionComponent<AboutPageInnerProps> = () => {
   );
 };
 
-export default AboutPageInner;
+export default memo(AboutPageInner);

@@ -39,8 +39,6 @@ $navbar-link-font-weight: 500;
     padding-bottom: $navbar-h-padding-base;
     padding-left: $main-wrapper-padding;
     padding-right: $main-wrapper-padding;
-    transition: padding-top 700ms, min-height 700ms ease-in-out;
-    transition-delay: 750ms;
 
     .navbar-content {
       align-self: flex-start;

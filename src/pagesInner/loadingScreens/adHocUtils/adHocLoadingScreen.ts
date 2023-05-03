@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { TLoadingState } from '../../dev/hooks/useFetch';
-import CachedData from '../../dev/namespaces/_types';
+import { TLoadingState } from '../../../dev/hooks/useFetch';
+import CachedData from '../../../dev/namespaces/_types';
 
 export function adHocLoadingScreen(
   cachedData: CachedData,

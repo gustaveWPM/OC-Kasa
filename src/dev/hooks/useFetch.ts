@@ -40,7 +40,7 @@ async function getFetchResponse(promise: Promise<Response>) {
 export async function useGetData(
   initialUrlAndReq: InitialUrlAndReq,
   promise: Promise<Response>,
-  setStateFnPtr: Function,
+  stateSetterPtr: Function,
   maxRetry: number = UseFetchConsts.DEFAULT_MAX_FETCH_RETRY,
   delayBeforeEachRetry: number = UseFetchConsts.DEFAULT_DELAY_BEFORE_EACH_RETRY
 ) {
@@ -74,7 +74,7 @@ export async function useGetData(
       }
       try {
         const responseData = await response.json();
-        setStateFnPtr({ responseData, loadingState: 'LOADED' });
+        stateSetterPtr({ responseData, loadingState: 'LOADED' });
         break;
       } catch (networkError) {
         resetCurrentPromise();
@@ -84,28 +84,28 @@ export async function useGetData(
     } catch (networkError) {
       if (!doBreak(i + 1)) {
         if (dontWait) {
-          setStateFnPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'LOADING' }));
+          stateSetterPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'LOADING' }));
         } else {
           resetCurrentPromise();
-          setStateFnPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'RETRYING_TO_LOAD' }));
+          stateSetterPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'RETRYING_TO_LOAD' }));
           await wait(delayBeforeEachRetry);
         }
       } else {
-        setStateFnPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'FAILED_TO_LOAD' }));
+        stateSetterPtr((curState: FetchResponseSchema): FetchResponseSchema => ({ ...curState, loadingState: 'FAILED_TO_LOAD' }));
         wpmDebugger(DEBUGGER_LABEL, ['Network error! Here is its dump: ', networkError], { errorCodeKey: 'IS_ERROR' });
       }
     }
   }
 }
 
-export async function useFetch(url: string, setStateFnPtr: Function, options?: TryToUseFetchOptions) {
+export async function useFetch(url: string, stateSetterPtr: Function, options?: TryToUseFetchOptions) {
   const req: RequestInit | undefined = options?.request;
   const promise = fetch(url, req);
 
   const initialUrlAndReq = { url, req };
   const maxRetry: number = options?.maxRetry || UseFetchConsts.DEFAULT_MAX_FETCH_RETRY;
 
-  await useGetData(initialUrlAndReq, promise, setStateFnPtr, maxRetry);
+  await useGetData(initialUrlAndReq, promise, stateSetterPtr, maxRetry);
 }
 
 export default useFetch;

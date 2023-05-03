@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
+import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
@@ -9,7 +9,7 @@ import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbEntityById, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
-import adHocLoadingStateManager from './loadingScreens/adHocLoadingStateManager';
+import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
@@ -113,4 +113,4 @@ export function getRouteParams(): ReactElement {
   );
 }
 
-export default HousingSheetsInner;
+export default memo(HousingSheetsInner);

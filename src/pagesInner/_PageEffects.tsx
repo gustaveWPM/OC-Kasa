@@ -1,6 +1,7 @@
 import { FunctionComponent, memo, ReactElement, useEffect } from 'react';
 import { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { snapToTop } from '../dev/plainJS/cameraManager';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'Page Effects (React Hook)';
@@ -56,7 +57,7 @@ export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = 
     }
   }, [labelKey]);
 
-  window.scrollTo(0, 0);
+  snapToTop();
   return children;
 };
 

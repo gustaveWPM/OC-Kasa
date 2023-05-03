@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode, useState } from 'react';
+import { FunctionComponent, memo, ReactNode, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import kasaPublicRoutes, { KasaPublicRouteElementKey, kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
@@ -49,4 +49,4 @@ export const NotFoundInner: FunctionComponent<NotFoundInnerProps> = () => {
   );
 };
 
-export default NotFoundInner;
+export default memo(NotFoundInner);

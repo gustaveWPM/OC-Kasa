@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import DbEntityMetadatas from '../../config/MetadatasSchema';
-import adHocLoadingScreen from './adHocLoadingScreen';
+import adHocLoadingScreen from './adHocUtils/adHocLoadingScreen';
 
 import { componentBody as housingSheetsComponentBody, firstLoadPlaceholders as housingSheetsFirstLoadPlaceholders } from '../HousingSheets';
 import { LoadingScreenPropsBase } from './_types';
