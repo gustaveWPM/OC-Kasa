@@ -1,0 +1,96 @@
+@import '../../design/navbarSharedVariables.scss';
+@import '../../design/colors.scss';
+@import '../../design/breakpoints.scss';
+
+$navbar-menu-settings-btns-size-on-mobile: 2.25em;
+@include responsive(base) {
+  .kasa-settings {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: flex-end;
+    left: 95px;
+    bottom: 60px;
+
+    .change-theme-btn {
+      border-color: transparent;
+      background-color: transparent;
+
+      .light-mode-btn {
+        color: $body-bg-color;
+      }
+
+      .dark-mode-btn {
+        color: $dark-body-bg-color;
+      }
+
+      .dark-mode-btn,
+      .light-mode-btn {
+        position: relative;
+        width: 15px;
+        height: 15px;
+        top: 2px;
+      }
+    }
+
+    .change-language-btns-elements {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+
+      .change-language-btn {
+        border: none;
+        background-color: transparent;
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+@include responsive(notMobiles, $kasa-logo-mobile-media-query-width-offset) {
+  .kasa-settings {
+    width: 100%;
+    bottom: 40px;
+    left: 8px;
+
+    .change-theme-btn {
+      .dark-mode-btn,
+      .light-mode-btn {
+        width: $kasa-navbar-menu-fs;
+        height: $kasa-navbar-menu-fs;
+      }
+    }
+  }
+}
+
+@media (max-width: $navbar-flex-column-media-max-width) {
+  .kasa-settings {
+    bottom: 110px;
+    width: 95vw;
+    left: -5px;
+  }
+
+  .kasa-settings {
+    .change-language-btn {
+      font-size: $navbar-menu-settings-btns-size-on-mobile;
+    }
+
+    .change-theme-btn {
+      .dark-mode-btn,
+      .light-mode-btn {
+        width: $navbar-menu-settings-btns-size-on-mobile;
+        height: $navbar-menu-settings-btns-size-on-mobile;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .kasa-settings {
+    .change-language-btn:hover,
+    .change-theme-btn:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,5 +1,4 @@
 @import '../../design/breakpoints';
-@import '../../design/noPageOnloadAnimationsSpecs';
 @import '../../design/navbarSharedVariables';
 @import '../../design/pageWrapperSharedVariables';
 @import './navbarThemes';
@@ -40,8 +39,8 @@ $navbar-link-font-weight: 500;
     padding-bottom: $navbar-h-padding-base;
     padding-left: $main-wrapper-padding;
     padding-right: $main-wrapper-padding;
-    transition: padding-top calc($no-page-onload-animation-duration * 2), min-height calc($no-page-onload-animation-duration * 2) ease-in-out;
-    transition-delay: calc($no-page-onload-animation-duration / 0.75);
+    transition: padding-top 700ms, min-height 700ms ease-in-out;
+    transition-delay: 750ms;
 
     .navbar-content {
       align-self: flex-start;
@@ -54,7 +53,6 @@ $navbar-link-font-weight: 500;
       .navbar-menu-wrapper {
         display: flex;
         position: relative;
-        min-width: 30%;
         font-size: 1em;
         bottom: 0.7em;
 
@@ -86,15 +84,19 @@ $navbar-link-font-weight: 500;
 
     .navbar-content {
       .navbar-menu-wrapper {
-        width: auto;
-        font-size: clamp(1.5em, max(1.5vw, 1.5vh), 2vw);
-        bottom: 0.45em;
+        min-width: 130px;
+        width: calc(15vw + 130px);
+        max-width: 375px;
+        font-size: $kasa-navbar-menu-fs;
+        bottom: -4px;
+
+        .navbar-menu {
+          width: 100%;
+        }
 
         .navbar-menu-elements {
-          width: 30vw;
-          min-width: calc(15vw + 130px);
-          max-width: 375px;
-
+          position: relative;
+          bottom: 12px;
           a {
             text-transform: capitalize;
           }
@@ -111,6 +113,10 @@ $navbar-link-font-weight: 500;
     margin-left: auto;
     margin-right: auto;
 
+    .navbar-content .kasa-logo {
+      margin-top: 35px;
+    }
+
     .navbar-content {
       flex-direction: column;
       justify-content: center;
@@ -122,7 +128,7 @@ $navbar-link-font-weight: 500;
 
         .navbar-menu-elements {
           margin-top: max(4vw, 1.5em);
-          width: 100vw;
+          width: 95vw;
           flex-wrap: wrap;
           justify-content: space-evenly;
           li {
@@ -134,17 +140,13 @@ $navbar-link-font-weight: 500;
   }
 }
 
-@media (hover: hover) {
-  .navbar .navbar-content .navbar-menu .navbar-menu-elements {
-    a:hover {
-      font-weight: 600;
-    }
-  }
-}
-
 @include responsive(mobiles, $kasa-logo-mobile-media-query-width-offset) {
   .navbar {
     min-height: $navbar-desktop-min-height;
+  }
+
+  .navbar-menu {
+    min-width: 37vw;
   }
 
   .navbar .navbar-content .navbar-menu {
@@ -154,10 +156,10 @@ $navbar-link-font-weight: 500;
   }
 }
 
-@media (max-width: 194px) {
-  .navbar-content .navbar-menu .navbar-menu-elements {
-    li {
-      margin: 15px;
+@media (hover: hover) {
+  .navbar .navbar-content .navbar-menu .navbar-menu-elements {
+    a:hover {
+      font-weight: 600;
     }
   }
 }

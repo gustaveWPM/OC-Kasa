@@ -28,7 +28,7 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
     if (currentUseCase === 'FOOTER') {
       return <img src="/img/icons/logo-dark.svg" draggable="false" width={width} height={height} alt="" />;
     }
-    return <img src="/img/icons/logo-light.svg" draggable="false" width={width} height={height} alt="" />;
+    return <div draggable="false" style={{ width, height }} />;
   };
 
   const getLogo = (): ReactElement => {

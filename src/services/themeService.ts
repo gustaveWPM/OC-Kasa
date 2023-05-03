@@ -1,5 +1,4 @@
 import ThemeData from '../config/ThemeData';
-import initializeKasaTheme from '../retrieveOrInferTheme';
 
 function memorizeInferedTheme(theme: string) {
   window.localStorage.setItem(ThemeData.LOCAL_STORAGE_THEME_KEY, theme);
@@ -21,12 +20,7 @@ function toggleLightTheme() {
 }
 
 export function getThemeFromLocalStorage(): string | null {
-  const doGetThemeFromLocalStorage = (): string | null => window.localStorage.getItem(ThemeData.LOCAL_STORAGE_THEME_KEY);
-  const currentTheme = doGetThemeFromLocalStorage();
-  if (currentTheme === null) {
-    initializeKasaTheme();
-    return doGetThemeFromLocalStorage();
-  }
+  const currentTheme = window.localStorage.getItem(ThemeData.LOCAL_STORAGE_THEME_KEY);
   return currentTheme;
 }
 
@@ -44,15 +38,15 @@ export function toggleTheme(key?: string): string | null {
 
   function processKey(key: string) {
     if (key === ThemeData.LIGHT_THEME) {
-      toggleDarkTheme();
-    } else if (key === ThemeData.DARK_THEME) {
       toggleLightTheme();
+    } else if (key === ThemeData.DARK_THEME) {
+      toggleDarkTheme();
     } else {
       toggleThemeBasedOnLocalStorageFallback();
     }
   }
 
-  if (key) {
+  if (key !== undefined) {
     processKey(key);
   } else {
     toggleThemeBasedOnLocalStorageFallback();

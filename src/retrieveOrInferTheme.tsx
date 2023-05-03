@@ -6,7 +6,7 @@ export function initializeKasaTheme() {
   const retrievedTheme = getThemeFromLocalStorage();
   let rescueCtx = false;
 
-  if (retrievedTheme) {
+  if (retrievedTheme !== null) {
     if (retrievedTheme === ThemeData.DARK_THEME) {
       toggleTheme(ThemeData.DARK_THEME);
     } else if (retrievedTheme === ThemeData.LIGHT_THEME) {

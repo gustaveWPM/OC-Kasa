@@ -2,9 +2,8 @@ import { FunctionComponent, memo, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavData from '../config/NavData';
 import wpmDebugger from '../dev/wpmDebugger';
-import { changeLanguageBtnsGenerator } from './ChangeLanguageButton';
-import ChangeThemeButton from './ChangeThemeButton';
 import KasaLogo from './KasaLogo';
+import Settings from './Settings';
 
 import './styles/navbar.scss';
 
@@ -32,11 +31,10 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
         <div className="navbar-content">
           <KasaLogo currentUseCase="HEADER" />
           <div className="navbar-menu-wrapper">
+            <Settings />
             <nav className="navbar-menu">
               <ul className="navbar-menu-elements">{navbarItemsGenerator()}</ul>
             </nav>
-            {changeLanguageBtnsGenerator()}
-            <ChangeThemeButton />
           </div>
         </div>
       </div>
