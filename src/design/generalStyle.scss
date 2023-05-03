@@ -59,6 +59,15 @@ body {
 
 body.dark-theme {
   background-color: $dark-body-bg-color;
+  .main-wrapper {
+    background-color: $dark-body-bg-color;
+  }
+}
+
+body.light-theme {
+  .main-wrapper {
+    background-color: $body-bg-color;
+  }
 }
 
 .main-wrapper {

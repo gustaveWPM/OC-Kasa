@@ -10,14 +10,15 @@
 
   .footer {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     color: $body-bg-color;
     background-color: $footer-bg-color;
     text-align: center;
     min-height: 210px;
+    overflow: hidden;
   }
 }
 

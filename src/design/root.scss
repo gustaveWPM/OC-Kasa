@@ -3,6 +3,5 @@
 @import './pageWrapperSharedVariables';
 
 .main-wrapper {
-  padding-left: $main-wrapper-padding;
-  padding-right: $main-wrapper-padding;
+  padding: 0 $main-wrapper-padding;
 }

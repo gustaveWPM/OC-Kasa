@@ -16,7 +16,9 @@ $navbar-link-font-weight: 500;
   }
 
   .navbar-menu-elements {
+    position: relative;
     list-style: none;
+    bottom: 2px;
   }
 
   .navbar,
@@ -33,17 +35,15 @@ $navbar-link-font-weight: 500;
   .navbar {
     position: sticky;
     align-self: flex-start;
-    top: 0;
+    top: -1px;
     min-height: $navbar-mobile-min-height;
-    padding-top: $navbar-h-padding-base;
-    padding-bottom: $navbar-h-padding-base;
-    padding-left: $main-wrapper-padding;
-    padding-right: $main-wrapper-padding;
+    padding: $navbar-h-padding-base $main-wrapper-padding;
 
     .navbar-content {
       align-self: flex-start;
       position: sticky;
       width: 100%;
+      margin-top: 8px;
       flex-wrap: wrap;
       align-items: baseline;
       height: fit-content;
@@ -112,7 +112,7 @@ $navbar-link-font-weight: 500;
     margin-right: auto;
 
     .navbar-content .kasa-logo {
-      margin-top: 35px;
+      margin-top: 34px;
     }
 
     .navbar-content {
