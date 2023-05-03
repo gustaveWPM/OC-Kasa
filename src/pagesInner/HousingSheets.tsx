@@ -1,9 +1,10 @@
 import { FunctionComponent, memo, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
+import ErrorBox from '../components/ErrorBox';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
-import { i18nRouteAccessor } from '../config/vocab/VocabAccessor';
+import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
@@ -24,7 +25,7 @@ interface HousingSheetsInnerProps {}
 
 export function firstLoadPlaceholders(loadingState: TLoadingState) {
   if (loadingState === 'FAILED_TO_LOAD') {
-    return <p>OH C'EST TOUT CASSÉ LÀ</p>;
+    return <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
     return <p>Loading...</p>;
   } else {
