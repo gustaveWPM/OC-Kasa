@@ -42,6 +42,7 @@ function dummyCardsGenerator(amount: number, cls: string, title: string): ReactN
       </article>
     );
   }
+
   return (
     <div className="housing-sheets-grid-gallery-wrapper">
       <section className="housing-sheets-grid-gallery">{elements}</section>

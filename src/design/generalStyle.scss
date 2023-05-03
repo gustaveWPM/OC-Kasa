@@ -2,6 +2,24 @@
 @import './navbarSharedVariables';
 @import './colors';
 
+@keyframes loadingAnim {
+  0% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.loading {
+  animation: loadingAnim 1s ease-in-out infinite;
+}
+
+.retrying-to-load {
+  animation: loadingAnim 750ms ease-in-out infinite;
+}
+
 h1 {
   font-size: $h1-font-size;
 }

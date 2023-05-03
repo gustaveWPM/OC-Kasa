@@ -4,7 +4,7 @@ import adHocLoadingScreen from './adHocUtils/adHocLoadingScreen';
 
 import HomepageHeader from '../../components/HomepageHeader';
 import { componentBody as homepageComponentBody, firstLoadPlaceholders as homepageFirstLoadPlaceholders } from '../Home';
-import { LoadingScreenPropsBase } from './_types';
+import { LoadingScreenPropsBase, retryingToLoadCls } from './_types';
 
 interface HomepageLoadingScreenProps extends LoadingScreenPropsBase {}
 
@@ -17,7 +17,7 @@ export const HomepageLoadingScreen: FunctionComponent<HomepageLoadingScreenProps
     return (
       <>
         <HomepageHeader />
-        <div style={{ opacity: 0.5 }}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
+        <div className={retryingToLoadCls}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
       </>
     );
   }
