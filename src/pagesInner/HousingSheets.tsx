@@ -13,6 +13,8 @@ import { getDbEntityById, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 
+import './styles/housingSheets.scss';
+
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
 type FilteredEntityAdHocSumType = DbEntityMetadatas | {};
 type EntityOrMaybeEntitiesAdHocSumType = GetDbEntityByIdResult | DbEntityMetadatas[];
@@ -48,7 +50,7 @@ export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocS
   } else {
     const entity = entityOrMaybeJITEntity as GetDbEntityByIdSuccessfulResult;
     return (
-      <>
+      <div className="housing-sheets-page-wrapper">
         <HousingSheet
           title={entity.title}
           cover={entity.cover}
@@ -60,7 +62,7 @@ export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocS
           equipments={entity.equipments}
           tags={entity.tags}
         />
-      </>
+      </div>
     );
   }
 }
