@@ -10,26 +10,26 @@ import './styles/navbar.scss';
 const DEBUGGER_LABEL = 'Kasa Navbar (React Component)';
 interface KasaNavbarProps {}
 
+function navbarItemsGenerator(): ReactElement[] {
+  return NavData.map(({ getPath, getTitle }): ReactElement => {
+    const rTo = getPath();
+    return (
+      <li key={`navbar-item-${rTo}-${getTitle()}`}>
+        <NavLink to={rTo}>{getTitle()}</NavLink>
+      </li>
+    );
+  });
+}
+
 export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
-
-  function navbarItemsGenerator(): ReactElement[] {
-    return NavData.map(({ getPath, getTitle }): ReactElement => {
-      const rTo = getPath();
-      return (
-        <li key={rTo + getTitle()}>
-          <NavLink to={rTo}>{getTitle()}</NavLink>
-        </li>
-      );
-    });
-  }
 
   return (
     <>
       <div className="navbar-unscrolled-page-height-diff"></div>
       <div className="navbar">
         <div className="navbar-content">
-          <KasaLogo currentUseCase="HEADER" />
+          <KasaLogo currentUseCase="NAVBAR" />
           <div className="navbar-menu-wrapper">
             <Settings />
             <nav className="navbar-menu">

@@ -1,6 +1,6 @@
 import { FunctionComponent, memo, ReactElement, ReactNode, useEffect, useState } from 'react';
 import ErrorBox from '../components/ErrorBox';
-import HomepageHeader from '../components/HomepageHeader';
+import HomepageBanner from '../components/HomepageBanner';
 import KasaCard from '../components/KasaCard';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
@@ -25,7 +25,7 @@ function kasaCardsGenerator(entities: FilteredEntities) {
   return (
     <>
       {entities.map(({ id, title, cover }) => (
-        <article className="kasa-card" key={id}>
+        <article className="kasa-card" key={`kasa-card-${id}`}>
           <KasaCard id={id} title={title} cover={cover} />
         </article>
       ))}
@@ -51,7 +51,7 @@ function dummyCardsGenerator(amount: number, cls: string, title: string): ReactN
 }
 
 export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement {
-  const header = <HomepageHeader />;
+  const banner = <HomepageBanner />;
   let body: ReactNode;
   if (loadingState === 'FAILED_TO_LOAD') {
     body = <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
@@ -63,7 +63,7 @@ export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement
 
   return (
     <>
-      {header}
+      {banner}
       {body}
     </>
   );
@@ -110,7 +110,7 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   }
   return (
     <>
-      <HomepageHeader />
+      <HomepageBanner />
       {componentBody(filteredEntities)}
     </>
   );

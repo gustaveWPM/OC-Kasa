@@ -15,6 +15,17 @@ export const americanEnglishDictionnary: VocabSchema = {
   KASA_CATCHPHRASE_SECOND_LINE: 'everywhere and anywhere',
   HOME_PAGE_LOADING_CARDS_LABEL: 'Loading...',
   HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL: 'Please, just hold on a second...',
+
+  ABOUT_PAGE_ACCORDION_CONTENT: {
+    Reliability:
+      'The ads posted on Kasa guarantee total reliability. The photos are by the properties, and our teams regularly check all information.',
+    Respect:
+      "Kindness is one of Kasa's founding values. Any discriminatory behavior or neighborhood disruption will result in exclusion from our platform.",
+    Service: 'Our teams are at your disposal to provide you with a perfect experience. Do not hesitate to contact us if you have any questions.',
+    Safety:
+      "Safety is Kasa's priority. For our guests and travelers alike, each accommodation meets the safety criteria established by our services. By leaving a rating for both the host and the tenant, our staff can verify that the standards are being met. We also organize workshops on home safety for our guests."
+  },
+
   MAINTENANCE_MESSAGE: 'This page is under maintenance!',
   MAINTENANCE_ADVICE: 'Please, come back later.',
   BRAND,

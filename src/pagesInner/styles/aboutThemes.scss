@@ -1,0 +1,14 @@
+@import '../../design/colors';
+@import '../../design/themes';
+
+@include themes(light) {
+  .about-page-wrapper {
+    color: $body-font-color;
+  }
+}
+
+@include themes(dark) {
+  .about-page-wrapper {
+    color: $dark-body-font-color;
+  }
+}

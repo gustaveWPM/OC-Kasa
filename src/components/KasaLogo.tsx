@@ -5,14 +5,14 @@ import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor'
 import { moveToTop } from '../dev/plainJS/cameraManager';
 
 enum UseCase {
-  HEADER,
+  NAVBAR,
   FOOTER
 }
 
 type UseCaseValue = keyof typeof UseCase;
 
 const logoPxDimsDictionnary: { [index: number]: { width: number; height: number } } = {
-  [UseCase.HEADER]: { width: 210.32, height: 68 },
+  [UseCase.NAVBAR]: { width: 210.32, height: 68 },
   [UseCase.FOOTER]: { width: 122, height: 39.44 }
 };
 
@@ -20,7 +20,7 @@ interface KasaLogoProps {
   currentUseCase?: UseCaseValue;
 }
 
-const defaultUseCase: UseCaseValue = 'HEADER';
+const defaultUseCase: UseCaseValue = 'NAVBAR';
 
 export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = defaultUseCase }) => {
   const getThemedLogoElement = (): ReactElement => {
@@ -33,7 +33,7 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
   };
 
   const getLogo = (): ReactElement => {
-    if (currentUseCase === 'HEADER') {
+    if (currentUseCase === 'NAVBAR') {
       return (
         <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)} onClick={moveToTop}>
           {getThemedLogoElement()}

@@ -10,7 +10,7 @@ const DEBUGGER_LABEL = 'Kasa AtomicRouteGenerator';
 
 function atomicRouteGenerator(componentRouteKey: string, route: string, rElement: ReactElement): ReactElement {
   const needle: string = routeWithoutI18nAccessor(route);
-  const buildNotParametredRoute = (): ReactElement => <Route key={componentRouteKey} path={route} element={rElement} />;
+  const buildNotParametredRoute = (): ReactElement => <Route key={`not-parametred-route-${componentRouteKey}`} path={route} element={rElement} />;
 
   for (const paramRoute of PARAMS_ROUTES) {
     function tryToBuildParametredRouteRedirection(): ReactElement {
@@ -21,10 +21,10 @@ function atomicRouteGenerator(componentRouteKey: string, route: string, rElement
         const i18nRouteAccessorUnsafeCtx = true;
         const routeWithParams = route + params;
         const redirectURL = i18nRouteAccessor(routeWithParams, i18nRouteAccessorUnsafeCtx);
-        const rElementRedirect = <Navigate key={componentRouteKey} to={redirectURL} replace />;
+        const rElementRedirect = <Navigate key={`parametred-route-redirect-navigate-component-${componentRouteKey}`} to={redirectURL} replace />;
         wpmDebugger(DEBUGGER_LABEL, [`Built parametred route redirection!`, { route: routeWithParams, redirectURL }]);
         return (
-          <Route key={componentRouteKey} path={routeWithParams} element={rElementRedirect}>
+          <Route key={`parametred-route-redirect-${componentRouteKey}`} path={routeWithParams} element={rElementRedirect}>
             {paramRoute.params}
           </Route>
         );
@@ -39,14 +39,14 @@ function atomicRouteGenerator(componentRouteKey: string, route: string, rElement
     }
 
     const buildParametredRoute = (): ReactElement => (
-      <Route key={componentRouteKey} path={route} element={rElement}>
+      <Route key={`parametred-route-${componentRouteKey}`} path={route} element={rElement}>
         {paramRoute.params}
       </Route>
     );
 
     if (needle === paramRoute.route) {
       if (rElement.props.replace) {
-        let parametredRouteRedirectionElement: ReactElement = <Fragment key={componentRouteKey + '-dummy'}></Fragment>;
+        let parametredRouteRedirectionElement: ReactElement = <Fragment key={`parametred-route-redirect-fragment-${componentRouteKey}`}></Fragment>;
         try {
           parametredRouteRedirectionElement = tryToBuildParametredRouteRedirection();
         } catch (error) {
@@ -94,7 +94,7 @@ export function i18nRoutesGenerator(): ReactElement[] {
         } else {
           const i18nRouteAccessorUnsafeCtx = true;
           const rTo = i18nRouteAccessor(route, i18nRouteAccessorUnsafeCtx);
-          const rElementRedirect = <Navigate key={matchKey} to={rTo} replace />;
+          const rElementRedirect = <Navigate key={`i18n-lang-mismatch-redirect-component-${matchKey}`} to={rTo} replace />;
           elements.push(atomicRouteGenerator(matchKey, route, rElementRedirect));
         }
       });
@@ -105,7 +105,7 @@ export function i18nRoutesGenerator(): ReactElement[] {
     buildI18nRoutes();
     const curI18nRoute = i18nRouteAccessor(rPath);
     if (curI18nRoutes.includes(curI18nRoute)) {
-      const rElementRedirect = <Navigate key={matchKey} to={curI18nRoute} replace />;
+      const rElementRedirect = <Navigate key={`i18n-not-ignored-route-redirect-component-${matchKey}`} to={curI18nRoute} replace />;
       elements.push(atomicRouteGenerator(matchKey, rPath, rElementRedirect));
     } else {
       elements.push(atomicRouteGenerator(matchKey, rPath, rElement));

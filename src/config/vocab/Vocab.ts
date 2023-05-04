@@ -15,6 +15,8 @@ export interface VocabSchema {
   KASA_LOGO_ALT: string;
   KASA_CATCHPHRASE_FIRST_LINE: string;
   KASA_CATCHPHRASE_SECOND_LINE: string;
+  ABOUT_PAGE_ACCORDION_CONTENT: Record<string, string>;
+
   HOME_PAGE_LOADING_CARDS_LABEL: string;
   HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL: string;
   MAINTENANCE_MESSAGE: string;

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import DbEntityMetadatas from '../../config/MetadatasSchema';
 import adHocLoadingScreen from './adHocUtils/adHocLoadingScreen';
 
-import HomepageHeader from '../../components/HomepageHeader';
+import HomepageBanner from '../../components/HomepageBanner';
 import { componentBody as homepageComponentBody, firstLoadPlaceholders as homepageFirstLoadPlaceholders } from '../Home';
 import { LoadingScreenPropsBase, retryingToLoadCls } from './_types';
 
@@ -16,7 +16,7 @@ export const HomepageLoadingScreen: FunctionComponent<HomepageLoadingScreenProps
   } else {
     return (
       <>
-        <HomepageHeader />
+        <HomepageBanner />
         <div className={retryingToLoadCls}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
       </>
     );

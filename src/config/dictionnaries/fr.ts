@@ -15,6 +15,18 @@ export const frenchDictionnary: VocabSchema = {
   KASA_CATCHPHRASE_SECOND_LINE: 'partout et ailleurs',
   HOME_PAGE_LOADING_CARDS_LABEL: 'Chargement en cours...',
   HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL: 'Encore un instant...',
+
+  ABOUT_PAGE_ACCORDION_CONTENT: {
+    Fiabilité:
+      'Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées  par nos équipes.',
+    Respect:
+      'La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme.',
+    Service:
+      "Nos équipes se tiennent à votre disposition pour vous fournir une expérience parfaite. N'hésitez pas à nous contacter si vous avez la moindre question.",
+    Sécurité:
+      "La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que pour les voyageurs, chaque logement correspond aux critères de sécurité établis par nos services. En laissant une note aussi bien à l'hôte qu'au locataire, cela permet à nos équipes de vérifier que les standards sont bien respectés. Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes."
+  },
+
   MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
   MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
   BRAND,

@@ -51,7 +51,7 @@ export function isVocabSchemaElementKey(s: string) {
   return s in Vocab[DEFAULT_LANGUAGE];
 }
 
-export function VocabAccessor(vocabSchemaElementKey: VocabSchemaElementKey): string {
+export function VocabAccessor(vocabSchemaElementKey: VocabSchemaElementKey): any {
   return Vocab[getCurrentUserVocabLanguageSymbol()][vocabSchemaElementKey];
 }
 
