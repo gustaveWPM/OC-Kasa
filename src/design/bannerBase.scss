@@ -48,9 +48,9 @@
   }
 }
 
-$homepage-responsive-banner-width-offset: 195px;
+$responsive-banner-width-offset: 195px;
 
-@include responsive(mobiles, $homepage-responsive-banner-width-offset) {
+@include responsive(mobiles, $responsive-banner-width-offset) {
   .banner-wrapper {
     height: 30vw;
     min-height: 6.75em;
