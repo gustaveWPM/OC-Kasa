@@ -1,6 +1,6 @@
-@import '../../design/navbarSharedVariables.scss';
-@import '../../design/colors.scss';
-@import '../../design/breakpoints.scss';
+@import '../../design/navbarSharedVariables';
+@import '../../design/colors';
+@import '../../design/breakpoints';
 
 $navbar-menu-settings-btns-size-on-mobile: 2.25em;
 @include responsive(base) {
@@ -42,8 +42,13 @@ $navbar-menu-settings-btns-size-on-mobile: 2.25em;
       .change-language-btn {
         border: none;
         background-color: transparent;
-        padding: 0 10px;
+        margin: 0 10px;
       }
+    }
+
+    .change-language-btn,
+    .change-theme-btn {
+      cursor: pointer;
     }
   }
 }
@@ -82,15 +87,6 @@ $navbar-menu-settings-btns-size-on-mobile: 2.25em;
         width: $navbar-menu-settings-btns-size-on-mobile;
         height: $navbar-menu-settings-btns-size-on-mobile;
       }
-    }
-  }
-}
-
-@media (hover: hover) {
-  .kasa-settings {
-    .change-language-btn:hover,
-    .change-theme-btn:hover {
-      cursor: pointer;
     }
   }
 }

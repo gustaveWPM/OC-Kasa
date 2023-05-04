@@ -1,5 +1,5 @@
 @import './breakpoints';
-@import './navbarSharedVariables.scss';
+@import './navbarSharedVariables';
 
 @include responsive(base) {
   .banner-wrapper {
