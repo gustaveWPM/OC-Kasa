@@ -1,0 +1,54 @@
+@import '../themes/accordionItem';
+
+.accordion-item {
+  border: 1px solid #ccc;
+}
+
+.accordion-item:not(:first-of-type) {
+  border-top: 0;
+}
+
+.accordion-item-title {
+  width: 100%;
+  margin: 0;
+}
+
+.accordion-item-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #828282;
+  border: 0;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.accordion-item-btn::after {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 10px;
+  margin-left: auto;
+  background-image: url('/img/icons/accordion-toggler.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.accordion-item.active .accordion-item-btn::after {
+  transform: rotate(-180deg);
+}
+
+.accordion-item-container {
+  transition: height 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.accordion-item-content {
+  border-top: 1px solid #cccccc;
+  padding: 15px 20px;
+}
