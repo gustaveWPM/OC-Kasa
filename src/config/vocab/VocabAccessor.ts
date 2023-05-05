@@ -14,6 +14,9 @@ function getCurrentLanguageInLocalStorage(): VocabLanguageSymbol | null {
   if (!data) {
     return null;
   }
+  if (!isVocabLanguageSymbol(data)) {
+    setCurrentLanguageInLocalStorage(DEFAULT_LANGUAGE);
+  }
   return data as VocabLanguageSymbol;
 }
 
