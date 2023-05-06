@@ -23,13 +23,13 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
       const DOMElementPtr = getRefCurrentPtr(contentRef);
 
       if (DOMElementPtr) {
-        function computeHeight() {
+        const computeHeight = () => {
           const { height } = DOMElementPtr.getBoundingClientRect();
           const { paddingTop, paddingBottom, marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
           const values = [paddingTop, paddingBottom, marginTop, marginBottom].map(parseFloat);
           const computedHeight = height + values.reduce((acc, value) => acc + value, 0);
           return computedHeight;
-        }
+        };
         setMaxHeight(computeHeight());
       } else {
         setMaxHeight(null);

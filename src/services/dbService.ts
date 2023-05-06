@@ -36,6 +36,6 @@ export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId:
 }
 
 export function getDbCtxEntitiesIds(dbRepresentation: DbEntityMetadatas[]) {
-  const ids = Object.values(dbRepresentation).map((obj) => obj.id);
+  const ids = Object.values(dbRepresentation).map(({ id }) => id);
   return ids;
 }
