@@ -1,4 +1,6 @@
-// * ... https://dominicarrojado.com/posts/how-to-create-your-own-accordion-in-react-and-typescript-with-tests/
+/* Got some inspiration from:
+- https://dominicarrojado.com/posts/how-to-create-your-own-accordion-in-react-and-typescript-with-tests/
+*/
 
 import { FunctionComponent, memo, useState } from 'react';
 import AccordionItem from './AccordionItem';
@@ -15,7 +17,7 @@ const Accordion: FunctionComponent<AccordionProps> = ({ items, defaultOpenedItem
   const UNDEFINED_ACCORDION_ITEM_INDEX = -1;
 
   function getDefaultOpenedItemIndex() {
-    const isValidIndex = (n: number | undefined) => n !== undefined && n >= 0 && items.length - 1 >= n;
+    const isValidIndex = (n: number | undefined) => n !== undefined && n >= 0 && n <= items.length - 1;
     if (isValidIndex(defaultOpenedItemIndex)) {
       return defaultOpenedItemIndex;
     }
@@ -30,7 +32,7 @@ const Accordion: FunctionComponent<AccordionProps> = ({ items, defaultOpenedItem
   return (
     <ul className="accordion">
       {items.map((item, idx) => (
-        <AccordionItem key={`accordion-item-${idx}`} data={item} isOpen={idx === currentIdx} btnOnClick={() => btnOnClick(idx)} />
+        <AccordionItem key={`accordion-item-${idx}`} data={item} isOpened={idx === currentIdx} btnOnClick={() => btnOnClick(idx)} />
       ))}
     </ul>
   );

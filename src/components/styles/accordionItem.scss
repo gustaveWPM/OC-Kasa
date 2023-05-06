@@ -1,5 +1,10 @@
 @import '../themes/accordionItem';
 
+$on-open-padding: 40px 15px 15px 15px;
+$on-open-animation-duration: 350ms;
+$accordion-item-btn-border-radius: max(5px, 0.15vw);
+$accordion-content-border-radius: calc($accordion-item-btn-border-radius * 1.5);
+
 .accordion-item:not(:first-of-type) {
   margin-top: max(20px, 1.45vw);
 }
@@ -16,7 +21,7 @@
   align-items: center;
   width: 100%;
   border: 0;
-  border-radius: max(5px, 0.15vw);
+  border-radius: $accordion-item-btn-border-radius;
   padding: max(15px, 1vw) max(13px, 0.85vw);
   font-weight: 500;
   cursor: pointer;
@@ -33,7 +38,7 @@
   background-size: 100%;
   transform-box: fill-box;
   transform-origin: center;
-  transition: transform 0.2s ease-in-out;
+  transition: transform $on-open-animation-duration ease-in-out;
 }
 
 .accordion-item.active {
@@ -51,10 +56,11 @@
   position: relative;
   z-index: 1;
   top: -10px;
-  transition: max-height 0.2s ease-in-out;
+  transition: max-height $on-open-animation-duration ease-in-out;
   overflow: hidden;
+  border-radius: 0 0 $accordion-content-border-radius $accordion-content-border-radius;
 }
 
 .accordion-item-content {
-  padding: 40px 15px 15px 15px;
+  padding: $on-open-padding;
 }
