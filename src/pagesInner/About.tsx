@@ -30,7 +30,9 @@ export const AboutPageInner: FunctionComponent<AboutPageInnerProps> = () => {
   return (
     <>
       <AboutPageBanner />
-      <Accordion items={accordionGenerator()} />
+      <div className="about-page-accordion-wrapper">
+        <Accordion items={accordionGenerator()} />
+      </div>
     </>
   );
 };

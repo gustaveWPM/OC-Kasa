@@ -2,8 +2,9 @@
 
 import { FunctionComponent, memo, useState } from 'react';
 import AccordionItem from './AccordionItem';
-import './styles/accordion.scss';
 import { AccordionData } from './_types';
+
+import './styles/accordion.scss';
 
 interface AccordionProps {
   items: Array<AccordionData>;

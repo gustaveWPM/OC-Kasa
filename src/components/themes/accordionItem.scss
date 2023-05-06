@@ -2,7 +2,25 @@
 @import '../../design/themes';
 
 @include themes(light) {
+  .accordion-item-container {
+    background-color: $housing-sheets-grid-bg-color;
+    color: $body-font-color;
+  }
+
+  .accordion-item-btn {
+    background-color: $body-font-color;
+    color: $body-bg-color;
+  }
 }
 
 @include themes(dark) {
+  .accordion-item-btn {
+    background-color: $body-font-color;
+    color: $body-bg-color;
+  }
+
+  .accordion-item-container {
+    background-color: $dark-accordion-content-bg-color;
+    color: $body-font-color;
+  }
 }

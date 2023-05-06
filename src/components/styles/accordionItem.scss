@@ -1,14 +1,12 @@
 @import '../themes/accordionItem';
 
-.accordion-item {
-  border: 1px solid #ccc;
-}
-
 .accordion-item:not(:first-of-type) {
-  border-top: 0;
+  margin-top: max(20px, 1.45vw);
 }
 
 .accordion-item-title {
+  position: relative;
+  z-index: 2;
   width: 100%;
   margin: 0;
 }
@@ -17,19 +15,18 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: #828282;
   border: 0;
-  padding: 15px 20px;
-  font-size: 18px;
-  font-weight: 400;
+  border-radius: max(5px, 0.15vw);
+  padding: max(15px, 1vw) max(13px, 0.85vw);
+  font-weight: 500;
   cursor: pointer;
 }
 
 .accordion-item-btn::after {
   content: '';
   flex-shrink: 0;
-  width: 16px;
-  height: 10px;
+  width: max(16px, 0.8vw);
+  height: max(10px, 0.5vw);
   margin-left: auto;
   background-image: url('/img/icons/accordion-toggler.svg');
   background-repeat: no-repeat;
@@ -39,16 +36,25 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.accordion-item.active .accordion-item-btn::after {
-  transform: rotate(-180deg);
+.accordion-item.active {
+  .accordion-item-btn::after {
+    transform: rotate(-180deg);
+  }
+}
+
+.accordion-item-container,
+.accordion-item-btn {
+  font-size: max(24px, 1vw);
 }
 
 .accordion-item-container {
-  transition: height 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+  top: -10px;
+  transition: max-height 0.2s ease-in-out;
   overflow: hidden;
 }
 
 .accordion-item-content {
-  border-top: 1px solid #cccccc;
-  padding: 15px 20px;
+  padding: 40px 15px 15px 15px;
 }

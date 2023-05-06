@@ -1,7 +1,8 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { getRefValue } from '../dev/plainJS/getRefValue';
-import './styles/accordionItem.scss';
 import { AccordionData } from './_types';
+
+import './styles/accordionItem.scss';
 
 interface AccordionItemProps {
   data: AccordionData;
@@ -11,16 +12,22 @@ interface AccordionItemProps {
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpen, btnOnClick }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
+  const [maxHeight, setMaxHeight] = useState<number | null>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      const contentEl = getRefValue(contentRef);
-      setHeight(contentEl.scrollHeight);
-    } else {
-      setHeight(0);
+    function handleResize() {
+      const refValue = getRefValue(contentRef);
+      if (refValue) {
+        setMaxHeight(refValue.offsetHeight);
+      }
     }
-  }, [isOpen]);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <li className={`accordion-item ${isOpen ? 'active' : ''}`}>
@@ -29,7 +36,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpen, bt
           {data.title}
         </button>
       </h2>
-      <div className="accordion-item-container" style={{ height }}>
+      <div className="accordion-item-container" style={{ maxHeight: isOpen && maxHeight !== null ? `${maxHeight}px` : '0px' }}>
         <div ref={contentRef} className="accordion-item-content">
           {data.content}
         </div>
