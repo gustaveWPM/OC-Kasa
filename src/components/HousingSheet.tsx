@@ -36,16 +36,18 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
       <TagsLabelsCollection tags={tags} />
       <HostButton host={host} />
       <HousingRating rating={rating} />
-      <Accordion items={[{ title: VocabAccessor('HOUSING_SHEET_DESCRIPTION_LABEL'), content: <p>{description}</p> }]} defaultOpenedItemIndex={0} />
-      <Accordion
-        items={[
-          {
-            title: VocabAccessor('HOUSING_SHEET_EQUIPMENTS_LABEL'),
-            content: <ul className="equipment-items-list-container">{equipmentsListGenerator(equipments)}</ul>
-          }
-        ]}
-        defaultOpenedItemIndex={0}
-      />
+      <div className="housing-sheet-accordions">
+        <Accordion items={[{ title: VocabAccessor('HOUSING_SHEET_DESCRIPTION_LABEL'), content: <p>{description}</p> }]} defaultOpenedItemIndex={0} />
+        <Accordion
+          items={[
+            {
+              title: VocabAccessor('HOUSING_SHEET_EQUIPMENTS_LABEL'),
+              content: <ul className="equipment-items-list-container">{equipmentsListGenerator(equipments)}</ul>
+            }
+          ]}
+          defaultOpenedItemIndex={0}
+        />
+      </div>
     </>
   );
 };

@@ -9,6 +9,11 @@ $accordion-btn-padding-v: max(15px, 1vw);
 $accordion-btn-padding-h: max(13px, 0.85vw);
 
 @include responsive(base) {
+  .accordion-item {
+    display: flex;
+    flex-direction: column;
+  }
+
   .accordion-item:not(:first-of-type) {
     margin-top: max(20px, 1.45vw);
   }

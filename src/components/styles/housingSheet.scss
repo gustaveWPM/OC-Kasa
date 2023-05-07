@@ -79,4 +79,11 @@
       }
     }
   }
+
+  .housing-sheet-accordions {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: max(76px, 4vw);
+  }
 }
