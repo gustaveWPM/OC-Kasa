@@ -53,7 +53,6 @@ export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocS
       <div className="housing-sheets-page-wrapper">
         <HousingSheet
           title={entity.title}
-          cover={entity.cover}
           pictures={entity.pictures}
           description={entity.description}
           host={entity.host}

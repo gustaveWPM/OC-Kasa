@@ -1,37 +1,53 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, memo } from 'react';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { setPageTitle, weakPageTitleBuilder } from '../pagesInner/_PageEffects';
 import Accordion from './Accordion';
+import Carousel from './Carousel';
+import HostButton from './HostButton';
+import HousingRating from './HousingRating';
+import TagsLabelsCollection from './TagsLabelsCollection';
 
-interface HousingSheetProps extends Omit<DbEntityMetadatas, 'id'> {}
+import './styles/housingSheet.scss';
 
-function listGenerator(elms: string[], prefix: string) {
-  return elms.map((elm): ReactElement => {
-    return <li key={`${prefix}-${elm}}`}>{elm}</li>;
+interface HousingSheetProps extends Omit<DbEntityMetadatas, 'id' | 'cover'> {}
+
+function equipmentsListGenerator(strings: string[]) {
+  return strings.map((s): ReactElement => {
+    return (
+      <li className="equipments-item" key={`equipments-item-${s}}`}>
+        <span className="equipments-item-span">{s}</span>
+      </li>
+    );
   });
 }
 
-const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, cover, pictures, description, host, rating, location, equipments, tags }) => {
+const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, description, host, rating, location, equipments, tags }) => {
   setPageTitle(weakPageTitleBuilder(title));
   return (
     <>
-      <img src={pictures[0]} />
-      <h1>{title}</h1>
-      <h2 className="housing-sheet-location">{location}</h2>
-      <>{listGenerator(tags, 'tags-item')}</>
-      <div>
-        <p>{host.name}</p>
-        <img src={host.picture} />
-      </div>
-      <p>Note: {rating}</p>
+      <header>
+        <div className="housing-sheets-carousel">
+          <Carousel srcs={pictures} />
+        </div>
+        <h1 className="housing-sheet-title">{title}</h1>
+        <h2 className="housing-sheet-location-title">{location}</h2>
+      </header>
+      <TagsLabelsCollection tags={tags} />
+      <HostButton host={host} />
+      <HousingRating rating={rating} />
       <Accordion items={[{ title: VocabAccessor('HOUSING_SHEET_DESCRIPTION_LABEL'), content: <p>{description}</p> }]} defaultOpenedItemIndex={0} />
       <Accordion
-        items={[{ title: VocabAccessor('HOUSING_SHEET_EQUIPMENTS_LABEL'), content: <>{listGenerator(equipments, 'equipments-item')}</> }]}
+        items={[
+          {
+            title: VocabAccessor('HOUSING_SHEET_EQUIPMENTS_LABEL'),
+            content: <ul className="equipment-items-list-container">{equipmentsListGenerator(equipments)}</ul>
+          }
+        ]}
         defaultOpenedItemIndex={0}
       />
     </>
   );
 };
 
-export default HousingSheet;
+export default memo(HousingSheet);

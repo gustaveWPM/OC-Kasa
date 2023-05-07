@@ -1,0 +1,24 @@
+@import '../../design/breakpoints';
+
+$carousel-mobile-breakpoint-offset: 250px;
+
+@include responsive(base) {
+  .kasa-carousel {
+    border-radius: max(15px, 2.5vw);
+    width: 100%;
+    overflow: hidden;
+
+    .kasa-carousel-img-element {
+      overflow: hidden;
+      min-height: 415px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
+
+@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
+  .kasa-carousel .kasa-carousel-img-element {
+    min-height: 255px;
+  }
+}

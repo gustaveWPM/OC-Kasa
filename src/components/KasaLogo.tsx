@@ -1,7 +1,7 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, memo } from 'react';
 import { Link } from 'react-router-dom';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
-import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { moveToTop } from '../dev/plainJS/cameraManager';
 
 enum UseCase {
@@ -54,4 +54,4 @@ KasaLogo.defaultProps = {
   currentUseCase: defaultUseCase
 };
 
-export default KasaLogo;
+export default memo(KasaLogo);

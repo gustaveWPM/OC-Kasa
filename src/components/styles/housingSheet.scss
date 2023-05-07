@@ -1,0 +1,82 @@
+@import '../../design/navbarSharedVariables.scss';
+@import '../../design/colors.scss';
+@import '../../design/breakpoints.scss';
+
+@include responsive(base) {
+  .housing-sheets-carousel {
+    margin-top: $navbar-h-unscrolled-page-initial-offset;
+  }
+
+  .housing-sheet-title,
+  .housing-sheet-location-title {
+    font-weight: 500;
+  }
+
+  .housing-sheet-title {
+    margin: 0;
+    margin-top: 0.85em;
+  }
+
+  .housing-sheet-location-title {
+    font-size: 1.25em;
+    line-height: 205%;
+  }
+
+  .tags-items-list-wrapper {
+    width: fit-content;
+  }
+
+  .equipment-items-list-container,
+  .tags-items-list-container {
+    list-style: none;
+  }
+
+  .tags-items-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .tags-items-list-container {
+    .tags-item-span {
+      color: $body-bg-color;
+      background-color: $body-font-color;
+      user-select: none;
+      min-width: 165px;
+      text-align: center;
+      font-weight: 500;
+      padding: 0.3em 20px;
+      padding-top: 0.4em;
+      border-radius: max(10px, 0.3vw);
+    }
+
+    .tags-item {
+      margin: 15px 5px;
+    }
+  }
+
+  .housing-sheet-host-wrapper {
+    height: 94px;
+
+    .housing-sheet-host-container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .housing-sheet-host-picture {
+        max-height: 100%;
+        border-radius: 100%;
+      }
+
+      .housing-sheet-host-name {
+        max-width: 93px;
+        font-weight: 500;
+        font-size: 1.15em;
+        text-align: right;
+        line-height: 150%;
+        margin-right: 0.75em;
+      }
+    }
+  }
+}

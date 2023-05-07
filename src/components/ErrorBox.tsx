@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 
 import './styles/errorBox.scss';
 
@@ -19,4 +19,4 @@ const ErrorBox: FunctionComponent<ErrorBoxProps> = ({ origin, advice }) => {
   );
 };
 
-export default ErrorBox;
+export default memo(ErrorBox);

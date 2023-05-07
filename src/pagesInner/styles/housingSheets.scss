@@ -1,1 +1,16 @@
 @import '../themes/housingSheets';
+
+.housing-sheets-page-wrapper {
+  .accordion {
+    &:not(:first-of-type) {
+      margin: max(18px, 0.75vw) 0;
+    }
+
+    .accordion-item {
+      .accordion-item-container,
+      .accordion-item-btn {
+        font-size: max(18px, 0.75vw);
+      }
+    }
+  }
+}
