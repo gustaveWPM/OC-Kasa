@@ -1,13 +1,58 @@
 @import '../../design/colors';
 @import '../../design/themes';
+@import '../../design/breakpoints';
+@import '../../design/accordionSharedVariables';
+@import '../../design/carouselSharedVariables';
+
+@include responsive(notMobiles, $carousel-mobile-breakpoint-offset) {
+  @include themes(base) {
+    .housing-sheets-page-wrapper {
+      .accordion {
+        .accordion-item-container {
+          background-color: transparent;
+        }
+
+        .accordion-item:focus-within {
+          transition: background-color 600ms;
+        }
+      }
+    }
+  }
+}
 
 @include themes(light) {
+  .housing-sheets-page-wrapper {
+    .accordion {
+      .accordion-item.active {
+        background-color: $housing-sheets-grid-bg-color;
+      }
+
+      .accordion-item {
+        background-color: transparent;
+        border-radius: $accordion-content-border-radius;
+      }
+    }
+  }
+
   .housing-sheets-page-wrapper {
     color: $body-font-color;
   }
 }
 
 @include themes(dark) {
+  .housing-sheets-page-wrapper {
+    .accordion {
+      .accordion-item.active {
+        background-color: $dark-accordion-content-bg-color;
+      }
+
+      .accordion-item {
+        background-color: transparent;
+        border-radius: $accordion-content-border-radius;
+      }
+    }
+  }
+
   .housing-sheets-page-wrapper {
     color: $dark-body-font-color;
   }

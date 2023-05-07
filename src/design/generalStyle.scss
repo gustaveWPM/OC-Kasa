@@ -1,5 +1,4 @@
 @import './fontSizes';
-@import './navbarSharedVariables';
 @import './colors';
 
 @keyframes loadingAnim {
@@ -57,6 +56,16 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
 body.dark-theme {
   background-color: $dark-body-bg-color;
   .main-wrapper {
@@ -73,5 +82,4 @@ body.light-theme {
 .main-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - $navbar-desktop-min-height - $navbar-h-unscrolled-page-initial-offset);
 }

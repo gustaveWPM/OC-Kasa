@@ -1,6 +1,7 @@
-@import '../../design/navbarSharedVariables.scss';
-@import '../../design/colors.scss';
-@import '../../design/breakpoints.scss';
+@import '../../design/navbarSharedVariables';
+@import '../../design/carouselSharedVariables';
+@import '../../design/colors';
+@import '../../design/breakpoints';
 
 @include responsive(base) {
   .housing-sheets-carousel {
@@ -85,5 +86,14 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: max(76px, 4vw);
+  }
+}
+
+@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
+  .housing-sheet-accordions {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

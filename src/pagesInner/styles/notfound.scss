@@ -1,11 +1,15 @@
 @import '../../design/breakpoints';
 @import '../../design/navbarSharedVariables';
-@import '../themes/notfound.scss';
+@import '../themes/notfound';
 
 $not-found-h2-font-size: 2.25em;
 
 @include responsive(base) {
   .not-found-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - $navbar-desktop-min-height - $navbar-h-unscrolled-page-initial-offset);
     margin: auto;
     text-align: center;
 

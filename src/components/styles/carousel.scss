@@ -1,6 +1,5 @@
 @import '../../design/breakpoints';
-
-$carousel-mobile-breakpoint-offset: 250px;
+@import '../../design/carouselSharedVariables';
 
 @include responsive(base) {
   .kasa-carousel {

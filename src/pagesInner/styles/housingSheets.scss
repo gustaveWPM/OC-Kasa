@@ -1,18 +1,14 @@
 @import '../themes/housingSheets';
-@import '../../design/breakpoints.scss';
+@import '../../design/breakpoints';
+@import '../../design/carouselSharedVariables';
 
 @include responsive(base) {
   .housing-sheets-page-wrapper {
     .accordion {
-      .accordion-item.active {
-        .accordion-item-container {
-          max-height: 100% !important;
-          flex: 1 1 auto;
-        }
-      }
+      margin: max(18px, 0.75vw) 0;
+      display: flex;
 
       .accordion-item {
-        height: 100%;
         .accordion-item-container,
         .accordion-item-btn {
           font-size: max(18px, 0.75vw);
@@ -28,11 +24,12 @@
   }
 }
 
-@include responsive(mobiles) {
+@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
   .housing-sheets-page-wrapper {
     .accordion {
-      &:not(:first-of-type) {
-        margin: max(18px, 0.75vw) 0;
+      &:first-of-type {
+        margin: 0;
+        margin-top: max(18px, 0.75vw);
       }
     }
   }

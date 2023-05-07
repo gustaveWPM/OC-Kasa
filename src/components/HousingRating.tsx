@@ -11,13 +11,18 @@ const HousingRating: FunctionComponent<HousingRatingProps> = ({ rating }) => {
   const fragments: ReactElement[] = [];
 
   for (let i = 0; i < ratingAsNumber; i++) {
-    fragments.push(<img src="/img/icons/rating-full.svg" alt="" />);
+    fragments.push(<img src="/img/icons/rating-full.svg" alt="" key={`housing-sheet-rating-star-nb-${i}`} />);
   }
 
   for (let i = ratingAsNumber + 1; i <= BEST_RATE; i++) {
-    fragments.push(<img src="/img/icons/rating-empty.svg" alt="" />);
+    fragments.push(<img src="/img/icons/rating-empty.svg" alt="" key={`housing-sheet-rating-star-nb-${i}`} />);
   }
-  return <div className="housing-sheet-rating">{fragments}</div>;
+
+  return (
+    <div className="housing-sheet-rating" aria-label={`Note: ${rating}/${BEST_RATE}`}>
+      {fragments}
+    </div>
+  );
 };
 
 export default memo(HousingRating);

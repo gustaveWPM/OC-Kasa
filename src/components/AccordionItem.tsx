@@ -26,8 +26,8 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
         const computeHeight = () => {
           const { height } = DOMElementPtr.getBoundingClientRect();
           const { paddingTop, paddingBottom, marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
-          const values = [paddingTop, paddingBottom, marginTop, marginBottom].map(parseFloat);
-          const computedHeight = height + values.reduce((acc, value) => acc + value, 0);
+          const heightDeltas = [paddingTop, paddingBottom, marginTop, marginBottom].map(parseFloat);
+          const computedHeight = height + heightDeltas.reduce((acc, value) => acc + value, 0);
           return computedHeight;
         };
         setMaxHeight(computeHeight());
@@ -43,6 +43,15 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
     };
   }, []);
 
+  function getStyle() {
+    const fallbackStyle = { maxHeight: '0px' };
+
+    if (isOpened && maxHeight !== null) {
+      return { maxHeight: `${maxHeight}` + 'px' };
+    }
+    return fallbackStyle;
+  }
+
   return (
     <li className={`accordion-item ${isOpened ? 'active' : ''}`}>
       <h2 className="accordion-item-title">
@@ -50,7 +59,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
           {data.title}
         </button>
       </h2>
-      <div className="accordion-item-container" style={{ maxHeight: isOpened && maxHeight !== null ? `${maxHeight}px` : '0px' }}>
+      <div className="accordion-item-container" style={getStyle()}>
         <div ref={contentRef} className="accordion-item-content">
           {data.content}
         </div>

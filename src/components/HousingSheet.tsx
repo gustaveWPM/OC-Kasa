@@ -38,6 +38,7 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
       <HousingRating rating={rating} />
       <div className="housing-sheet-accordions">
         <Accordion items={[{ title: VocabAccessor('HOUSING_SHEET_DESCRIPTION_LABEL'), content: <p>{description}</p> }]} defaultOpenedItemIndex={0} />
+
         <Accordion
           items={[
             {

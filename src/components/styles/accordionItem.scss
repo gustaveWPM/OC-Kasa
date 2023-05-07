@@ -1,10 +1,9 @@
 @import '../themes/accordionItem';
-@import '../../design/breakpoints.scss';
+@import '../../design/breakpoints';
+@import '../../design/accordionSharedVariables';
 
 $on-open-padding: 40px 15px 15px 15px;
 $on-open-animation-duration: 350ms;
-$accordion-item-btn-border-radius: max(5px, 0.15vw);
-$accordion-content-border-radius: calc($accordion-item-btn-border-radius * 1.5);
 $accordion-btn-padding-v: max(15px, 1vw);
 $accordion-btn-padding-h: max(13px, 0.85vw);
 
@@ -12,6 +11,7 @@ $accordion-btn-padding-h: max(13px, 0.85vw);
   .accordion-item {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .accordion-item:not(:first-of-type) {
