@@ -27,6 +27,9 @@ export const frenchDictionnary: VocabSchema = {
       "La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que pour les voyageurs, chaque logement correspond aux critères de sécurité établis par nos services. En laissant une note aussi bien à l'hôte qu'au locataire, cela permet à nos équipes de vérifier que les standards sont bien respectés. Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes."
   },
 
+  HOUSING_SHEET_DESCRIPTION_LABEL: 'Description',
+  HOUSING_SHEET_EQUIPMENTS_LABEL: 'Équipements',
+
   MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
   MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
   BRAND,

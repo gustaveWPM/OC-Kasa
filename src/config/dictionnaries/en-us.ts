@@ -26,6 +26,9 @@ export const americanEnglishDictionnary: VocabSchema = {
       "Safety is Kasa's priority. For our guests and travelers alike, each accommodation meets the safety criteria established by our services. By leaving a rating for both the host and the tenant, our staff can verify that the standards are being met. We also organize workshops on home safety for our guests."
   },
 
+  HOUSING_SHEET_DESCRIPTION_LABEL: 'Description',
+  HOUSING_SHEET_EQUIPMENTS_LABEL: 'Equipments',
+
   MAINTENANCE_MESSAGE: 'This page is under maintenance!',
   MAINTENANCE_ADVICE: 'Please, come back later.',
   BRAND,
