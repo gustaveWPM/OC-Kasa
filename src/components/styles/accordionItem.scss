@@ -3,7 +3,6 @@
 @import '../../design/accordionSharedVariables';
 
 $on-open-padding: 40px 15px 15px 15px;
-$on-open-animation-duration: 350ms;
 $accordion-btn-padding-v: max(15px, 1vw);
 $accordion-btn-padding-h: max(13px, 0.85vw);
 
@@ -66,6 +65,7 @@ $accordion-btn-padding-h: max(13px, 0.85vw);
     z-index: 1;
     top: -10px;
     transition: max-height $on-open-animation-duration ease-in-out;
+    transition-delay: calc($on-open-animation-duration / 2);
     overflow: hidden;
     border-radius: 0 0 $accordion-content-border-radius $accordion-content-border-radius;
   }

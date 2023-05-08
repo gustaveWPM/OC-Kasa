@@ -14,6 +14,7 @@
 
         .accordion-item:focus-within {
           transition: background-color 600ms;
+          transition-delay: calc($on-open-animation-duration / 2);
         }
       }
     }

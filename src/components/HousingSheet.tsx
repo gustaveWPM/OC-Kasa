@@ -26,16 +26,20 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
   setPageTitle(weakPageTitleBuilder(title));
   return (
     <>
-      <header>
-        <div className="housing-sheets-carousel">
-          <Carousel srcs={pictures} />
+      <div className="housing-sheets-carousel">
+        <Carousel srcs={pictures} />
+      </div>
+      <div className="housing-sheet-introduction">
+        <div className="housing-sheet-titles-and-tags-group">
+          <h1 className="housing-sheet-title">{title}</h1>
+          <h2 className="housing-sheet-location-title">{location}</h2>
+          <TagsLabelsCollection tags={tags} />
         </div>
-        <h1 className="housing-sheet-title">{title}</h1>
-        <h2 className="housing-sheet-location-title">{location}</h2>
-      </header>
-      <TagsLabelsCollection tags={tags} />
-      <HostButton host={host} />
-      <HousingRating rating={rating} />
+        <div className="housing-sheet-host-and-rate-group">
+          <HostButton host={host} />
+          <HousingRating rating={rating} />
+        </div>
+      </div>
       <div className="housing-sheet-accordions">
         <Accordion items={[{ title: VocabAccessor('HOUSING_SHEET_DESCRIPTION_LABEL'), content: <p>{description}</p> }]} defaultOpenedItemIndex={0} />
 

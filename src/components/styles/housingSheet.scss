@@ -15,7 +15,6 @@
 
   .housing-sheet-title {
     margin: 0;
-    margin-top: 0.85em;
   }
 
   .housing-sheet-location-title {
@@ -57,26 +56,36 @@
     }
   }
 
-  .housing-sheet-host-wrapper {
-    height: 94px;
-
-    .housing-sheet-host-container {
-      height: 100%;
+  .housing-sheet-host-and-rate-group {
+    position: relative;
+    top: -1.6em;
+    .housing-sheet-rating {
       display: flex;
-      align-items: center;
+      justify-content: flex-end;
+    }
 
-      .housing-sheet-host-picture {
-        max-height: 100%;
-        border-radius: 100%;
-      }
+    .housing-sheet-host-wrapper {
+      height: 94px;
 
-      .housing-sheet-host-name {
-        max-width: 93px;
-        font-weight: 500;
-        font-size: 1.15em;
-        text-align: right;
-        line-height: 150%;
-        margin-right: 0.75em;
+      .housing-sheet-host-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .housing-sheet-host-picture {
+          max-height: 100%;
+          border-radius: 100%;
+          transform: scale(0.8);
+        }
+
+        .housing-sheet-host-name {
+          max-width: 93px;
+          font-weight: 500;
+          font-size: 1.15em;
+          text-align: right;
+          line-height: 150%;
+        }
       }
     }
   }
@@ -87,13 +96,78 @@
     grid-template-columns: repeat(2, 1fr);
     gap: max(76px, 4vw);
   }
+
+  .housing-sheet-introduction {
+    margin-top: 2.2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
   .housing-sheet-accordions {
-    height: fit-content;
-    display: grid;
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .housing-sheet-introduction {
+    grid-template-columns: 1fr;
+  }
+
+  .housing-sheet-host-and-rate-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    top: 0;
+
+    .housing-sheet-host-wrapper {
+      order: 2;
+    }
+
+    .housing-sheet-rating {
+      order: 1;
+      justify-content: flex-start;
+
+      img {
+        width: 7vw;
+        max-width: 30px;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .tags-items-list-container {
+    justify-content: center;
+  }
+
+  .housing-sheet-host-and-rate-group {
+    grid-template-columns: 1fr;
+
+    .housing-sheet-host-wrapper {
+      order: 1;
+
+      .housing-sheet-host-container {
+        justify-content: center;
+
+        .housing-sheet-host-name {
+          order: 2;
+          text-align: left;
+        }
+
+        .housing-sheet-host-picture {
+          order: 1;
+        }
+      }
+    }
+
+    .housing-sheet-rating {
+      order: 2;
+      justify-content: center;
+
+      img {
+        width: 30px;
+      }
+    }
   }
 }

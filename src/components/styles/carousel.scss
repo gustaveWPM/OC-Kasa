@@ -9,7 +9,7 @@
 
     .kasa-carousel-img-element {
       overflow: hidden;
-      min-height: 415px;
+      min-height: max(20vw, 415px);
       background-size: cover;
       background-position: center;
     }
