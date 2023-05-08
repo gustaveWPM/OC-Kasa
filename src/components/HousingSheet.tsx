@@ -27,7 +27,7 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
   return (
     <>
       <div className="housing-sheets-carousel">
-        <Carousel srcs={pictures} />
+        <Carousel images={pictures} />
       </div>
       <div className="housing-sheet-introduction">
         <div className="housing-sheet-titles-and-tags-group">

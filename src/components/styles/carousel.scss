@@ -3,15 +3,20 @@
 
 @include responsive(base) {
   .kasa-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+
     border-radius: max(15px, 2.5vw);
     width: 100%;
     overflow: hidden;
 
-    .kasa-carousel-img-element {
-      overflow: hidden;
-      min-height: max(20vw, 415px);
-      background-size: cover;
-      background-position: center;
+    .kasa-carousel-inner {
+      display: flex;
+      max-height: max(20vw, 415px);
     }
   }
 }
