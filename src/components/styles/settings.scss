@@ -1,6 +1,7 @@
 @import '../../design/navbarSharedVariables';
 @import '../../design/colors';
 @import '../../design/breakpoints';
+@import '../themes/settings';
 
 $navbar-menu-settings-btns-size-on-mobile: 2.25em;
 @include responsive(base) {

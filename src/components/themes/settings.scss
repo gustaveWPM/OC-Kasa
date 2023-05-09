@@ -1,0 +1,14 @@
+@import '../../design/colors';
+@import '../../design/themes';
+
+@include themes(light) {
+  .change-language-btn {
+    color: $footer-bg-color;
+  }
+}
+
+@include themes(dark) {
+  .change-language-btn {
+    color: $body-bg-color;
+  }
+}
