@@ -97,11 +97,11 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       <div className="kasa-images-slider-inner">
         <>{carrouselBackgrounds}</>
       </div>
-      <button onClick={previousImage} style={{ position: 'absolute', left: 0 }}>
-        Prev
+      <button aria-label="previous" className="button button-prev" onClick={previousImage}>
+        <div className="button-icon button-prev-icon"></div>
       </button>
-      <button onClick={nextImage} style={{ position: 'absolute', right: 0 }}>
-        Next
+      <button aria-label="next" className="button button-next" onClick={nextImage}>
+        <div className="button-icon button-next-icon"></div>
       </button>
     </div>
   );

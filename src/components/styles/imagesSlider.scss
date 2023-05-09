@@ -3,16 +3,46 @@
 
 @include responsive(base) {
   .kasa-images-slider {
+    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    position: relative;
-    overflow: hidden;
-
     border-radius: max(15px, 2.5vw);
-    width: 100%;
-    overflow: hidden;
+
+    .button {
+      background-color: transparent;
+      height: 100%;
+      position: absolute;
+      border: none;
+      cursor: pointer;
+
+      .button-icon {
+        background-size: cover;
+        width: 36px;
+        height: 60px;
+        margin: 25px;
+      }
+    }
+
+    .button.button-next {
+      background: linear-gradient(-90deg, rgba(0, 0, 0, 0.15) 0%, transparent 95%);
+      right: 0;
+      .button-next-icon {
+        background-image: url('/img/icons/images-slider-button-icon.svg');
+      }
+    }
+
+    .button.button-prev {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, transparent 95%);
+
+      left: 0;
+      .button-prev-icon {
+        background-image: url('/img/icons/images-slider-button-icon.svg');
+        transform: rotate(180deg);
+      }
+    }
 
     .kasa-images-slider-inner {
       display: flex;
@@ -31,7 +61,16 @@
 }
 
 @include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
-  .kasa-images-slider .kasa-images-slider-img-element {
-    min-height: 255px;
+  .kasa-images-slider {
+    .kasa-images-slider-img-element {
+      min-height: 255px;
+    }
+
+    .button .button-icon {
+      background-size: cover;
+      width: 18px;
+      height: 30px;
+      margin: 12.5px;
+    }
   }
 }
