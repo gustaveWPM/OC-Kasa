@@ -15,6 +15,28 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
   const [dir, setDir] = useState<ImagesSliderDir>(null);
   const [carrouselBackgrounds, setCarrouselBackgrounds] = useState(<></>);
 
+  function slidesIndicator(maxImageIndex: number) {
+    let currentIndex = currentImageIndex + 1;
+    if (transitionning) {
+      if (dir === 'right') {
+        currentIndex += 1;
+      } else if (dir === 'left') {
+        currentIndex -= 1;
+      }
+      if (currentIndex > maxImageIndex) {
+        currentIndex = 1;
+      } else if (currentIndex <= 0) {
+        currentIndex = maxImageIndex;
+      }
+    }
+
+    return (
+      <div className="kasa-images-slider-indicator">
+        {currentIndex}/{maxImageIndex}
+      </div>
+    );
+  }
+
   const transitionClock = (direction: ImagesSliderDir) => {
     setDir(direction);
     setTransitionning(true);
@@ -94,6 +116,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
 
   return (
     <div className="kasa-images-slider">
+      {images.length > 1 && <>{slidesIndicator(images.length)}</>}
       <div className="kasa-images-slider-inner">
         <>{carrouselBackgrounds}</>
       </div>
