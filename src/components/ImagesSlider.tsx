@@ -1,21 +1,21 @@
 import { CSSProperties, FunctionComponent, memo, useEffect, useState } from 'react';
 
-import './styles/carousel.scss';
+import './styles/imagesSlider.scss';
 
-type CarouselProps = {
+type ImagesSliderProps = {
   images: string[];
   transitionDuration?: number;
 };
 
-type CarouselDir = 'left' | 'right' | null;
+type ImagesSliderDir = 'left' | 'right' | null;
 
-const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration = 500 }) => {
+const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transitionDuration = 500 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [transitionning, setTransitionning] = useState(false);
-  const [dir, setDir] = useState<CarouselDir>(null);
+  const [dir, setDir] = useState<ImagesSliderDir>(null);
   const [carrouselBackgrounds, setCarrouselBackgrounds] = useState(<></>);
 
-  const transitionClock = (direction: CarouselDir) => {
+  const transitionClock = (direction: ImagesSliderDir) => {
     setDir(direction);
     setTransitionning(true);
     setTimeout(() => {
@@ -63,7 +63,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration
     setCarrouselBackgrounds(
       <>
         <div
-          className="kasa-carousel-background-img-div"
+          className="kasa-images-slider-background-img-div"
           style={{
             left: '0',
             backgroundImage: `url(${images[prevIndex]})`,
@@ -72,7 +72,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration
           }}
         ></div>
         <div
-          className="kasa-carousel-background-img-div"
+          className="kasa-images-slider-background-img-div"
           style={{
             left: '0',
             backgroundImage: `url(${images[index]})`,
@@ -81,7 +81,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration
           }}
         ></div>
         <div
-          className="kasa-carousel-background-img-div"
+          className="kasa-images-slider-background-img-div"
           style={{
             left: '-100%',
             backgroundImage: `url(${images[nextIndex]})`,
@@ -93,8 +93,8 @@ const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration
   }, [transitionning]);
 
   return (
-    <div className="kasa-carousel">
-      <div className="kasa-carousel-inner">
+    <div className="kasa-images-slider">
+      <div className="kasa-images-slider-inner">
         <>{carrouselBackgrounds}</>
       </div>
       <button onClick={previousImage} style={{ position: 'absolute', left: 0 }}>
@@ -107,4 +107,4 @@ const Carousel: FunctionComponent<CarouselProps> = ({ images, transitionDuration
   );
 };
 
-export default memo(Carousel);
+export default memo(ImagesSlider);

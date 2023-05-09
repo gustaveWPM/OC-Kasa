@@ -2,7 +2,7 @@
 @import '../../design/carouselSharedVariables';
 
 @include responsive(base) {
-  .kasa-carousel {
+  .kasa-images-slider {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,12 +14,12 @@
     width: 100%;
     overflow: hidden;
 
-    .kasa-carousel-inner {
+    .kasa-images-slider-inner {
       display: flex;
       height: max(20vw, 415px);
       width: 100%;
 
-      .kasa-carousel-background-img-div {
+      .kasa-images-slider-background-img-div {
         position: relative;
         background-position: center;
         background-size: cover;
@@ -31,7 +31,7 @@
 }
 
 @include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
-  .kasa-carousel .kasa-carousel-img-element {
+  .kasa-images-slider .kasa-images-slider-img-element {
     min-height: 255px;
   }
 }

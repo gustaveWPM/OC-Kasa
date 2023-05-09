@@ -3,9 +3,9 @@ import DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { setPageTitle, weakPageTitleBuilder } from '../pagesInner/_PageEffects';
 import Accordion from './Accordion';
-import Carousel from './Carousel';
 import HostButton from './HostButton';
 import HousingRating from './HousingRating';
+import ImagesSlider from './ImagesSlider';
 import TagsLabelsCollection from './TagsLabelsCollection';
 
 import './styles/housingSheet.scss';
@@ -27,7 +27,7 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
   return (
     <>
       <div className="housing-sheets-carousel">
-        <Carousel images={pictures} />
+        <ImagesSlider images={pictures} />
       </div>
       <div className="housing-sheet-introduction">
         <div className="housing-sheet-titles-and-tags-group">
