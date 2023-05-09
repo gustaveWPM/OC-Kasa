@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 
 interface HostButtonProps {
-  host: { name: string; picture: string };
+  host: { name: string; picture?: string };
 }
 
 const HostButton: FunctionComponent<HostButtonProps> = ({ host }) => {
@@ -9,7 +9,7 @@ const HostButton: FunctionComponent<HostButtonProps> = ({ host }) => {
     <div className="housing-sheet-host-wrapper">
       <div className="housing-sheet-host-container">
         <p className="housing-sheet-host-name">{host.name}</p>
-        <img className="housing-sheet-host-picture" src={host.picture} alt={host.name} />
+        {host.picture && <img className="housing-sheet-host-picture" src={host.picture} alt={host.name} />}
       </div>
     </div>
   );

@@ -97,12 +97,16 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       <div className="kasa-images-slider-inner">
         <>{carrouselBackgrounds}</>
       </div>
-      <button aria-label="previous" className="button button-prev" onClick={previousImage}>
-        <div className="button-icon button-prev-icon"></div>
-      </button>
-      <button aria-label="next" className="button button-next" onClick={nextImage}>
-        <div className="button-icon button-next-icon"></div>
-      </button>
+      {images.length > 1 && (
+        <>
+          <button aria-label="previous" className="button button-prev" onClick={previousImage}>
+            <div className="button-icon button-prev-icon"></div>
+          </button>
+          <button aria-label="next" className="button button-next" onClick={nextImage}>
+            <div className="button-icon button-next-icon"></div>
+          </button>
+        </>
+      )}
     </div>
   );
 };
