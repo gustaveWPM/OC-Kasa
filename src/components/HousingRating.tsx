@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, memo } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 
 const BEST_RATE: number = 5;
 
@@ -25,4 +25,4 @@ const HousingRating: FunctionComponent<HousingRatingProps> = ({ rating }) => {
   );
 };
 
-export default memo(HousingRating);
+export default HousingRating;

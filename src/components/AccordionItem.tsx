@@ -2,7 +2,7 @@
 - https://dominicarrojado.com/posts/how-to-create-your-own-accordion-in-react-and-typescript-with-tests/
 */
 
-import { FunctionComponent, memo, useEffect, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { getRefCurrentPtr } from '../dev/plainJS/getRefCurrentPtr';
 import { AccordionData } from './_types';
 
@@ -68,4 +68,4 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
   );
 };
 
-export default memo(AccordionItem);
+export default AccordionItem;

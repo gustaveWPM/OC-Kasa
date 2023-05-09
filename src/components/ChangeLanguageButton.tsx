@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 import changeLanguagesBtns, { SCROLL_LATENCY_MS } from '../config/ChangeLanguageBtns';
 import { VocabLanguageSymbol } from '../config/vocab/Vocab';
 import { alreadyCurrentUserVocabLanguageSymbol, setCurrentLanguageInLocalStorage } from '../config/vocab/VocabAccessor';
@@ -33,4 +33,4 @@ const ChangeLanguageBtn: FunctionComponent<ChangeLanguageBtnProps> = ({ targetLa
   );
 };
 
-export default memo(ChangeLanguageBtn);
+export default ChangeLanguageBtn;

@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import kasaPublicRoutes, {
   DAMERAU_LEVENSHTEIN_RESCUE_REDIRECT_DISTANCE_THRESHOLD,
@@ -82,4 +82,4 @@ const KasaRouterRescue: FunctionComponent<KasaRouterRescueProps> = () => {
   return <Navigate to={rTo} state={rState} replace />;
 };
 
-export default memo(KasaRouterRescue);
+export default KasaRouterRescue;

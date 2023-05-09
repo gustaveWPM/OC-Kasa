@@ -10,6 +10,7 @@
       .accordion {
         .accordion-item-container {
           background-color: transparent;
+          transition-delay: calc($on-open-animation-duration / 2);
         }
 
         .accordion-item:focus-within {

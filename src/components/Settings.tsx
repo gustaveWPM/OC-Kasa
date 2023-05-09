@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 import changeLanguageBtnsGenerator from './ChangeLanguageButtonsGenerator';
 import ChangeThemeButton from './ChangeThemeButton';
 
@@ -15,4 +15,4 @@ const Settings: FunctionComponent<SettingsProps> = () => {
   );
 };
 
-export default memo(Settings);
+export default Settings;

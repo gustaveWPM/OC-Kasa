@@ -11,7 +11,7 @@
   }
 }
 
-@keyframes pageloadAnim {
+@keyframes DOMElementOnMountAnim {
   0% {
     opacity: 0;
   }
@@ -99,5 +99,5 @@ body.light-theme {
 }
 
 body * {
-  animation: pageloadAnim 350ms linear;
+  animation: DOMElementOnMountAnim 350ms linear;
 }

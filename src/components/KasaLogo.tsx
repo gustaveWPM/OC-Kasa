@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, memo } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import kasaPublicRoutes, { kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
@@ -54,4 +54,4 @@ KasaLogo.defaultProps = {
   currentUseCase: defaultUseCase
 };
 
-export default memo(KasaLogo);
+export default KasaLogo;

@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, ReactElement, useEffect } from 'react';
+import { FunctionComponent, ReactElement, useEffect } from 'react';
 import { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
 import { snapToTop } from '../dev/plainJS/cameraManager';
@@ -61,4 +61,4 @@ export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = 
   return children;
 };
 
-export default memo(OnPageChangeEffects);
+export default OnPageChangeEffects;

@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, ReactElement, ReactNode, useEffect, useState } from 'react';
+import { FunctionComponent, ReactElement, ReactNode, useEffect, useState } from 'react';
 import ErrorBox from '../components/ErrorBox';
 import HomepageBanner from '../components/HomepageBanner';
 import KasaCard from '../components/KasaCard';
@@ -9,9 +9,9 @@ import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
+import { defaultHomepageCardsPlaceholdersAmount, loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 import HomepageLoadingScreen from './loadingScreens/Home';
-import { defaultHomepageCardsPlaceholdersAmount, loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 
 import './styles/homepage.scss';
 
@@ -116,4 +116,4 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   );
 };
 
-export default memo(HomePageInner);
+export default HomePageInner;

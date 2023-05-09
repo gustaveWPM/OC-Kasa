@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 
 interface HostButtonProps {
   host: { name: string; picture: string };
@@ -15,4 +15,4 @@ const HostButton: FunctionComponent<HostButtonProps> = ({ host }) => {
   );
 };
 
-export default memo(HostButton);
+export default HostButton;

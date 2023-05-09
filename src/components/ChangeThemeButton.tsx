@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import ThemeData from '../config/ThemeData';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getThemeFromLocalStorage, toggleTheme } from '../services/themeService';
@@ -67,4 +67,4 @@ const ChangeThemeButton: FunctionComponent<ChangeThemeButtonProps> = () => {
   );
 };
 
-export default memo(ChangeThemeButton);
+export default ChangeThemeButton;

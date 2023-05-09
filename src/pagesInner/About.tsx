@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 import AboutPageBanner from '../components/AboutPageBanner';
 import Accordion from '../components/Accordion';
 import { AccordionData } from '../components/_types';
@@ -37,4 +37,4 @@ export const AboutPageInner: FunctionComponent<AboutPageInnerProps> = () => {
   );
 };
 
-export default memo(AboutPageInner);
+export default AboutPageInner;

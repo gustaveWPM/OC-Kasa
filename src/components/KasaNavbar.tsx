@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavData from '../config/NavData';
 import wpmDebugger from '../dev/wpmDebugger';
@@ -42,4 +42,4 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
   );
 };
 
-export default memo(KasaNavbar);
+export default KasaNavbar;

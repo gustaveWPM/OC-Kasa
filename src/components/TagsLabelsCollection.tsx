@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, memo } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 
 interface TagsLabelsCollectionProps {
   tags: string[];
@@ -22,4 +22,4 @@ const TagsLabelsCollection: FunctionComponent<TagsLabelsCollectionProps> = ({ ta
   );
 };
 
-export default memo(TagsLabelsCollection);
+export default TagsLabelsCollection;
