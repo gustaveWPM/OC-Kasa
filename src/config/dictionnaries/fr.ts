@@ -30,6 +30,9 @@ export const frenchDictionnary: VocabSchema = {
   HOUSING_SHEET_DESCRIPTION_LABEL: 'Description',
   HOUSING_SHEET_EQUIPMENTS_LABEL: 'Équipements',
 
+  IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL: 'Image précédente',
+  IMAGE_SLIDER_NEXT_IMAGE_ARIA_LABEL: 'Image suivante',
+
   MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
   MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
   BRAND,

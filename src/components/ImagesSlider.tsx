@@ -1,5 +1,6 @@
 import { CSSProperties, FunctionComponent, memo, useEffect, useState } from 'react';
 
+import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import './styles/imagesSlider.scss';
 
 type ImagesSliderProps = {
@@ -122,10 +123,10 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       </div>
       {images.length > 1 && (
         <>
-          <button aria-label="previous" className="button button-prev" onClick={previousImage}>
+          <button aria-label={VocabAccessor('IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL')} className="button button-prev" onClick={previousImage}>
             <div className="button-icon button-prev-icon"></div>
           </button>
-          <button aria-label="next" className="button button-next" onClick={nextImage}>
+          <button aria-label={VocabAccessor('IMAGE_SLIDER_NEXT_IMAGE_ARIA_LABEL')} className="button button-next" onClick={nextImage}>
             <div className="button-icon button-next-icon"></div>
           </button>
         </>

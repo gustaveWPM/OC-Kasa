@@ -29,6 +29,9 @@ export const americanEnglishDictionnary: VocabSchema = {
   HOUSING_SHEET_DESCRIPTION_LABEL: 'Description',
   HOUSING_SHEET_EQUIPMENTS_LABEL: 'Equipments',
 
+  IMAGE_SLIDER_NEXT_IMAGE_ARIA_LABEL: 'Next image',
+  IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL: 'Previous image',
+
   MAINTENANCE_MESSAGE: 'This page is under maintenance!',
   MAINTENANCE_ADVICE: 'Please, come back later.',
   BRAND,
