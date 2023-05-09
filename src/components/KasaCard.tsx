@@ -17,7 +17,7 @@ const DummyKasaCard: FunctionComponent<KasaCardProps> = ({ title }) => {
     <>
       <article className="housing-sheets-grid-gallery-item">
         <div className="housing-sheets-grid-gallery-item-title-wrapper">
-          <h3 className="housing-sheets-grid-gallery-item-title">{title}</h3>
+          <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
         </div>
       </article>
     </>
@@ -33,7 +33,7 @@ export const KasaCard: FunctionComponent<KasaCardProps> = ({ id, title, cover })
         <Link to={`${i18nRouteAccessor(kasaPublicRoutes.HOUSING_SHEETS_PAGE)}/${id}`}>
           <article className="housing-sheets-grid-gallery-item" style={{ backgroundImage: `url(${cover})`, backgroundSize: 'cover' }}>
             <div className="housing-sheets-grid-gallery-item-title-wrapper">
-              <h3 className="housing-sheets-grid-gallery-item-title">{title}</h3>
+              <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
             </div>
           </article>
         </Link>

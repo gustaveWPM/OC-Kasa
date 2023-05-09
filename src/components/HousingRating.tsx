@@ -19,7 +19,7 @@ const HousingRating: FunctionComponent<HousingRatingProps> = ({ rating }) => {
   }
 
   return (
-    <div className="housing-sheet-rating" aria-label={`Note: ${rating}/${BEST_RATE}`}>
+    <div role="button" className="housing-sheet-rating" aria-label={`Note: ${rating}/${BEST_RATE}`}>
       {fragments}
     </div>
   );

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactElement, memo } from 'react';
 import { Link } from 'react-router-dom';
-import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
+import kasaPublicRoutes, { kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { moveToTop } from '../dev/plainJS/cameraManager';
 
@@ -35,7 +35,7 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
   const getLogo = (): ReactElement => {
     if (currentUseCase === 'NAVBAR') {
       return (
-        <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)} onClick={moveToTop}>
+        <Link to={i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE)} onClick={moveToTop} aria-label={kasaPublicRoutesTitles.HOME_PAGE()}>
           {getThemedLogoElement()}
         </Link>
       );
@@ -44,7 +44,7 @@ export const KasaLogo: FunctionComponent<KasaLogoProps> = ({ currentUseCase = de
   };
 
   return (
-    <div className={`kasa-logo ${currentUseCase?.toLowerCase()}-use-case`} aria-label={VocabAccessor('KASA_LOGO_ALT')}>
+    <div role="button" className={`kasa-logo ${currentUseCase?.toLowerCase()}-use-case`} aria-label={VocabAccessor('KASA_LOGO_ALT')}>
       {getLogo()}
     </div>
   );

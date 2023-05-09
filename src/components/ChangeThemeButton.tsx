@@ -61,7 +61,7 @@ const ChangeThemeButton: FunctionComponent<ChangeThemeButtonProps> = () => {
   }
 
   return (
-    <button className="change-theme-btn" onClick={doToggle}>
+    <button className="change-theme-btn" onClick={doToggle} aria-label="theme">
       {currentTheme !== ThemeData.DARK_THEME ? darkBtn : lightBtn}
     </button>
   );

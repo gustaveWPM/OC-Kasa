@@ -11,6 +11,20 @@
   }
 }
 
+@keyframes pageloadAnim {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .loading {
   animation: loadingAnim 1s ease-in-out infinite;
 }
@@ -82,4 +96,8 @@ body.light-theme {
 .main-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+body * {
+  animation: pageloadAnim 350ms linear;
 }
