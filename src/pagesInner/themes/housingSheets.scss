@@ -10,12 +10,48 @@
       .accordion {
         .accordion-item-container {
           background-color: transparent;
-          transition-delay: calc($on-open-animation-duration / 2);
+          &.onload-side-effects {
+            transition-delay: calc($on-open-animation-duration / 2);
+          }
         }
 
         .accordion-item:focus-within {
           transition: background-color 600ms;
-          transition-delay: calc($on-open-animation-duration / 2);
+          &.onload-side-effects {
+            transition-delay: calc($on-open-animation-duration / 2);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responsive(notMobiles, $carousel-mobile-breakpoint-offset) {
+  @include themes(light) {
+    .housing-sheets-page-wrapper {
+      .accordion {
+        .accordion-item.active {
+          background-color: $housing-sheets-grid-bg-color;
+        }
+
+        .accordion-item {
+          background-color: transparent;
+          border-radius: $accordion-content-border-radius;
+        }
+      }
+    }
+  }
+
+  @include themes(dark) {
+    .housing-sheets-page-wrapper {
+      .accordion {
+        .accordion-item.active {
+          background-color: $dark-accordion-content-bg-color;
+        }
+
+        .accordion-item {
+          background-color: transparent;
+          border-radius: $accordion-content-border-radius;
         }
       }
     }
@@ -24,37 +60,11 @@
 
 @include themes(light) {
   .housing-sheets-page-wrapper {
-    .accordion {
-      .accordion-item.active {
-        background-color: $housing-sheets-grid-bg-color;
-      }
-
-      .accordion-item {
-        background-color: transparent;
-        border-radius: $accordion-content-border-radius;
-      }
-    }
-  }
-
-  .housing-sheets-page-wrapper {
     color: $body-font-color;
   }
 }
 
 @include themes(dark) {
-  .housing-sheets-page-wrapper {
-    .accordion {
-      .accordion-item.active {
-        background-color: $dark-accordion-content-bg-color;
-      }
-
-      .accordion-item {
-        background-color: transparent;
-        border-radius: $accordion-content-border-radius;
-      }
-    }
-  }
-
   .housing-sheets-page-wrapper {
     color: $dark-body-font-color;
   }

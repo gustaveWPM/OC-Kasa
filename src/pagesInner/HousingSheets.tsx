@@ -4,14 +4,14 @@ import ErrorBox from '../components/ErrorBox';
 import HousingSheet from '../components/HousingSheet';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
-import { i18nRouteAccessor, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
 import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
-import { getDbEntityById, GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
-import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
+import { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult, getDbEntityById } from '../services/dbService';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
+import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 
 import './styles/housingSheets.scss';
 
@@ -89,6 +89,20 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
       getFilteredEntity();
     }
   }, [entitiesBase]);
+
+  useEffect(() => {
+    function uglyWorkaround() {
+      const ONLOAD_CLS = 'onload-side-effects';
+      const elementsToPlayWith = document.querySelectorAll('.accordion-item, .accordion-item-container');
+      elementsToPlayWith.forEach((element) => element.classList.add(ONLOAD_CLS));
+
+      setTimeout(() => {
+        const elements = document.querySelectorAll('.' + ONLOAD_CLS);
+        elements.forEach((element) => element.classList.remove(ONLOAD_CLS));
+      }, 350);
+    }
+    uglyWorkaround();
+  });
 
   if (sheet_id === undefined) {
     return doRedirect(i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE));

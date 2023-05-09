@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactElement, useEffect } from 'react';
 import { VocabSchemaElementKey } from '../config/vocab/Vocab';
-import { isVocabSchemaElementKey, VocabAccessor } from '../config/vocab/VocabAccessor';
+import { VocabAccessor, isVocabSchemaElementKey } from '../config/vocab/VocabAccessor';
 import { snapToTop } from '../dev/plainJS/cameraManager';
 import wpmDebugger from '../dev/wpmDebugger';
 

@@ -22,6 +22,6 @@ export const changeLanguagesBtns: ButtonsLabelsAndTxt = {
   }
 };
 
-export const SCROLL_LATENCY_MS = 300;
+export const SCROLL_LATENCY_MS = 352;
 
 export default changeLanguagesBtns;
