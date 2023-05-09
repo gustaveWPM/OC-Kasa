@@ -11,9 +11,14 @@ import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult, getDbEntityById } from '../services/dbService';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
+import { loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 
-import './styles/housingSheets.scss';
+import Accordion from '../components/Accordion';
+import HostButton from '../components/HostButton';
+import HousingRating from '../components/HousingRating';
+import ImagesSlider from '../components/ImagesSlider';
+import TagsLabelsCollection from '../components/TagsLabelsCollection';
 
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
 type FilteredEntityAdHocSumType = DbEntityMetadatas | {};
@@ -25,13 +30,46 @@ function doRedirect(route: string) {
 
 interface HousingSheetsInnerProps {}
 
+function dummyHousingSheet(cls: string, loadingPlaceholder: string) {
+  return (
+    <>
+      <div className={`housing-sheets-carousel ${cls}`}>
+        <ImagesSlider images={[]} />
+      </div>
+      <div className={`housing-sheet-introduction ${cls}`}>
+        <div className="housing-sheet-titles-and-tags-group">
+          <h1 className="housing-sheet-title">{loadingPlaceholder}</h1>
+          <h2 className="housing-sheet-location-title">{loadingPlaceholder}</h2>
+          <TagsLabelsCollection tags={[]} />
+        </div>
+        <div className="housing-sheet-host-and-rate-group">
+          <HostButton host={{ name: '...' }} />
+          <HousingRating rating={'0'} />
+        </div>
+      </div>
+      <div className={`housing-sheet-accordions ${cls}`}>
+        <Accordion items={[{ title: loadingPlaceholder, content: <p>{loadingPlaceholder}</p> }]} />
+
+        <Accordion
+          items={[
+            {
+              title: loadingPlaceholder,
+              content: <ul className="equipment-items-list-container">{loadingPlaceholder}</ul>
+            }
+          ]}
+        />
+      </div>
+    </>
+  );
+}
+
 export function firstLoadPlaceholders(loadingState: TLoadingState) {
   if (loadingState === 'FAILED_TO_LOAD') {
     return <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
-    return <p>Loading...</p>;
+    return <>{dummyHousingSheet(loadingCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'))}</>;
   } else {
-    return <p>Retrying to load...</p>;
+    return <>{dummyHousingSheet(retryingToLoadCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'))}</>;
   }
 }
 

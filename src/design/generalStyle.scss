@@ -84,12 +84,14 @@ body.dark-theme {
   background-color: $dark-body-bg-color;
   .main-wrapper {
     background-color: $dark-body-bg-color;
+    color: $dark-body-font-color;
   }
 }
 
 body.light-theme {
   .main-wrapper {
     background-color: $body-bg-color;
+    color: $body-font-color;
   }
 }
 
