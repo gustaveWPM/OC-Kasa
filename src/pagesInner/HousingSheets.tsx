@@ -1,12 +1,7 @@
 import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
-import Accordion from '../components/Accordion';
 import ErrorBox from '../components/ErrorBox';
-import HostButton from '../components/HostButton';
-import HousingRating from '../components/HousingRating';
 import HousingSheet from '../components/HousingSheet';
-import ImagesSlider from '../components/ImagesSlider';
-import TagsLabelsCollection from '../components/TagsLabelsCollection';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
@@ -15,6 +10,7 @@ import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult, getDbEntityById } from '../services/dbService';
+import DummyHousingSheet from './DummyHousingSheets';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 import { loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
@@ -30,46 +26,6 @@ function doRedirect(route: string) {
 }
 
 interface HousingSheetsInnerProps {}
-
-interface DummyHousingSheetProps {
-  cls: string;
-  loadingPlaceholder: string;
-}
-
-const DummyHousingSheet: FunctionComponent<DummyHousingSheetProps> = ({ cls, loadingPlaceholder }) => {
-  return (
-    <>
-      <div className="housing-sheets-page-wrapper">
-        <div className={`housing-sheets-carousel ${cls}`}>
-          <ImagesSlider images={[]} />
-        </div>
-        <div className={`housing-sheet-introduction ${cls}`}>
-          <div className="housing-sheet-titles-and-tags-group">
-            <h1 className="housing-sheet-title">{loadingPlaceholder}</h1>
-            <h2 className="housing-sheet-location-title">{loadingPlaceholder}</h2>
-            <TagsLabelsCollection tags={[]} />
-          </div>
-          <div className="housing-sheet-host-and-rate-group">
-            <HostButton host={{ name: '...' }} />
-            <HousingRating rating={'0'} />
-          </div>
-        </div>
-        <div className={`housing-sheet-accordions ${cls}`}>
-          <Accordion items={[{ title: loadingPlaceholder, content: <p>{loadingPlaceholder}</p> }]} />
-
-          <Accordion
-            items={[
-              {
-                title: loadingPlaceholder,
-                content: <ul className="equipment-items-list-container">{loadingPlaceholder}</ul>
-              }
-            ]}
-          />
-        </div>
-      </div>
-    </>
-  );
-};
 
 export function firstLoadPlaceholders(loadingState: TLoadingState) {
   if (loadingState === 'FAILED_TO_LOAD') {
