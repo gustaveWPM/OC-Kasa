@@ -1,7 +1,12 @@
 import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
+import Accordion from '../components/Accordion';
 import ErrorBox from '../components/ErrorBox';
+import HostButton from '../components/HostButton';
+import HousingRating from '../components/HousingRating';
 import HousingSheet from '../components/HousingSheet';
+import ImagesSlider from '../components/ImagesSlider';
+import TagsLabelsCollection from '../components/TagsLabelsCollection';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
@@ -14,11 +19,7 @@ import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 import { loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 
-import Accordion from '../components/Accordion';
-import HostButton from '../components/HostButton';
-import HousingRating from '../components/HousingRating';
-import ImagesSlider from '../components/ImagesSlider';
-import TagsLabelsCollection from '../components/TagsLabelsCollection';
+import './styles/housingSheets.scss';
 
 const DEBUGGER_LABEL = 'Housing Sheets (React Component)';
 type FilteredEntityAdHocSumType = DbEntityMetadatas | {};
@@ -30,46 +31,53 @@ function doRedirect(route: string) {
 
 interface HousingSheetsInnerProps {}
 
-function dummyHousingSheet(cls: string, loadingPlaceholder: string) {
+interface DummyHousingSheetProps {
+  cls: string;
+  loadingPlaceholder: string;
+}
+
+const DummyHousingSheet: FunctionComponent<DummyHousingSheetProps> = ({ cls, loadingPlaceholder }) => {
   return (
     <>
-      <div className={`housing-sheets-carousel ${cls}`}>
-        <ImagesSlider images={[]} />
-      </div>
-      <div className={`housing-sheet-introduction ${cls}`}>
-        <div className="housing-sheet-titles-and-tags-group">
-          <h1 className="housing-sheet-title">{loadingPlaceholder}</h1>
-          <h2 className="housing-sheet-location-title">{loadingPlaceholder}</h2>
-          <TagsLabelsCollection tags={[]} />
+      <div className="housing-sheets-page-wrapper">
+        <div className={`housing-sheets-carousel ${cls}`}>
+          <ImagesSlider images={[]} />
         </div>
-        <div className="housing-sheet-host-and-rate-group">
-          <HostButton host={{ name: '...' }} />
-          <HousingRating rating={'0'} />
+        <div className={`housing-sheet-introduction ${cls}`}>
+          <div className="housing-sheet-titles-and-tags-group">
+            <h1 className="housing-sheet-title">{loadingPlaceholder}</h1>
+            <h2 className="housing-sheet-location-title">{loadingPlaceholder}</h2>
+            <TagsLabelsCollection tags={[]} />
+          </div>
+          <div className="housing-sheet-host-and-rate-group">
+            <HostButton host={{ name: '...' }} />
+            <HousingRating rating={'0'} />
+          </div>
         </div>
-      </div>
-      <div className={`housing-sheet-accordions ${cls}`}>
-        <Accordion items={[{ title: loadingPlaceholder, content: <p>{loadingPlaceholder}</p> }]} />
+        <div className={`housing-sheet-accordions ${cls}`}>
+          <Accordion items={[{ title: loadingPlaceholder, content: <p>{loadingPlaceholder}</p> }]} />
 
-        <Accordion
-          items={[
-            {
-              title: loadingPlaceholder,
-              content: <ul className="equipment-items-list-container">{loadingPlaceholder}</ul>
-            }
-          ]}
-        />
+          <Accordion
+            items={[
+              {
+                title: loadingPlaceholder,
+                content: <ul className="equipment-items-list-container">{loadingPlaceholder}</ul>
+              }
+            ]}
+          />
+        </div>
       </div>
     </>
   );
-}
+};
 
 export function firstLoadPlaceholders(loadingState: TLoadingState) {
   if (loadingState === 'FAILED_TO_LOAD') {
     return <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
-    return <>{dummyHousingSheet(loadingCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'))}</>;
+    return <DummyHousingSheet cls={loadingCls} loadingPlaceholder={VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL')} />;
   } else {
-    return <>{dummyHousingSheet(retryingToLoadCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'))}</>;
+    return <DummyHousingSheet cls={retryingToLoadCls} loadingPlaceholder={VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL')} />;
   }
 }
 
