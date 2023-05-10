@@ -46,6 +46,7 @@ $not-found-h2-font-size: 2.25em;
 
 @include responsive(mobiles) {
   .not-found-wrapper {
+    min-height: calc(68vh - $navbar-desktop-min-height - $navbar-h-unscrolled-page-initial-offset);
     .not-found-main {
       min-height: 25vh;
       .notfound-page-suggestion {
