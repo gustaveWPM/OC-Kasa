@@ -11,6 +11,6 @@ export type ReactExpectedProps<T> = Attributes & T;
 export type AdHocLoadingStateManagerExpectedProps<T> = Omit<ReactExpectedProps<T>, keyof LoadingScreenPropsBase>;
 export type AdHocLoadingStateManagerPlaceholdersFnPtr = (v: TLoadingState) => ReactElement;
 
-export const defaultHomepageCardsPlaceholdersAmount: number = 20;
-export const loadingCls: string = 'loading';
-export const retryingToLoadCls: string = 'retrying-to-load';
+export const DEFAULT_HOMEPAGE_CARDS_PLACEHOLDERS_AMOUNT: number = 20;
+export const LOADING_CLS: string = 'loading';
+export const RETRYING_TO_LOAD_CLS: string = 'retrying-to-load';

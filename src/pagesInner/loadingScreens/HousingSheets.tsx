@@ -3,7 +3,7 @@ import DbEntityMetadatas from '../../config/MetadatasSchema';
 import adHocLoadingScreen from './adHocUtils/adHocLoadingScreen';
 
 import { componentBody as housingSheetsComponentBody, firstLoadPlaceholders as housingSheetsFirstLoadPlaceholders } from '../HousingSheets';
-import { LoadingScreenPropsBase, retryingToLoadCls } from './_types';
+import { LoadingScreenPropsBase, RETRYING_TO_LOAD_CLS } from './_types';
 
 interface HousingSheetLoadingScreenProps extends LoadingScreenPropsBase {
   sheetId: string;
@@ -15,7 +15,7 @@ export const HousingSheetLoadingScreen: FunctionComponent<HousingSheetLoadingScr
   if (maybeForcedPlaceholder) {
     return maybeForcedPlaceholder;
   } else {
-    return <div className={retryingToLoadCls}>{housingSheetsComponentBody(cachedData!.responseData as DbEntityMetadatas[], sheetId)}</div>;
+    return <div className={RETRYING_TO_LOAD_CLS}>{housingSheetsComponentBody(cachedData!.responseData as DbEntityMetadatas[], sheetId)}</div>;
   }
 };
 

@@ -12,7 +12,7 @@ import wpmDebugger from '../dev/wpmDebugger';
 import { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult, getDbEntityById } from '../services/dbService';
 import DummyHousingSheet from './DummyHousingSheets';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
-import { loadingCls, retryingToLoadCls } from './loadingScreens/_types';
+import { LOADING_CLS, RETRYING_TO_LOAD_CLS } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 
 import './styles/housingSheets.scss';
@@ -31,9 +31,9 @@ export function firstLoadPlaceholders(loadingState: TLoadingState) {
   if (loadingState === 'FAILED_TO_LOAD') {
     return <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
-    return <DummyHousingSheet cls={loadingCls} loadingPlaceholder={VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL')} />;
+    return <DummyHousingSheet cls={LOADING_CLS} loadingPlaceholder={VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL')} />;
   } else {
-    return <DummyHousingSheet cls={retryingToLoadCls} loadingPlaceholder={VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL')} />;
+    return <DummyHousingSheet cls={RETRYING_TO_LOAD_CLS} loadingPlaceholder={VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL')} />;
   }
 }
 

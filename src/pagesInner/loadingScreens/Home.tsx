@@ -4,7 +4,7 @@ import adHocLoadingScreen from './adHocUtils/adHocLoadingScreen';
 
 import HomepageBanner from '../../components/HomepageBanner';
 import { componentBody as homepageComponentBody, firstLoadPlaceholders as homepageFirstLoadPlaceholders } from '../Home';
-import { LoadingScreenPropsBase, retryingToLoadCls } from './_types';
+import { LoadingScreenPropsBase, RETRYING_TO_LOAD_CLS } from './_types';
 
 interface HomepageLoadingScreenProps extends LoadingScreenPropsBase {}
 
@@ -17,7 +17,7 @@ export const HomepageLoadingScreen: FunctionComponent<HomepageLoadingScreenProps
     return (
       <>
         <HomepageBanner />
-        <div className={retryingToLoadCls}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
+        <div className={RETRYING_TO_LOAD_CLS}>{homepageComponentBody(cachedData!.responseData as DbEntityMetadatas[])}</div>;
       </>
     );
   }

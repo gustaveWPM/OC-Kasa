@@ -10,7 +10,7 @@ import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
 import HomepageLoadingScreen from './loadingScreens/Home';
-import { defaultHomepageCardsPlaceholdersAmount, loadingCls, retryingToLoadCls } from './loadingScreens/_types';
+import { DEFAULT_HOMEPAGE_CARDS_PLACEHOLDERS_AMOUNT, LOADING_CLS, RETRYING_TO_LOAD_CLS } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
 
 import './styles/homepage.scss';
@@ -56,9 +56,13 @@ export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement
   if (loadingState === 'FAILED_TO_LOAD') {
     body = <ErrorBox origin={VocabAccessor('MAINTENANCE_MESSAGE')} advice={VocabAccessor('MAINTENANCE_ADVICE')} />;
   } else if (loadingState === 'LOADING') {
-    body = dummyCardsGenerator(defaultHomepageCardsPlaceholdersAmount, loadingCls, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'));
+    body = dummyCardsGenerator(DEFAULT_HOMEPAGE_CARDS_PLACEHOLDERS_AMOUNT, LOADING_CLS, VocabAccessor('HOME_PAGE_LOADING_CARDS_LABEL'));
   } else {
-    body = dummyCardsGenerator(defaultHomepageCardsPlaceholdersAmount, retryingToLoadCls, VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL'));
+    body = dummyCardsGenerator(
+      DEFAULT_HOMEPAGE_CARDS_PLACEHOLDERS_AMOUNT,
+      RETRYING_TO_LOAD_CLS,
+      VocabAccessor('HOME_PAGE_RETRYING_TO_LOAD_CARDS_LABEL')
+    );
   }
 
   return (

@@ -1,6 +1,7 @@
 import React, { CSSProperties, FunctionComponent, useEffect, useRef, useState } from 'react';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { getRefCurrentPtr } from '../dev/plainJS/getRefCurrentPtr';
+
 import './styles/imagesSlider.scss';
 
 type ImagesSliderProps = {
@@ -10,24 +11,31 @@ type ImagesSliderProps = {
 
 type SwipeState = {
   startX: number | null;
+  startY: number | null;
   currentX: number | null;
+  currentY: number | null;
   distance: number;
   isSwiping: boolean;
   direction: ImagesSliderDir;
 };
 
 type ImagesSliderDir = 'left' | 'right' | null;
+type OptionalNumber = number | null;
 
+const DISABLE_SCROLL_CLS = 'disable-scroll';
 const MIN_SWIPING_DISTANCE_TO_SLIDE = 75;
+const initialSwipeState: SwipeState = {
+  startX: null,
+  startY: null,
+  currentX: null,
+  currentY: null,
+  distance: 0,
+  isSwiping: false,
+  direction: null
+};
 
 const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transitionDuration = 500 }) => {
-  const [swipeState, setSwipeState] = useState<SwipeState>({
-    startX: null,
-    currentX: null,
-    distance: 0,
-    isSwiping: false,
-    direction: null
-  });
+  const [swipeState, setSwipeState] = useState<SwipeState>(initialSwipeState);
   const swipeAreaRef = useRef<HTMLDivElement>(null);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,18 +43,73 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
   const [dir, setDir] = useState<ImagesSliderDir>(null);
   const [carrouselBackgrounds, setCarrouselBackgrounds] = useState(<></>);
 
-  function updateSwipableAreaOffset(offsetX: number) {
+  function getAngle(startX: OptionalNumber, startY: OptionalNumber, endX: OptionalNumber, endY: OptionalNumber) {
+    if (startX === null || startY === null || endX === null || endY === null) {
+      return null;
+    }
+
+    const dx = startX - endX;
+    const dy = endY - startY;
+    let angle = Math.atan2(dy, dx);
+    angle *= 180 / Math.PI;
+    if (angle < 0) {
+      angle = 360 + angle;
+    }
+    return angle;
+  }
+
+  function isValidAngle(angle: OptionalNumber, direction: ImagesSliderDir) {
+    function isValidLeftAngle(angle: number) {
+      return angle === 0 || (angle >= 135 && angle <= 222);
+    }
+
+    function isValidRightAngle(angle: number) {
+      return angle === 0 || (angle >= 0 && angle <= 50) || (angle >= 320 && angle <= 360);
+    }
+
+    if (direction === null) {
+      return true;
+    }
+
+    if (angle === null) {
+      return false;
+    }
+
+    if (direction === 'left') {
+      return isValidLeftAngle(angle);
+    }
+    return isValidRightAngle(angle);
+  }
+
+  function resetSwipableAreaOffset() {
     const swipableArea = getRefCurrentPtr(swipeAreaRef);
     if (!swipableArea) {
       return;
     }
+    swipableArea.style.transition = `left ${transitionDuration * 0.7}ms ease-in-out`;
+    swipableArea.style.left = '0px';
+  }
 
+  function doUpdateSwipableAreaOffset(offsetX: number) {
+    const swipableArea = getRefCurrentPtr(swipeAreaRef);
+    if (!swipableArea) {
+      return;
+    }
+    swipableArea.style.transition = '';
+    swipableArea.style.left = `${offsetX}px`;
+  }
+
+  function swipeKillswitch() {
+    resetSwipableAreaOffset();
+    setSwipeState(initialSwipeState);
+    document.body.classList.remove(DISABLE_SCROLL_CLS);
+  }
+
+  function updateSwipableAreaOffset(offsetX: number) {
     if (offsetX === 0) {
-      swipableArea.style.transition = `left ${transitionDuration * 0.7}ms ease-in-out`;
-      swipableArea.style.left = '0px';
+      resetSwipableAreaOffset();
     } else {
-      swipableArea.style.transition = '';
-      swipableArea.style.left = `${offsetX}px`;
+      doUpdateSwipableAreaOffset(offsetX);
     }
   }
 
@@ -55,14 +118,16 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       return;
     }
     const startX = e.touches[0].clientX;
-    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, startX, currentX: startX, isSwiping: true }));
+    const startY = e.touches[0].clientY;
+    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, startX, startY, currentX: startX, currentY: startY, isSwiping: true }));
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (swipeState.startX === null) {
+    if (swipeState.startX === null || transitionning) {
       return;
     }
     const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
     const offsetX = Math.round(swipeState.startX) - Math.round(currentX);
     let direction: ImagesSliderDir = null;
     if (offsetX < 0) {
@@ -70,12 +135,22 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     } else {
       direction = 'right';
     }
+
+    const angle = getAngle(swipeState.startX, swipeState.startY, swipeState.currentX, swipeState.currentY);
+    if (!isValidAngle(angle, direction)) {
+      swipeKillswitch();
+      return;
+    }
+    document.body.classList.add(DISABLE_SCROLL_CLS);
     const distance = Math.abs(offsetX);
-    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, currentX, distance, direction }));
+    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, currentX, currentY, distance, direction }));
     updateSwipableAreaOffset(-offsetX);
   };
 
   const handleTouchEnd = () => {
+    if (swipeState.startX === null || transitionning) {
+      return;
+    }
     setSwipeState((prevSwipeState) => ({ ...prevSwipeState, isSwiping: false }));
     if (swipeState.startX === null) {
       return;
@@ -84,6 +159,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     if (swipeState.direction !== null && swipeState.distance > MIN_SWIPING_DISTANCE_TO_SLIDE) {
       processClockedTransition(swipeState.direction);
     }
+    document.body.classList.remove(DISABLE_SCROLL_CLS);
   };
 
   function slidesIndicator(maxImageIndex: number) {

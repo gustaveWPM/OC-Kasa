@@ -101,3 +101,7 @@ body.light-theme {
 body * {
   animation: DOMElementOnMountAnim 350ms linear;
 }
+
+.disable-scroll {
+  overflow: hidden;
+}
