@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, memo, useEffect, useState } from 'react';
+import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import ErrorBox from '../components/ErrorBox';
 import HousingSheet from '../components/HousingSheet';
@@ -131,4 +131,4 @@ export function getRouteParams(): ReactElement {
   );
 }
 
-export default memo(HousingSheetsInner);
+export default HousingSheetsInner;
