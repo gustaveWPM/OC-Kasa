@@ -1,6 +1,5 @@
 @import '../themes/housingSheets';
 @import '../../design/breakpoints';
-@import '../../design/carouselSharedVariables';
 
 @include responsive(base) {
   .housing-sheets-page-wrapper {
@@ -24,7 +23,7 @@
   }
 }
 
-@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
+@include responsive(tablets) {
   .housing-sheets-page-wrapper {
     .accordion {
       &:first-of-type {

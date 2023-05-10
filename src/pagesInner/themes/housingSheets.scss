@@ -2,9 +2,8 @@
 @import '../../design/themes';
 @import '../../design/breakpoints';
 @import '../../design/accordionSharedVariables';
-@import '../../design/carouselSharedVariables';
 
-@include responsive(notMobiles, $carousel-mobile-breakpoint-offset) {
+@include responsive(desktops) {
   @include themes(base) {
     .housing-sheets-page-wrapper {
       .accordion {
@@ -26,7 +25,7 @@
   }
 }
 
-@include responsive(notMobiles, $carousel-mobile-breakpoint-offset) {
+@include responsive(desktops) {
   @include themes(light) {
     .housing-sheets-page-wrapper {
       .accordion {

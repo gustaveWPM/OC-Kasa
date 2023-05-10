@@ -1,5 +1,4 @@
 @import '../../design/navbarSharedVariables';
-@import '../../design/carouselSharedVariables';
 @import '../../design/colors';
 @import '../../design/breakpoints';
 
@@ -104,7 +103,7 @@
   }
 }
 
-@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
+@include responsive(tablets) {
   .housing-sheet-accordions {
     grid-template-columns: 1fr;
     gap: 0;

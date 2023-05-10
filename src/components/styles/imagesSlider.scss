@@ -1,6 +1,5 @@
 @import '../../design/breakpoints';
 @import '../../design/colors';
-@import '../../design/carouselSharedVariables';
 
 @include responsive(base) {
   .kasa-images-slider {
@@ -87,14 +86,13 @@
   }
 }
 
-@include responsive(mobiles, $carousel-mobile-breakpoint-offset) {
+@include responsive(tablets) {
   .kasa-images-slider {
-    .kasa-images-slider-img-element {
-      min-height: 255px;
+    .kasa-images-slider-inner {
+      height: max(20vw, 415px);
     }
 
     .button .button-icon {
-      background-size: cover;
       width: 18px;
       height: 30px;
       margin: 12.5px;
@@ -104,6 +102,10 @@
 
 @include responsive(mobiles) {
   .kasa-images-slider {
+    .kasa-images-slider-inner {
+      height: 255px;
+    }
+
     .kasa-images-slider-indicator {
       display: none;
     }

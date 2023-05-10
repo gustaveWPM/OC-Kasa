@@ -31,7 +31,7 @@ $tablets-breakpoint: 768px;
   }
 
   @if $usecase == notTablets {
-    @media (min-width: calc($tablets-breakpoint + 1px + $width_offset)) or (min-width: calc($mobiles-breakpoint + $width_offset)) {
+    @media (min-width: calc($tablets-breakpoint + 1px + $width_offset)) or (max-width: calc($mobiles-breakpoint + $width_offset)) {
       @content;
     }
   }
