@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, ReactNode, useEffect, useState } from 'react';
+import { FunctionComponent, ReactElement, ReactNode, memo, useEffect, useState } from 'react';
 import ErrorBox from '../components/ErrorBox';
 import HomepageBanner from '../components/HomepageBanner';
 import KasaCard from '../components/KasaCard';
@@ -116,4 +116,4 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   );
 };
 
-export default HomePageInner;
+export default memo(HomePageInner);
