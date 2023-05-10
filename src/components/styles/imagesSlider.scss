@@ -29,10 +29,20 @@
     }
 
     .button {
+      &:focus {
+        outline: none;
+      }
+      transition: none;
+      transform: none;
+      box-shadow: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
       background-color: transparent;
       height: 100%;
       position: absolute;
       border: none;
+      touch-action: manipulation;
       cursor: pointer;
 
       .button-icon {
