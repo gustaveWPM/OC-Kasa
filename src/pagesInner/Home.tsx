@@ -9,9 +9,9 @@ import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
+import HomepageLoadingScreen from './loadingScreens/Home';
 import { defaultHomepageCardsPlaceholdersAmount, loadingCls, retryingToLoadCls } from './loadingScreens/_types';
 import adHocLoadingStateManager from './loadingScreens/adHocUtils/adHocLoadingStateManager';
-import HomepageLoadingScreen from './loadingScreens/Home';
 
 import './styles/homepage.scss';
 

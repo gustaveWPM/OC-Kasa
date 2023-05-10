@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement, memo } from 'react';
 import DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { setPageTitle, weakPageTitleBuilder } from '../pagesInner/_PageEffects';
@@ -57,4 +57,4 @@ const HousingSheet: FunctionComponent<HousingSheetProps> = ({ title, pictures, d
   );
 };
 
-export default HousingSheet;
+export default memo(HousingSheet);

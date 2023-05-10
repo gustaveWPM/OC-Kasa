@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 
 import './styles/homepageBanner.scss';
@@ -23,4 +23,4 @@ const HomepageBanner: FunctionComponent<HomepageBannerProps> = () => {
   );
 };
 
-export default HomepageBanner;
+export default memo(HomepageBanner);
