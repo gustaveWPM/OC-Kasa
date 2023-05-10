@@ -1,6 +1,6 @@
-import { CSSProperties, FunctionComponent, useEffect, useState } from 'react';
-
+import React, { CSSProperties, FunctionComponent, useEffect, useRef, useState } from 'react';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
+import { getRefCurrentPtr } from '../dev/plainJS/getRefCurrentPtr';
 import './styles/imagesSlider.scss';
 
 type ImagesSliderProps = {
@@ -8,13 +8,83 @@ type ImagesSliderProps = {
   transitionDuration?: number;
 };
 
+type SwipeState = {
+  startX: number | null;
+  currentX: number | null;
+  distance: number;
+  isSwiping: boolean;
+  direction: ImagesSliderDir;
+};
+
 type ImagesSliderDir = 'left' | 'right' | null;
 
+const MIN_SWIPING_DISTANCE_TO_SLIDE = 75;
+
 const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transitionDuration = 500 }) => {
+  const [swipeState, setSwipeState] = useState<SwipeState>({
+    startX: null,
+    currentX: null,
+    distance: 0,
+    isSwiping: false,
+    direction: null
+  });
+  const swipeAreaRef = useRef<HTMLDivElement>(null);
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [transitionning, setTransitionning] = useState(false);
   const [dir, setDir] = useState<ImagesSliderDir>(null);
   const [carrouselBackgrounds, setCarrouselBackgrounds] = useState(<></>);
+
+  function updateSwipableAreaOffset(offsetX: number) {
+    const swipableArea = getRefCurrentPtr(swipeAreaRef);
+    if (!swipableArea) {
+      return;
+    }
+
+    if (offsetX === 0) {
+      swipableArea.style.transition = `left ${transitionDuration * 0.7}ms ease-in-out`;
+      swipableArea.style.left = '0px';
+    } else {
+      swipableArea.style.transition = '';
+      swipableArea.style.left = `${offsetX}px`;
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) {
+      return;
+    }
+    const startX = e.touches[0].clientX;
+    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, startX, currentX: startX, isSwiping: true }));
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (swipeState.startX === null) {
+      return;
+    }
+    const currentX = e.touches[0].clientX;
+    const offsetX = Math.round(swipeState.startX) - Math.round(currentX);
+    let direction: ImagesSliderDir = null;
+    if (offsetX < 0) {
+      direction = 'left';
+    } else {
+      direction = 'right';
+    }
+    const distance = Math.abs(offsetX);
+    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, currentX, distance, direction }));
+    updateSwipableAreaOffset(-offsetX);
+  };
+
+  const handleTouchEnd = () => {
+    setSwipeState((prevSwipeState) => ({ ...prevSwipeState, isSwiping: false }));
+    if (swipeState.startX === null) {
+      return;
+    }
+    updateSwipableAreaOffset(0);
+    if (swipeState.direction !== null && swipeState.distance > MIN_SWIPING_DISTANCE_TO_SLIDE) {
+      processClockedTransition(swipeState.direction);
+    }
+  };
 
   function slidesIndicator(maxImageIndex: number) {
     let currentIndex = currentImageIndex + 1;
@@ -38,7 +108,10 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     );
   }
 
-  const transitionClock = (direction: ImagesSliderDir) => {
+  const processClockedTransition = (direction: ImagesSliderDir) => {
+    if (transitionning) {
+      return;
+    }
     setDir(direction);
     setTransitionning(true);
     setTimeout(() => {
@@ -53,15 +126,11 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
   };
 
   const previousImage = () => {
-    if (!transitionning) {
-      transitionClock('left');
-    }
+    processClockedTransition('left');
   };
 
   const nextImage = () => {
-    if (!transitionning) {
-      transitionClock('right');
-    }
+    processClockedTransition('right');
   };
 
   useEffect(() => {
@@ -84,7 +153,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     }
 
     setCarrouselBackgrounds(
-      <>
+      <div className="kasa-images-slider-container" ref={swipeAreaRef}>
         <div
           className="kasa-images-slider-background-img-div"
           style={{
@@ -111,12 +180,12 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
             ...nextImgAdditionnalStyle
           }}
         ></div>
-      </>
+      </div>
     );
   }, [transitionning]);
 
   return (
-    <div className="kasa-images-slider">
+    <div className="kasa-images-slider" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       {images.length > 1 && <>{slidesIndicator(images.length)}</>}
       <div className="kasa-images-slider-inner">
         <>{carrouselBackgrounds}</>

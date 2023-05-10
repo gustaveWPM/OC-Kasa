@@ -19,6 +19,8 @@
     text-align: center;
     min-height: 210px;
     overflow: hidden;
+    opacity: 1;
+    transition: opacity 500ms linear;
   }
 }
 

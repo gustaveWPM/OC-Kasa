@@ -18,10 +18,19 @@ const ChangeLanguageBtn: FunctionComponent<ChangeLanguageBtnProps> = ({ targetLa
     }
     const oldScrollY = window.scrollY;
     setCurrentLanguageInLocalStorage(lang);
+    const footerElement = document.querySelector('footer');
+    if (footerElement) {
+      footerElement.style.opacity = '0';
+      footerElement.style.transition = 'none';
+    }
     dispatch({ event: 'FORCE_UPDATE' });
     setTimeout(() => {
       if (window.scrollY === 0) {
         moveToPos(oldScrollY);
+      }
+      if (footerElement) {
+        footerElement.style.transition = '';
+        footerElement.style.opacity = '';
       }
     }, SCROLL_LATENCY_MS);
   };
