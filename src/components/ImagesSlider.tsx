@@ -1,4 +1,4 @@
-import { CSSProperties, FunctionComponent, memo, useEffect, useState } from 'react';
+import { CSSProperties, FunctionComponent, useEffect, useState } from 'react';
 
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import './styles/imagesSlider.scss';
@@ -135,4 +135,4 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
   );
 };
 
-export default memo(ImagesSlider);
+export default ImagesSlider;

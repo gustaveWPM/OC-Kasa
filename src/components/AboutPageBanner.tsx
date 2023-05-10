@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { FunctionComponent } from 'react';
 
 import './styles/aboutPageBanner.scss';
 
@@ -18,4 +18,4 @@ const AboutPageBanner: FunctionComponent<AboutPageBannerProps> = () => {
   );
 };
 
-export default memo(AboutPageBanner);
+export default AboutPageBanner;
