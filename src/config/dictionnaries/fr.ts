@@ -9,7 +9,7 @@ export const frenchDictionnary: VocabSchema = {
   NOTFOUND_ERROR_MSG: "Oups ! La page que vous demandez n'existe pas.",
   SUGGEST_PAGE_INFO_MSG: 'Peut-être que vous vouliez accéder à cette page :',
   GO_BACK_TO_HOME_MSG: "Retourner sur la page d'accueil",
-  ALL_RIGHTS_RESERVED: 'Tout droit réservé',
+  ALL_RIGHTS_RESERVED: 'Tous droits réservés',
   KASA_LOGO_ALT: `Logo de ${BRAND}`,
   KASA_CATCHPHRASE_FIRST_LINE: 'Chez vous,',
   KASA_CATCHPHRASE_SECOND_LINE: 'partout et ailleurs',
