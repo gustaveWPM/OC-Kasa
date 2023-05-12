@@ -60,6 +60,11 @@ Project made during an _OpenClassrooms_ bootcamp.
 
 [https://oc-kasa-lyart.vercel.app/](https://oc-kasa-lyart.vercel.app/)
 
+### How to run this project locally
+
+- `$ yarn start`
+- (or) `$ npm start`
+
 ---
 
 <p align="center"><em>This GitHub repository is not part of the OPENCLASSROOMS website or OPENCLASSROOMS SAS.<br>Additionally, this GitHub repository is NOT endorsed by OPENCLASSROOMS in any way.<br>OPENCLASSROOMS is a trademark of OPENCLASSROOMS, SAS.</em></p>
