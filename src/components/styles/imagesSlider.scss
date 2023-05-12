@@ -50,6 +50,12 @@
         width: 36px;
         height: 60px;
         margin: 25px;
+        opacity: 1;
+        transition: opacity 150ms;
+      }
+
+      .button-icon.is-transitionning {
+        opacity: 0.25;
       }
     }
 

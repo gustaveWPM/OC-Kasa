@@ -309,6 +309,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     );
   }, [transitionning]);
 
+  const transitionningCls = transitionning ? 'is-transitionning' : '';
   return (
     <div className="kasa-images-slider" onTouchStart={handleTouchStart}>
       {images.length > 1 && <>{slidesIndicator(images.length)}</>}
@@ -318,10 +319,10 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       {images.length > 1 && (
         <>
           <button aria-label={VocabAccessor('IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL')} className="button button-prev" onClick={previousImage}>
-            <div className="button-icon button-prev-icon"></div>
+            <div className={`button-icon button-prev-icon ${transitionningCls}`}></div>
           </button>
           <button aria-label={VocabAccessor('IMAGE_SLIDER_NEXT_IMAGE_ARIA_LABEL')} className="button button-next" onClick={nextImage}>
-            <div className="button-icon button-next-icon"></div>
+            <div className={`button-icon button-next-icon ${transitionningCls}`}></div>
           </button>
         </>
       )}
