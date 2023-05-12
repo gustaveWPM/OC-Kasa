@@ -178,17 +178,17 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     if (transitionning) {
       return;
     }
-    setDir(direction);
     setTransitionning(true);
+    setDir(direction);
     setTimeout(() => {
-      setTransitionning(false);
       if (direction === 'left') {
         setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
       } else if (direction === 'right') {
         setCurrentImageIndex((prev) => (prev + 1) % images.length);
       }
       setDir(null);
-    }, transitionDuration);
+      setTransitionning(false);
+    }, transitionDuration + transitionDuration / 20);
   };
 
   const previousImage = () => {
