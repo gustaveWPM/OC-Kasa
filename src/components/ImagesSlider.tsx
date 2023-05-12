@@ -65,14 +65,6 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
   }
 
   function isValidAngle(angle: OptionalNumber, direction: ImagesSliderDir) {
-    function isValidLeftAngle(angle: number) {
-      return angle === 0 || (angle >= 215 && angle <= 315);
-    }
-
-    function isValidRightAngle(angle: number) {
-      return angle === 0 || (angle >= 45 && angle <= 145);
-    }
-
     if (direction === null) {
       return true;
     }
@@ -81,6 +73,8 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       return false;
     }
 
+    const isValidLeftAngle = (angle: number) => angle === 0 || (angle >= 235 && angle <= 295);
+    const isValidRightAngle = (angle: number) => angle === 0 || (angle >= 65 && angle <= 125);
     if (direction === 'left') {
       return isValidLeftAngle(angle);
     }
