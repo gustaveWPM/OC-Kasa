@@ -59,23 +59,17 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     if (angle < 0) {
       angle = 360 + angle;
     }
+    angle = (90 + angle) % 360;
     return angle;
-  }
-
-  function isVerticalAngle(angle: OptionalNumber) {
-    if (angle === null) {
-      return false;
-    }
-    return (angle >= 246 && angle <= 295) || (angle >= 75 && angle <= 120);
   }
 
   function isValidAngle(angle: OptionalNumber, direction: ImagesSliderDir) {
     function isValidLeftAngle(angle: number) {
-      return angle === 0 || (angle >= 128 && angle <= 222);
+      return angle === 0 || (angle >= 215 && angle <= 315);
     }
 
     function isValidRightAngle(angle: number) {
-      return angle === 0 || (angle >= 0 && angle <= 55) || (angle >= 318 && angle <= 360);
+      return angle === 0 || (angle >= 45 && angle <= 145);
     }
 
     if (direction === null) {
@@ -90,6 +84,14 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
       return isValidLeftAngle(angle);
     }
     return isValidRightAngle(angle);
+  }
+
+  function isVerticalAngle(angle: OptionalNumber) {
+    if (angle === null) {
+      return false;
+    }
+
+    return !isValidAngle(angle, 'left') && !isValidAngle(angle, 'right');
   }
 
   function resetSwipableAreaOffset() {
