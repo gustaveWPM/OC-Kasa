@@ -9,20 +9,21 @@ type ImagesSliderProps = {
   transitionDuration?: number;
 };
 
-type SwipeState = {
-  startX: number | null;
-  startY: number | null;
-  currentX: number | null;
-  currentY: number | null;
-  distance: number;
-  direction: ImagesSliderDir;
-};
-
 type ImagesSliderDir = 'left' | 'right' | null;
 type OptionalNumber = number | null;
 type TwoPointsCoordinates = { startX: OptionalNumber; startY: OptionalNumber; endX: OptionalNumber; endY: OptionalNumber };
 
+type SwipeState = {
+  startX: OptionalNumber;
+  startY: OptionalNumber;
+  currentX: OptionalNumber;
+  currentY: OptionalNumber;
+  direction: ImagesSliderDir;
+  distance: number;
+};
+
 const DISABLE_SCROLL_CLS = 'disable-scroll';
+const IS_TRANSITIONNING_CLS = 'is-transitionning';
 const MIN_SWIPING_DISTANCE_TO_SLIDE = 100;
 const MIN_SWIPING_DISTANCE_TO_COMPUTE_HORIZONTAL_ANGLE = 10;
 
@@ -31,8 +32,8 @@ const initialSwipeState: SwipeState = {
   startY: null,
   currentX: null,
   currentY: null,
-  distance: 0,
-  direction: null
+  direction: null,
+  distance: 0
 };
 
 const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transitionDuration = 500 }) => {
@@ -231,7 +232,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
         e.preventDefault();
       }
       const distance = Math.abs(offsetX);
-      swipeStateRef.current = { ...currentSwipeStateRefValue, currentX, currentY, distance, direction };
+      swipeStateRef.current = { ...currentSwipeStateRefValue, currentX, currentY, direction, distance };
       updateSwipableAreaOffset(-offsetX);
     };
 
@@ -309,7 +310,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     );
   }, [transitionning]);
 
-  const transitionningCls = transitionning ? 'is-transitionning' : '';
+  const transitionningCls = transitionning ? IS_TRANSITIONNING_CLS : '';
   return (
     <div className="kasa-images-slider" onTouchStart={handleTouchStart}>
       {images.length > 1 && <>{slidesIndicator(images.length)}</>}
