@@ -175,7 +175,7 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     }
     setTransitionning(true);
     setDir(direction);
-    const min_tdelta = 25;
+    const min_tdelta = 150;
     let t_delta = transitionDuration / 20;
     t_delta = t_delta < min_tdelta ? min_tdelta : t_delta;
     setTimeout(() => {
@@ -307,14 +307,14 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
     );
   }, [transitionning]);
 
-  const transitionningCls = transitionning ? IS_TRANSITIONNING_CLS : '';
-  return (
-    <div className="kasa-images-slider" onTouchStart={handleTouchStart}>
-      {images.length > 1 && <>{slidesIndicator(images.length)}</>}
-      <div className="kasa-images-slider-inner">
-        <>{carrouselBackgrounds}</>
-      </div>
-      {images.length > 1 && (
+  if (images.length > 1) {
+    const transitionningCls = transitionning ? IS_TRANSITIONNING_CLS : '';
+    return (
+      <div className="kasa-images-slider" onTouchStart={handleTouchStart}>
+        <>{slidesIndicator(images.length)}</>
+        <div className="kasa-images-slider-inner">
+          <>{carrouselBackgrounds}</>
+        </div>
         <>
           <button aria-label={VocabAccessor('IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL')} className="button button-prev" onClick={previousImage}>
             <div className={`button-icon button-prev-icon ${transitionningCls}`}></div>
@@ -323,7 +323,15 @@ const ImagesSlider: FunctionComponent<ImagesSliderProps> = ({ images, transition
             <div className={`button-icon button-next-icon ${transitionningCls}`}></div>
           </button>
         </>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="kasa-images-slider">
+      <div className="kasa-images-slider-inner">
+        <>{carrouselBackgrounds}</>
+      </div>
     </div>
   );
 };
