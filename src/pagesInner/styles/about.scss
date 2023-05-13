@@ -3,7 +3,16 @@
 .about-page-accordion-wrapper {
   flex: 1 1 auto;
   display: flex;
+  flex-direction: column;
   width: 100%;
-  margin: 5vh 0;
   max-height: fit-content;
+
+  .accordion {
+    margin: 0;
+    margin-top: 5vh;
+  }
+
+  .accordion:last-of-type {
+    margin-bottom: 5vh;
+  }
 }
