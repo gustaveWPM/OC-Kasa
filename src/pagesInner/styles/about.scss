@@ -1,9 +1,10 @@
 @import '../themes/about';
 
-$accordion-margin: 2.5vh;
+$accordion-margin: 3vh;
+$hard-coded-vcenter-margin: 4.85vh;
 
 .about-page-accordion-wrapper {
-  flex: 1 1 auto;
+  margin: $hard-coded-vcenter-margin 0;
   display: flex;
   flex-direction: column;
   width: 100%;
