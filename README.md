@@ -42,10 +42,10 @@ Project made during an _OpenClassrooms_ bootcamp.
 
 - Animated accordions
 
-  - Possibility to have only one accordion's item open at a time
-    - [https://oc-kasa-lyart.vercel.app/about-us](https://oc-kasa-lyart.vercel.app/about-us)
+  - Possibility to have only one accordion's item open at a time (just pass several `items` to your `<Accordion>` component)
   - Possibility to bypass this previous behavior (using multiple mono-item accordions)
     - [https://oc-kasa-lyart.vercel.app/housing-sheets/c67ab8a7](https://oc-kasa-lyart.vercel.app/housing-sheets/c67ab8a7)
+    - [https://oc-kasa-lyart.vercel.app/about-us](https://oc-kasa-lyart.vercel.app/about-us)
 
 - Animated images slider + infinite loop
   - [https://oc-kasa-lyart.vercel.app/housing-sheets/0979876d](https://oc-kasa-lyart.vercel.app/housing-sheets/0979876d)
