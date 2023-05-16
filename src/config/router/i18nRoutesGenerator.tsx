@@ -54,7 +54,7 @@ function atomicRouteGenerator(componentRouteKey: string, route: string, rElement
             wpmDebugger(
               DEBUGGER_LABEL,
               [
-                `${error}\n\nIf you don't consider this message as a warning but as an error, you might be intersted by the following dump of rElement:`,
+                `${error}\n\nIf you don't consider this message as a warning but as an error, you might be interested by the following dump of rElement:`,
                 rElement
               ],
               {
