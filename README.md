@@ -19,10 +19,12 @@ Project made during an _OpenClassrooms_ bootcamp.
   (typed with typos or incomplete)
 
   - [https://oc-kasa-lyart.vercel.app/abou](https://oc-kasa-lyart.vercel.app/abou)
+  - [https://oc-kasa-lyart.vercel.app/bauo-tsu](https://oc-kasa-lyart.vercel.app/bauo-tsu)
   - [https://oc-kasa-lyart.vercel.app/about](https://oc-kasa-lyart.vercel.app/about)
   - [https://oc-kasa-lyart.vercel.app/about-su](https://oc-kasa-lyart.vercel.app/about-su)
   - [https://oc-kasa-lyart.vercel.app/abuot-su](https://oc-kasa-lyart.vercel.app/abuot-su)
   - [https://oc-kasa-lyart.vercel.app/abuot-us](https://oc-kasa-lyart.vercel.app/abuot-us)
+  - [https://oc-kasa-lyart.vercel.app/bauot-su](https://oc-kasa-lyart.vercel.app/bauot-su)
   - [https://oc-kasa-lyart.vercel.app/housing](https://oc-kasa-lyart.vercel.app/housing)
 
 - Dynamic database re-fetching on page first-load/change + local database caching
