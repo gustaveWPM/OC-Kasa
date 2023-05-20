@@ -1,9 +1,8 @@
 @import '../../design/colors';
 @import '../../design/themes';
 
-@include themes(light) {
+@include themes(base) {
   .accordion-item-container {
-    background-color: $housing-sheets-grid-bg-color;
     color: $body-font-color;
   }
 
@@ -13,14 +12,14 @@
   }
 }
 
-@include themes(dark) {
-  .accordion-item-btn {
-    background-color: $body-font-color;
-    color: $body-bg-color;
+@include themes(light) {
+  .accordion-item-container {
+    background-color: $housing-sheets-grid-bg-color;
   }
+}
 
+@include themes(dark) {
   .accordion-item-container {
     background-color: $dark-accordion-content-bg-color;
-    color: $body-font-color;
   }
 }
