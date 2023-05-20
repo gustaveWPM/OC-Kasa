@@ -15,17 +15,23 @@ Project made during an _OpenClassrooms_ bootcamp.
 
 #### (_Despite the fact that villains "educators" tried to make me build a crappy app by forbidding me to use libs... Boo that!_)
 
-- Rescue mechanisms based on the Damerau-Levenshtein distance to redirect to the right page or suggest a corresponding page possibility for a URL
-  (typed with typos or incomplete)
+- Rescue mechanisms based on the Damerau-Levenshtein distance (and on the number of consecutive characters in common between the given string and the
+  expected string) to redirect to the right page or suggest a corresponding page possibility for a given URL (typed with typos or incomplete)
 
-  - [https://oc-kasa-lyart.vercel.app/abou](https://oc-kasa-lyart.vercel.app/abou)
-  - [https://oc-kasa-lyart.vercel.app/bauo-tsu](https://oc-kasa-lyart.vercel.app/bauo-tsu)
-  - [https://oc-kasa-lyart.vercel.app/about](https://oc-kasa-lyart.vercel.app/about)
-  - [https://oc-kasa-lyart.vercel.app/about-su](https://oc-kasa-lyart.vercel.app/about-su)
-  - [https://oc-kasa-lyart.vercel.app/abuot-su](https://oc-kasa-lyart.vercel.app/abuot-su)
-  - [https://oc-kasa-lyart.vercel.app/abuot-us](https://oc-kasa-lyart.vercel.app/abuot-us)
-  - [https://oc-kasa-lyart.vercel.app/bauot-su](https://oc-kasa-lyart.vercel.app/bauot-su)
-  - [https://oc-kasa-lyart.vercel.app/housing](https://oc-kasa-lyart.vercel.app/housing)
+  - Incomplete URLs
+    - Redirection
+      - [https://oc-kasa-lyart.vercel.app/about](https://oc-kasa-lyart.vercel.app/about)
+    - Suggestion
+      - [https://oc-kasa-lyart.vercel.app/abou](https://oc-kasa-lyart.vercel.app/abou)
+      - [https://oc-kasa-lyart.vercel.app/housing](https://oc-kasa-lyart.vercel.app/housing)
+  - Typos
+    - Suggestion
+      - [https://oc-kasa-lyart.vercel.app/bauo-tsu](https://oc-kasa-lyart.vercel.app/bauo-tsu)
+    - Redirection
+      - [https://oc-kasa-lyart.vercel.app/about-su](https://oc-kasa-lyart.vercel.app/about-su)
+      - [https://oc-kasa-lyart.vercel.app/abuot-su](https://oc-kasa-lyart.vercel.app/abuot-su)
+      - [https://oc-kasa-lyart.vercel.app/abuot-us](https://oc-kasa-lyart.vercel.app/abuot-us)
+      - [https://oc-kasa-lyart.vercel.app/bauot-su](https://oc-kasa-lyart.vercel.app/bauot-su)
 
 - Dynamic database re-fetching on page first-load/change + local database caching
 
