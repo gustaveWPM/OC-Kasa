@@ -1,5 +1,5 @@
 import { VocabSchema } from '../vocab/Vocab';
-import { BRAND, KASA_COPYRIGHT } from './commons';
+import COMMONS from './commons';
 
 export const frenchDictionnary: VocabSchema = {
   LANG: 'Français',
@@ -10,7 +10,7 @@ export const frenchDictionnary: VocabSchema = {
   SUGGEST_PAGE_INFO_MSG: 'Peut-être que vous vouliez accéder à cette page :',
   GO_BACK_TO_HOME_MSG: "Retourner sur la page d'accueil",
   ALL_RIGHTS_RESERVED: 'Tous droits réservés',
-  KASA_LOGO_ALT: `Logo de ${BRAND}`,
+  KASA_LOGO_ALT: `Logo de ${COMMONS.BRAND}`,
   KASA_CATCHPHRASE_FIRST_LINE: 'Chez vous,',
   KASA_CATCHPHRASE_SECOND_LINE: 'partout et ailleurs',
   HOME_PAGE_LOADING_CARDS_LABEL: 'Chargement en cours...',
@@ -35,8 +35,7 @@ export const frenchDictionnary: VocabSchema = {
 
   MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
   MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
-  BRAND,
-  KASA_COPYRIGHT
+  ...COMMONS
 };
 
 export default frenchDictionnary;
