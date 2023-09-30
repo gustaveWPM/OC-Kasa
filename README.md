@@ -1,23 +1,3 @@
-# ℹ️ 🇫🇷 Soutenance OpenClassrooms
-
-Des mises à jour (désactivation de bonus) ont été effectuées afin que ce projet passe les critères de conformité de l'évaluation du jury
-d'OpenClassrooms.
-
-- Vous retrouverez le repository associé à ce remaniement ici :
-  [https://github.com/gustaveWPM/OC-kasa-conformity](https://github.com/gustaveWPM/OC-kasa-conformity)
-- Et la version en production du site associé à ce remaniement ici : [https://oc-kasa-conformity.vercel.app](https://oc-kasa-conformity.vercel.app)
-
-# ℹ️ 🇺🇸 OpenClassrooms defense
-
-Updates (deactivation of bonuses) have been made for this project to pass the OpenClassrooms jury evaluation criteria.
-
-- You can find the repository associated with this redesign here:
-  [https://github.com/gustaveWPM/OC-kasa-conformity](https://github.com/gustaveWPM/OC-kasa-conformity)
-- And the production version of the site associated with this redesign here:
-  [https://oc-kasa-conformity.vercel.app](https://oc-kasa-conformity.vercel.app)
-
----
-
 # Kasa's React App
 
 ## You have ever done a web application with React?
