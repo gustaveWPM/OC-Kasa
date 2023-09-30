@@ -28,11 +28,9 @@ export function getDbPartialElements(
 }
 
 export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId: string): GetDbEntityByIdResult {
-  const result = dbRepresentation.filter(({ id }) => id === targetId);
-  if (result.length === 0) {
-    return null;
-  }
-  return result[0];
+  const dbEntity = dbRepresentation.find(({ id }) => id === targetId);
+  if (dbEntity === undefined) return null;
+  return dbEntity;
 }
 
 export function getDbCtxEntitiesIds(dbRepresentation: DbEntityMetadatas[]) {
