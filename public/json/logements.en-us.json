@@ -17,17 +17,8 @@
     },
     "rating": "5",
     "location": "Ile de France - Paris 17e",
-    "equipments": [
-      "Basic equipment",
-      "Micro-waves",
-      "Italian shower",
-      "Fridge",
-      "WIFI"
-    ],
-    "tags": [
-      "Batignolle",
-      "Montmartre"
-    ]
+    "equipments": ["Basic equipment", "Micro-waves", "Italian shower", "Fridge", "WIFI"],
+    "tags": ["Batignolle", "Montmartre"]
   },
   {
     "id": "b9123946",
@@ -48,19 +39,8 @@
     },
     "rating": "4",
     "location": "Ile de France - Paris 10e",
-    "equipments": [
-      "Parking",
-      "Hair dryer",
-      "Washing machine",
-      "WIFI",
-      "Equipped kitchen",
-      "TV"
-    ],
-    "tags": [
-      "Canal Saint Martin",
-      "République",
-      "Apartment"
-    ]
+    "equipments": ["Parking", "Hair dryer", "Washing machine", "WIFI", "Equipped kitchen", "TV"],
+    "tags": ["Canal Saint Martin", "République", "Apartment"]
   },
   {
     "id": "46d188c5",
@@ -79,17 +59,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Paris 20e",
-    "equipments": [
-      "WIFI",
-      "Equipped kitchen",
-      "TV",
-      "Hair dryer"
-    ],
-    "tags": [
-      "Buttes Chaumont",
-      "Laumière",
-      "Studio"
-    ]
+    "equipments": ["WIFI", "Equipped kitchen", "TV", "Hair dryer"],
+    "tags": ["Buttes Chaumont", "Laumière", "Studio"]
   },
   {
     "id": "7af00cd6",
@@ -108,19 +79,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Paris 11e",
-    "equipments": [
-      "Micro-waves",
-      "WIFI",
-      "Separate bedroom",
-      "Air conditioning",
-      "TV"
-    ],
-    "tags": [
-      "Parmentier",
-      "Marais",
-      "Park",
-      "Night Life"
-    ]
+    "equipments": ["Micro-waves", "WIFI", "Separate bedroom", "Air conditioning", "TV"],
+    "tags": ["Parmentier", "Marais", "Park", "Night Life"]
   },
   {
     "id": "0979876d",
@@ -141,17 +101,8 @@
     },
     "rating": "5",
     "location": "Ile de France - Paris 10e",
-    "equipments": [
-      "American fridge",
-      "Hair dryer",
-      "WIFI",
-      "Separate bedroom",
-      "Parking"
-    ],
-    "tags": [
-      "Goncourt",
-      "Close to shops"
-    ]
+    "equipments": ["American fridge", "Hair dryer", "WIFI", "Separate bedroom", "Parking"],
+    "tags": ["Goncourt", "Close to shops"]
   },
   {
     "id": "f72a452f",
@@ -171,15 +122,8 @@
     },
     "rating": "5",
     "location": "Ile de France - Paris 18e",
-    "equipments": [
-      "Separate bedroom",
-      "Parking"
-    ],
-    "tags": [
-      "Montmartre",
-      "Culture",
-      "Charm"
-    ]
+    "equipments": ["Separate bedroom", "Parking"],
+    "tags": ["Montmartre", "Culture", "Charm"]
   },
   {
     "id": "b4c67936",
@@ -198,19 +142,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Paris 18e",
-    "equipments": [
-      "Bathroom",
-      "Fridge",
-      "WIFI",
-      "Hair dryer",
-      "Desk",
-      "Parking"
-    ],
-    "tags": [
-      "Transports",
-      "Cheap",
-      "18ème"
-    ]
+    "equipments": ["Bathroom", "Fridge", "WIFI", "Hair dryer", "Desk", "Parking"],
+    "tags": ["Transports", "Cheap", "18ème"]
   },
   {
     "id": "bc6f7112",
@@ -231,20 +164,8 @@
     },
     "rating": "5",
     "location": "Ile de France - Paris 6e",
-    "equipments": [
-      "WIFI",
-      "Hair dryer",
-      "Washing machine",
-      "Parking",
-      "King size bed",
-      "Elevator"
-    ],
-    "tags": [
-      "Luxury",
-      "Eiffel Tower",
-      "T3",
-      "6ème"
-    ]
+    "equipments": ["WIFI", "Hair dryer", "Washing machine", "Parking", "King size bed", "Elevator"],
+    "tags": ["Luxury", "Eiffel Tower", "T3", "6ème"]
   },
   {
     "id": "cb2f9222",
@@ -264,18 +185,8 @@
     },
     "rating": "4",
     "location": "Ile de France - Paris 14e",
-    "equipments": [
-      "Air conditioning",
-      "Washing machine",
-      "Hair dryer",
-      "WIFI",
-      "Parking"
-    ],
-    "tags": [
-      "Montparnasse",
-      "Shops",
-      "Family"
-    ]
+    "equipments": ["Air conditioning", "Washing machine", "Hair dryer", "WIFI", "Parking"],
+    "tags": ["Montparnasse", "Shops", "Family"]
   },
   {
     "id": "d60ca600",
@@ -294,20 +205,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Paris 11e",
-    "equipments": [
-      "View on a park",
-      "Heating system",
-      "Dryer",
-      "Hair dryer",
-      "WIFI",
-      "Elevator"
-    ],
-    "tags": [
-      "Père Lachaise",
-      "11e",
-      "Metro 3",
-      "Metro 2"
-    ]
+    "equipments": ["View on a park", "Heating system", "Dryer", "Hair dryer", "WIFI", "Elevator"],
+    "tags": ["Père Lachaise", "11e", "Metro 3", "Metro 2"]
   },
   {
     "id": "2cf259e1",
@@ -326,17 +225,8 @@
     },
     "rating": "4",
     "location": "Ile de France - Paris 11e",
-    "equipments": [
-      "Settee clickety-clack",
-      "Oven",
-      "Hair dryer",
-      "WIFI"
-    ],
-    "tags": [
-      "Marais",
-      "Studio",
-      "Park"
-    ]
+    "equipments": ["Settee clickety-clack", "Oven", "Hair dryer", "WIFI"],
+    "tags": ["Marais", "Studio", "Park"]
   },
   {
     "id": "5323c29b",
@@ -355,21 +245,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Paris 3e",
-    "equipments": [
-      "Storage space",
-      "Bed",
-      "Hair dryer",
-      "WIFI",
-      "TV",
-      "Kettle"
-    ],
-    "tags": [
-      "Marais",
-      "République",
-      "Studio",
-      "Near subways",
-      "Shops"
-    ]
+    "equipments": ["Storage space", "Bed", "Hair dryer", "WIFI", "TV", "Kettle"],
+    "tags": ["Marais", "République", "Studio", "Near subways", "Shops"]
   },
   {
     "id": "af6d2d48",
@@ -389,18 +266,8 @@
     },
     "rating": "5",
     "location": "Ile de France - Ecouen",
-    "equipments": [
-      "Bathroom",
-      "Equipped kitchen",
-      "Dry toilets",
-      "Fridge",
-      "Kettle"
-    ],
-    "tags": [
-      "Forest",
-      "Nature",
-      "Museum of Ecouen"
-    ]
+    "equipments": ["Bathroom", "Equipped kitchen", "Dry toilets", "Fridge", "Kettle"],
+    "tags": ["Forest", "Nature", "Museum of Ecouen"]
   },
   {
     "id": "7cbb378e",
@@ -420,21 +287,8 @@
     },
     "rating": "4",
     "location": "Ile de France - Arnouville",
-    "equipments": [
-      "Bathroom",
-      "Equipped kitchen",
-      "Fridge",
-      "Kettle",
-      "WIFI",
-      "TV",
-      "Hangers",
-      "Basic equipment"
-    ],
-    "tags": [
-      "Forest",
-      "Nature",
-      "Large house"
-    ]
+    "equipments": ["Bathroom", "Equipped kitchen", "Fridge", "Kettle", "WIFI", "TV", "Hangers", "Basic equipment"],
+    "tags": ["Forest", "Nature", "Large house"]
   },
   {
     "id": "ba55a0cc",
@@ -454,23 +308,8 @@
     },
     "rating": "3",
     "location": "Ile de France - Arnouville",
-    "equipments": [
-      "Kettle",
-      "Bathroom",
-      "Equipped kitchen",
-      "Fridge",
-      "WIFI",
-      "TV",
-      "Hangers",
-      "Oven",
-      "Micro-waves",
-      "Parking"
-    ],
-    "tags": [
-      "Nature",
-      "Group",
-      "House"
-    ]
+    "equipments": ["Kettle", "Bathroom", "Equipped kitchen", "Fridge", "WIFI", "TV", "Hangers", "Oven", "Micro-waves", "Parking"],
+    "tags": ["Nature", "Group", "House"]
   },
   {
     "id": "1e181317",
@@ -490,20 +329,8 @@
     },
     "rating": "3",
     "location": "Ile de France - La Défense",
-    "equipments": [
-      "Patio door",
-      "TV",
-      "Oven",
-      "Fridge",
-      "WIFI",
-      "Micro-waves",
-      "Parking"
-    ],
-    "tags": [
-      "La Défense",
-      "Loft",
-      "Luxury"
-    ]
+    "equipments": ["Patio door", "TV", "Oven", "Fridge", "WIFI", "Micro-waves", "Parking"],
+    "tags": ["La Défense", "Loft", "Luxury"]
   },
   {
     "id": "1e180563",
@@ -523,26 +350,14 @@
     },
     "rating": "4",
     "location": "Ile de France - Levallois",
-    "equipments": [
-      "TV",
-      "Oven",
-      "Fridge",
-      "Kitchen hood",
-      "WIFI",
-      "Micro-waves"
-    ],
-    "tags": [
-      "View on a park",
-      "Charming apartment"
-    ]
+    "equipments": ["TV", "Oven", "Fridge", "Kitchen hood", "WIFI", "Micro-waves"],
+    "tags": ["View on a park", "Charming apartment"]
   },
   {
     "id": "2139a317",
     "title": "Cheap - Room Paris 20e",
     "cover": "/img/housings/covers/accommodation-17-1.webp",
-    "pictures": [
-      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-17-1.jpg"
-    ],
+    "pictures": ["https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-17-1.jpg"],
     "description": "This room has all the necessary facilities, near the subway and shops.",
     "host": {
       "name": "Hugo Perrier",
@@ -550,15 +365,8 @@
     },
     "rating": "2",
     "location": "Ile de France - Paris 20e",
-    "equipments": [
-      "Kettle",
-      "WIFI",
-      "Micro-waves"
-    ],
-    "tags": [
-      "View on a park",
-      "Subways"
-    ]
+    "equipments": ["Kettle", "WIFI", "Micro-waves"],
+    "tags": ["View on a park", "Subways"]
   },
   {
     "id": "6ff132c6",
@@ -576,26 +384,14 @@
     },
     "rating": "4",
     "location": "Ile de France - Paris 13e",
-    "equipments": [
-      "Basic equipment",
-      "Oven",
-      "Fridge",
-      "WIFI",
-      "Micro-waves"
-    ],
-    "tags": [
-      "Studio",
-      "Charming studio",
-      "13e"
-    ]
+    "equipments": ["Basic equipment", "Oven", "Fridge", "WIFI", "Micro-waves"],
+    "tags": ["Studio", "Charming studio", "13e"]
   },
   {
     "id": "cb02d69b",
     "title": "Beautiful apartment - Rivoli",
     "cover": "/img/housings/covers/accommodation-19-1.webp",
-    "pictures": [
-      "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg"
-    ],
+    "pictures": ["https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg"],
     "description": "This apartment in the heart of the historic Marais district is ideal for a couple to discover Paris. At the rue de Rivoli, it is 5 minutes from the Louvre.",
     "host": {
       "name": "Nathalie Jean",
@@ -603,17 +399,7 @@
     },
     "rating": "4",
     "location": "Ile de France - Paris 13e",
-    "equipments": [
-      "WIFI",
-      "Basic equipment",
-      "Micro-waves",
-      "Fridge",
-      "Bathtub"
-    ],
-    "tags": [
-      "Louvre",
-      "Marais",
-      "Rivoli"
-    ]
+    "equipments": ["WIFI", "Basic equipment", "Micro-waves", "Fridge", "Bathtub"],
+    "tags": ["Louvre", "Marais", "Rivoli"]
   }
 ]

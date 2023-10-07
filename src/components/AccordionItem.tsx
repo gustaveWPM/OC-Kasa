@@ -25,8 +25,8 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
       if (DOMElementPtr) {
         const computeHeight = () => {
           const { height } = DOMElementPtr.getBoundingClientRect();
-          const { paddingTop, paddingBottom, marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
-          const heightDeltas = [paddingTop, paddingBottom, marginTop, marginBottom].map(parseFloat);
+          const { marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
+          const heightDeltas = [marginTop, marginBottom].map(parseFloat);
           const computedHeight = height + heightDeltas.reduce((acc, value) => acc + value, 0);
           return computedHeight;
         };
