@@ -8,6 +8,7 @@ export default function App() {
   initializeKasaTheme();
   const { state } = useAppContext();
   const [currentState, dispatch] = useReducer(reducer, state);
+
   return (
     <AppContext.Provider value={{ state: currentState, dispatch }}>
       <KasaRouter />
