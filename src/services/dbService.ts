@@ -1,4 +1,5 @@
-import DbEntityMetadatas, { DbEntitiesMetadatasFieldsWithoutId } from '../config/MetadatasSchema';
+import type DbEntityMetadatas from '../config/MetadatasSchema';
+import type { DbEntitiesMetadatasFieldsWithoutId } from '../config/MetadatasSchema';
 
 export type GetDbEntityByIdResult = DbEntityMetadatas | null;
 export type GetDbEntityByIdSuccessfulResult = Exclude<GetDbEntityByIdResult, null>;
@@ -10,9 +11,8 @@ export function getDbPartialElements(
 ): Partial<DbEntityMetadatas>[] {
   function fetchCurrentPartialElement(element: Partial<DbEntityMetadatas>, fields: DbEntitiesMetadatasFieldsWithoutId) {
     const partialElement: Partial<DbEntityMetadatas> = { id: element.id };
-    for (const field of fields) {
-      partialElement[field] = element[field] as any;
-    }
+    for (const field of fields) partialElement[field] = element[field] as any;
+
     return partialElement;
   }
 
@@ -33,7 +33,4 @@ export function getDbEntityById(dbRepresentation: DbEntityMetadatas[], targetId:
   return dbEntity;
 }
 
-export function getDbCtxEntitiesIds(dbRepresentation: DbEntityMetadatas[]) {
-  const ids = Object.values(dbRepresentation).map(({ id }) => id);
-  return ids;
-}
+export const getDbCtxEntitiesIds = (dbRepresentation: DbEntityMetadatas[]) => Object.values(dbRepresentation).map(({ id }) => id);

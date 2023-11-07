@@ -51,9 +51,8 @@ export async function useGetData(
   }
 
   function isErrorResponse(response: Response): boolean {
-    if (!response.ok) {
-      return true;
-    }
+    if (!response.ok) return true;
+
     const responseStatus = response.status;
     return responseStatus >= 400 && responseStatus <= 599;
   }
@@ -65,7 +64,7 @@ export async function useGetData(
   let dontWait = false;
 
   const resetCurrentPromise = () => (currentPromise = fetch(initialUrlAndReq.url, initialUrlAndReq.req));
-  const doBreak = (i: number) => !(i <= maxRetry);
+  const doBreak = (i: number) => i > maxRetry;
   for (let i: number = 0; !doBreak(i); i++) {
     try {
       const response = await getFetchResponse(currentPromise);

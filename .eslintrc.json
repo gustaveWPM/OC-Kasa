@@ -1,0 +1,20 @@
+{
+  "ignorePatterns": ["dist/"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+
+  "overrides": [
+    {
+      "files": ["src/**/*.ts", "src/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": ["error", { "fixStyle": "separate-type-imports" }],
+        "import/consistent-type-specifier-style": ["error", "prefer-top-level"]
+      }
+    }
+  ],
+
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  }
+}

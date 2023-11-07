@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import KasaLogo from './KasaLogo';
 

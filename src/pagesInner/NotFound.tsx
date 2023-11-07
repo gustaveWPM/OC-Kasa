@@ -1,6 +1,8 @@
-import { FunctionComponent, ReactNode, useState } from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import kasaPublicRoutes, { KasaPublicRouteElementKey, kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
+import type { KasaPublicRouteElementKey } from '../config/router/KasaPublicRoutes';
+import kasaPublicRoutes, { kasaPublicRoutesTitles } from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { useForceUpdate } from '../dev/hooks/useForceUpdate';
 import wpmDebugger from '../dev/wpmDebugger';

@@ -1,15 +1,16 @@
-import { createElement, FunctionComponent, ReactElement } from 'react';
-import { FetchResponseSchema, TLoadingState } from '../../../dev/hooks/useFetch';
+import type { FunctionComponent, ReactElement } from 'react';
+import { createElement } from 'react';
+import type { FetchResponseSchema, TLoadingState } from '../../../dev/hooks/useFetch';
+import type CachedData from '../../../dev/namespaces/_types';
 import cachedDatabase from '../../../dev/namespaces/cache';
-import CachedData from '../../../dev/namespaces/_types';
 
-import {
+import type {
   AdHocLoadingStateManagerExpectedProps as ExpectedProps,
   AdHocLoadingStateManagerPlaceholdersFnPtr as PlaceholdersFnPtr,
   ReactExpectedProps
 } from '../_types';
 
-export function adHocLoadingStateManager<T extends {}>(
+export function adHocLoadingStateManager<T extends object>(
   database: CachedData,
   placeholdersFnPtr: PlaceholdersFnPtr,
   fc: FunctionComponent<T>,
@@ -25,9 +26,7 @@ export function adHocLoadingStateManager<T extends {}>(
   }
 
   const { loadingState } = database as FetchResponseSchema;
-  if (loadingState === 'FAILED_TO_LOAD') {
-    return placeholdersFnPtr(loadingState);
-  }
+  if (loadingState === 'FAILED_TO_LOAD') return placeholdersFnPtr(loadingState);
 
   const cachedData = cachedDatabase();
   if (loadingState !== 'LOADED') {

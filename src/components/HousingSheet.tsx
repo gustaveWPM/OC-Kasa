@@ -1,5 +1,5 @@
-import { FunctionComponent, ReactElement } from 'react';
-import DbEntityMetadatas from '../config/MetadatasSchema';
+import type { FunctionComponent, ReactElement } from 'react';
+import type DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { setPageTitle, weakPageTitleBuilder } from '../pagesInner/_PageEffects';
 import Accordion from './Accordion';

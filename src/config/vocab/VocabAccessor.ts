@@ -1,29 +1,20 @@
-import Vocab, { DEFAULT_LANGUAGE, VocabLanguageSymbol, VocabSchemaElementKey } from './Vocab';
+import type { VocabLanguageSymbol, VocabSchemaElementKey } from './Vocab';
+import Vocab, { DEFAULT_LANGUAGE } from './Vocab';
 const LOCAL_STORAGE_LANG_KEY: string = 'lang';
 
-function isVocabLanguageSymbol(s: string) {
-  return s in Vocab;
-}
+const isVocabLanguageSymbol = (s: string) => s in Vocab;
 
-export function setCurrentLanguageInLocalStorage(value: VocabLanguageSymbol) {
-  window.localStorage.setItem(LOCAL_STORAGE_LANG_KEY, value);
-}
+export const setCurrentLanguageInLocalStorage = (value: VocabLanguageSymbol) => window.localStorage.setItem(LOCAL_STORAGE_LANG_KEY, value);
 
 function getCurrentLanguageInLocalStorage(): VocabLanguageSymbol | null {
   const data: string | null = window.localStorage.getItem(LOCAL_STORAGE_LANG_KEY);
-  if (!data) {
-    return null;
-  }
-  if (!isVocabLanguageSymbol(data)) {
-    setCurrentLanguageInLocalStorage(DEFAULT_LANGUAGE);
-  }
+  if (!data) return null;
+  if (!isVocabLanguageSymbol(data)) setCurrentLanguageInLocalStorage(DEFAULT_LANGUAGE);
   return data as VocabLanguageSymbol;
 }
 
 function initializeLangLocalStorage() {
-  if (getCurrentLanguageInLocalStorage()) {
-    return;
-  }
+  if (getCurrentLanguageInLocalStorage()) return;
 
   const navigatorLanguages: readonly string[] = navigator.languages;
   for (const language of navigatorLanguages) {
@@ -40,34 +31,22 @@ function initializeLangLocalStorage() {
 export function getCurrentUserVocabLanguageSymbol(): VocabLanguageSymbol {
   initializeLangLocalStorage();
   const curLang: VocabLanguageSymbol | null = getCurrentLanguageInLocalStorage();
-  if (!curLang) {
-    return DEFAULT_LANGUAGE;
-  }
+  if (!curLang) return DEFAULT_LANGUAGE;
   return curLang;
 }
 
-export function alreadyCurrentUserVocabLanguageSymbol(lang: VocabLanguageSymbol): boolean {
-  return lang === getCurrentUserVocabLanguageSymbol();
-}
+export const alreadyCurrentUserVocabLanguageSymbol = (lang: VocabLanguageSymbol): boolean => lang === getCurrentUserVocabLanguageSymbol();
 
-export function isVocabSchemaElementKey(s: string) {
-  return s in Vocab[DEFAULT_LANGUAGE];
-}
+export const isVocabSchemaElementKey = (s: string) => s in Vocab[DEFAULT_LANGUAGE];
 
-export function VocabAccessor(vocabSchemaElementKey: VocabSchemaElementKey): any {
-  return Vocab[getCurrentUserVocabLanguageSymbol()][vocabSchemaElementKey];
-}
+export const VocabAccessor = (vocabSchemaElementKey: VocabSchemaElementKey): any => Vocab[getCurrentUserVocabLanguageSymbol()][vocabSchemaElementKey];
 
-export function getDbFetchEndpoint(): string {
-  return `/json/logements.${getCurrentUserVocabLanguageSymbol()}.json`;
-}
+export const getDbFetchEndpoint = (): string => `/json/logements.${getCurrentUserVocabLanguageSymbol()}.json`;
 
 function getI18nNeedle(route: string): string | null {
   for (const languageSymbol in Vocab) {
     const needle = '/' + languageSymbol + '/';
-    if (route.startsWith(needle)) {
-      return needle;
-    }
+    if (route.startsWith(needle)) return needle;
   }
   return null;
 }
@@ -75,27 +54,20 @@ function getI18nNeedle(route: string): string | null {
 export function userLangAndRouteLangMismatch(route: string): boolean {
   const needle = getI18nNeedle(route);
   const userVocabLanguageSymbol = getCurrentUserVocabLanguageSymbol();
-  if (!needle) {
-    return false;
-  }
+  if (!needle) return false;
+
   return !needle.includes(userVocabLanguageSymbol);
 }
 
 export function routeWithoutI18nAccessor(route: string): string {
   const needle = getI18nNeedle(route);
-  if (!needle) {
-    return route;
-  }
-  if (route.startsWith(needle)) {
-    return route.substring(needle.length - 1);
-  }
+  if (!needle) return route;
+
+  if (route.startsWith(needle)) return route.substring(needle.length - 1);
   return route;
 }
 
 export function i18nRouteAccessor(route: string, unsafeMode = false): string {
-  let r = route;
-  if (unsafeMode) {
-    r = routeWithoutI18nAccessor(route);
-  }
+  const r = unsafeMode ? routeWithoutI18nAccessor(route) : route;
   return '/' + getCurrentUserVocabLanguageSymbol() + r;
 }

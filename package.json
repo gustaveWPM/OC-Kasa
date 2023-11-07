@@ -1,12 +1,16 @@
 {
   "name": "kasa-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "format": "prettier --log-level warn --write .",
+    "lint": "eslint .",
     "start": "($npm_execpath install && $npm_execpath run dev) || (npm install && npm run dev)",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run lint && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,13 +19,31 @@
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@commitlint/config-conventional": "^18.1.0",
+    "@commitlint/cz-commitlint": "^18.2.0",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "commitizen": "^4.3.0",
+    "eslint": "^8.47.0",
+    "eslint-plugin-import": "^2.29.0",
+    "husky": "^8.0.3",
+    "inquirer": "^8.0.0",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
     "sass": "^1.61.0",
-    "typescript": "^4.9.3",
+    "typescript": "^5.2.2",
     "vite": "^4.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }

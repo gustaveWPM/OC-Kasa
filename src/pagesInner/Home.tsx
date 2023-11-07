@@ -1,11 +1,12 @@
-import { FunctionComponent, ReactElement, ReactNode, useEffect, useState } from 'react';
+import type { FunctionComponent, ReactElement, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorBox from '../components/ErrorBox';
 import HomepageBanner from '../components/HomepageBanner';
 import KasaCard from '../components/KasaCard';
-import DbEntityMetadatas from '../config/MetadatasSchema';
+import type DbEntityMetadatas from '../config/MetadatasSchema';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
-import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
+import type { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
 import { getDbCtxEntitiesIds, getDbPartialElements } from '../services/dbService';
@@ -75,11 +76,9 @@ export function firstLoadPlaceholders(loadingState: TLoadingState): ReactElement
 
 export function componentBody(entities: FilteredEntities) {
   return (
-    <>
-      <div className="housing-sheets-grid-gallery-wrapper">
-        <section className="housing-sheets-grid-gallery">{kasaCardsGenerator(entities)}</section>
-      </div>
-    </>
+    <div className="housing-sheets-grid-gallery-wrapper">
+      <section className="housing-sheets-grid-gallery">{kasaCardsGenerator(entities)}</section>
+    </div>
   );
 }
 
@@ -87,7 +86,7 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
   const database = useDatabase();
   let entitiesBase: DbEntityMetadatas[] = [];
-  let fEntities: FilteredEntities | {} = {};
+  let fEntities: FilteredEntities = {} as FilteredEntities;
 
   const [filteredEntities, setFilteredEntities]: [FilteredEntitiesAdHocSumType, any] = useState(entitiesBase);
   const jsonDepsNotEqual = (): boolean => JSON.stringify(fEntities) !== JSON.stringify(filteredEntities);
@@ -96,22 +95,19 @@ export const HomePageInner: FunctionComponent<HomePageInnerProps> = () => {
     function getFilteredEntities() {
       const ids = getDbCtxEntitiesIds(entitiesBase);
       fEntities = getDbPartialElements(entitiesBase, ids, ['title', 'cover']) as FilteredEntities;
-      if (jsonDepsNotEqual()) {
-        setFilteredEntities(fEntities);
-      }
+      if (jsonDepsNotEqual()) setFilteredEntities(fEntities);
     }
     getFilteredEntities();
   }, [entitiesBase]);
 
   const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HomepageLoadingScreen, {});
-  if (adHocPlaceholder) {
-    return adHocPlaceholder;
-  }
-  entitiesBase = (database as FetchResponseSchema).responseData as DbEntityMetadatas[];
+  if (adHocPlaceholder) return adHocPlaceholder;
 
+  entitiesBase = (database as FetchResponseSchema).responseData as DbEntityMetadatas[];
   if (computingFilteredEntities()) {
     return <HomepageLoadingScreen loadingState="LOADING" cachedData={cachedDatabase()} />;
   }
+
   return (
     <>
       <HomepageBanner />

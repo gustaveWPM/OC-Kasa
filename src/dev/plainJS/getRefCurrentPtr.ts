@@ -1,5 +1,3 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 
-export function getRefCurrentPtr<T>(ref: RefObject<T>) {
-  return ref.current as T;
-}
+export const getRefCurrentPtr = <T>(ref: RefObject<T>) => ref.current as T;

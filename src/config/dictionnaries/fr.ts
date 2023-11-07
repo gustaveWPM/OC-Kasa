@@ -1,7 +1,8 @@
-import { VocabSchema } from '../vocab/Vocab';
+import type { VocabSchema } from '../vocab/Vocab';
 import COMMONS from './commons';
 
 export const frenchDictionnary: VocabSchema = {
+  ...COMMONS,
   LANG: 'Français',
   HOME_PAGE_LABEL: 'Accueil',
   ABOUT_PAGE_LABEL: 'A Propos',
@@ -34,8 +35,7 @@ export const frenchDictionnary: VocabSchema = {
   IMAGE_SLIDER_NEXT_IMAGE_ARIA_LABEL: 'Image suivante',
 
   MAINTENANCE_MESSAGE: 'Cette page est en cours de maintenance !',
-  MAINTENANCE_ADVICE: 'Merci de revenir plus tard.',
-  ...COMMONS
-};
+  MAINTENANCE_ADVICE: 'Merci de revenir plus tard.'
+} as const;
 
 export default frenchDictionnary;

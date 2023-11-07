@@ -4,17 +4,17 @@ import HomePageInner from '../../pagesInner/Home';
 import HousingSheetsInner from '../../pagesInner/HousingSheets';
 import NotFoundInner from '../../pagesInner/NotFound';
 import OnPageChangeEffects from '../../pagesInner/_PageEffects';
-import { VocabSchemaElementKey } from '../vocab/Vocab';
-import { KasaPublicRoutesReactElements } from './types';
+import type { VocabSchemaElementKey } from '../vocab/Vocab';
+import type { KasaPublicRoutesReactElements } from './types';
 
 const STRICTLY_VOCAB_BINDED_LABELS: Record<string, VocabSchemaElementKey> = {
   HOME_PAGE: 'HOME_PAGE_LABEL',
   ABOUT_PAGE: 'ABOUT_PAGE_LABEL'
-};
+} as const;
 
 const WEAKLY_BINDED_LABELS: Record<string, string> = {
   NOTFOUND_PAGE: '404'
-};
+} as const;
 
 export const kasaPublicRoutesComponents: KasaPublicRoutesReactElements = {
   HOME_PAGE: (

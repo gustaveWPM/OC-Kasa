@@ -1,7 +1,8 @@
-import { VocabSchema } from '../vocab/Vocab';
+import type { VocabSchema } from '../vocab/Vocab';
 import COMMONS from './commons';
 
 export const americanEnglishDictionnary: VocabSchema = {
+  ...COMMONS,
   LANG: 'American English',
   HOME_PAGE_LABEL: 'Home',
   ABOUT_PAGE_LABEL: 'About',
@@ -33,8 +34,7 @@ export const americanEnglishDictionnary: VocabSchema = {
   IMAGE_SLIDER_PREV_IMAGE_ARIA_LABEL: 'Previous image',
 
   MAINTENANCE_MESSAGE: 'This page is under maintenance!',
-  MAINTENANCE_ADVICE: 'Please, come back later.',
-  ...COMMONS
-};
+  MAINTENANCE_ADVICE: 'Please, come back later.'
+} as const;
 
 export default americanEnglishDictionnary;

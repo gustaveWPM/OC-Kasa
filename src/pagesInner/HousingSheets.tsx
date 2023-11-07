@@ -1,15 +1,17 @@
-import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
+import type { FunctionComponent, ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, useParams } from 'react-router-dom';
 import ErrorBox from '../components/ErrorBox';
 import HousingSheet from '../components/HousingSheet';
-import DbEntityMetadatas from '../config/MetadatasSchema';
+import type DbEntityMetadatas from '../config/MetadatasSchema';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { VocabAccessor, i18nRouteAccessor } from '../config/vocab/VocabAccessor';
 import { useDatabase } from '../contexts/DatabaseContext';
-import { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
+import type { FetchResponseSchema, TLoadingState } from '../dev/hooks/useFetch';
 import cachedDatabase from '../dev/namespaces/cache';
 import wpmDebugger from '../dev/wpmDebugger';
-import { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult, getDbEntityById } from '../services/dbService';
+import type { GetDbEntityByIdResult, GetDbEntityByIdSuccessfulResult } from '../services/dbService';
+import { getDbEntityById } from '../services/dbService';
 import DummyHousingSheet from './DummyHousingSheets';
 import HousingSheetLoadingScreen from './loadingScreens/HousingSheets';
 import { LOADING_CLS, RETRYING_TO_LOAD_CLS } from './loadingScreens/_types';
@@ -44,28 +46,25 @@ export function componentBody(entityOrMaybeEntities: EntityOrMaybeEntitiesAdHocS
   if (cacheCtx) {
     const entities = entityOrMaybeEntities as DbEntityMetadatas[];
     entityOrMaybeJITEntity = getDbEntityById(entities, sheetIdForCacheRuntimeCtx);
-  } else {
-    entityOrMaybeJITEntity = entityOrMaybeEntities as GetDbEntityByIdResult;
-  }
-  if (!entityOrMaybeJITEntity) {
-    return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
-  } else {
-    const entity = entityOrMaybeJITEntity as GetDbEntityByIdSuccessfulResult;
-    return (
-      <div className="housing-sheets-page-wrapper">
-        <HousingSheet
-          title={entity.title}
-          pictures={entity.pictures}
-          description={entity.description}
-          host={entity.host}
-          rating={entity.rating}
-          location={entity.location}
-          equipments={entity.equipments}
-          tags={entity.tags}
-        />
-      </div>
-    );
-  }
+  } else entityOrMaybeJITEntity = entityOrMaybeEntities as GetDbEntityByIdResult;
+
+  if (!entityOrMaybeJITEntity) return doRedirect(kasaPublicRoutes.NOTFOUND_PAGE);
+
+  const entity = entityOrMaybeJITEntity as GetDbEntityByIdSuccessfulResult;
+  return (
+    <div className="housing-sheets-page-wrapper">
+      <HousingSheet
+        title={entity.title}
+        pictures={entity.pictures}
+        description={entity.description}
+        host={entity.host}
+        rating={entity.rating}
+        location={entity.location}
+        equipments={entity.equipments}
+        tags={entity.tags}
+      />
+    </div>
+  );
 }
 
 export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = () => {
@@ -73,7 +72,7 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   const database = useDatabase();
   const { sheet_id } = useParams();
   let entitiesBase: DbEntityMetadatas[] = [];
-  let fEntity: GetDbEntityByIdResult | {} = {};
+  let fEntity: GetDbEntityByIdResult | object = {};
 
   const [filteredEntity, setFilteredEntity]: [FilteredEntityAdHocSumType, any] = useState(fEntity);
   const jsonDepsNotEqual = (): boolean => JSON.stringify(fEntity) !== JSON.stringify(filteredEntity);
@@ -82,14 +81,10 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   useEffect(() => {
     function getFilteredEntity() {
       fEntity = getDbEntityById(entitiesBase, sheet_id as string);
-      if (jsonDepsNotEqual()) {
-        setFilteredEntity(fEntity);
-      }
+      if (jsonDepsNotEqual()) setFilteredEntity(fEntity);
     }
     const cancelCurrentEffectCtx = sheet_id === undefined || fetchingDatabase();
-    if (!cancelCurrentEffectCtx) {
-      getFilteredEntity();
-    }
+    if (!cancelCurrentEffectCtx) getFilteredEntity();
   }, [entitiesBase]);
 
   useEffect(() => {
@@ -106,14 +101,10 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
     uglyWorkaround();
   });
 
-  if (sheet_id === undefined) {
-    return doRedirect(i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE));
-  }
+  if (sheet_id === undefined) return doRedirect(i18nRouteAccessor(kasaPublicRoutes.HOME_PAGE));
 
   const adHocPlaceholder = adHocLoadingStateManager(database, firstLoadPlaceholders, HousingSheetLoadingScreen, { sheetId: sheet_id });
-  if (adHocPlaceholder) {
-    return adHocPlaceholder;
-  }
+  if (adHocPlaceholder) return adHocPlaceholder;
   entitiesBase = (database as FetchResponseSchema).responseData as DbEntityMetadatas[];
 
   if (computingFilteredEntity()) {
@@ -123,12 +114,6 @@ export const HousingSheetsInner: FunctionComponent<HousingSheetsInnerProps> = ()
   return <>{componentBody(filteredEntity as GetDbEntityByIdResult)}</>;
 };
 
-export function getRouteParams(): ReactElement {
-  return (
-    <>
-      <Route path=":sheet_id" element={<HousingSheetsInner />} />
-    </>
-  );
-}
+export const getRouteParams = (): ReactElement => <Route path=":sheet_id" element={<HousingSheetsInner />} />;
 
 export default HousingSheetsInner;

@@ -1,13 +1,13 @@
-import { VocabStrings } from '../../config/vocab/Vocab';
+import type { VocabStrings } from '../../config/vocab/Vocab';
 import { getCurrentUserVocabLanguageSymbol } from '../../config/vocab/VocabAccessor';
-import CachedData from './_types';
+import type CachedData from './_types';
 
 type i18nCache = {
   [Property in keyof VocabStrings]: CachedData;
 };
 
 namespace Cache {
-  export let databasePtr: i18nCache = { fr: null, 'en-us': null };
+  export const databasePtr: i18nCache = { fr: null, 'en-us': null };
 }
 
 function cacheAccessor(newCache?: CachedData) {
@@ -17,8 +17,5 @@ function cacheAccessor(newCache?: CachedData) {
   return Cache.databasePtr[getCurrentUserVocabLanguageSymbol()];
 }
 
-export function cachedDatabase(newCache?: CachedData): CachedData {
-  return cacheAccessor(newCache);
-}
-
+export const cachedDatabase = (newCache?: CachedData): CachedData => cacheAccessor(newCache);
 export default cachedDatabase;

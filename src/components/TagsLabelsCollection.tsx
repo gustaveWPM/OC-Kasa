@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react';
 
 interface TagsLabelsCollectionProps {
   tags: string[];

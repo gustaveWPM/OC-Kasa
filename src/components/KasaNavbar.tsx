@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavData from '../config/NavData';
 import wpmDebugger from '../dev/wpmDebugger';
@@ -26,7 +26,7 @@ export const KasaNavbar: FunctionComponent<KasaNavbarProps> = () => {
 
   return (
     <>
-      <div className="navbar-unscrolled-page-height-diff"></div>
+      <div className="navbar-unscrolled-page-height-diff" />
       <div className="navbar">
         <div className="navbar-content">
           <KasaLogo currentUseCase="NAVBAR" />

@@ -37,7 +37,7 @@ export interface VocabStrings {
 export const Vocab: VocabStrings = {
   fr: frenchDictionnary,
   'en-us': americanEnglishDictionnary
-};
+} as const;
 
 export type VocabSchemaElementKey = keyof VocabSchema;
 export type VocabLanguageSymbol = keyof VocabStrings;

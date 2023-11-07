@@ -1,8 +1,9 @@
-import { createContext, FunctionComponent, ReactNode, useContext, useEffect, useState } from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getDbFetchEndpoint } from '../config/vocab/VocabAccessor';
 import { useGetData } from '../dev/hooks/useFetch';
+import type CachedData from '../dev/namespaces/_types';
 import cachedDatabase from '../dev/namespaces/cache';
-import CachedData from '../dev/namespaces/_types';
 import wpmDebugger from '../dev/wpmDebugger';
 
 const DEBUGGER_LABEL = 'DatabaseContext (React Context)';

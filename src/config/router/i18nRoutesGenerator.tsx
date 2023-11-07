@@ -1,6 +1,8 @@
-import { Fragment, ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import { Fragment } from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { KasaPublicRouteElementKey, kasaPublicRoutes, PARAMS_ROUTES, SKIPPED_FROM_i18n_ROUTES } from '../../config/router/KasaPublicRoutes';
+import type { KasaPublicRouteElementKey } from '../../config/router/KasaPublicRoutes';
+import { PARAMS_ROUTES, SKIPPED_FROM_i18n_ROUTES, kasaPublicRoutes } from '../../config/router/KasaPublicRoutes';
 import kasaPublicRoutesComponents from '../../config/router/KasaPublicRoutesComponents';
 import wpmDebugger from '../../dev/wpmDebugger';
 import Vocab from '../vocab/Vocab';
@@ -28,14 +30,14 @@ function atomicRouteGenerator(componentRouteKey: string, route: string, rElement
             {paramRoute.params}
           </Route>
         );
-      } else {
-        const pureRoute = routeWithoutI18nAccessor(route);
-        throw new Error(
-          `Didn't build parametred route redirection (maybe I'm just lazy?).\n\nTo know if this message is more than a warning, make sure your navigator HREF matches one of the concerned route(s): ${
-            route !== pureRoute ? `["${route}", "${pureRoute}"]` : `["${route}"]`
-          }`
-        );
       }
+
+      const pureRoute = routeWithoutI18nAccessor(route);
+      throw new Error(
+        `Didn't build parametred route redirection (maybe I'm just lazy?).\n\nTo know if this message is more than a warning, make sure your navigator HREF matches one of the concerned route(s): ${
+          route !== pureRoute ? `["${route}", "${pureRoute}"]` : `["${route}"]`
+        }`
+      );
     }
 
     const buildParametredRoute = (): ReactElement => (
@@ -65,9 +67,7 @@ function atomicRouteGenerator(componentRouteKey: string, route: string, rElement
         } finally {
           return parametredRouteRedirectionElement;
         }
-      } else {
-        return buildParametredRoute();
-      }
+      } else return buildParametredRoute();
     }
   }
   return buildNotParametredRoute();
@@ -82,21 +82,20 @@ export function i18nRoutesGenerator(): ReactElement[] {
       const haveToSkipRoute = (): boolean => SKIPPED_FROM_i18n_ROUTES.includes(rPath);
 
       for (const languageSymbol in Vocab) {
-        if (haveToSkipRoute()) {
-          continue;
-        }
+        if (haveToSkipRoute()) continue;
         curI18nRoutes.push('/' + languageSymbol + rPath);
       }
 
       curI18nRoutes.forEach((route) => {
         if (!userLangAndRouteLangMismatch(route)) {
           elements.push(atomicRouteGenerator(matchKey, route, rElement));
-        } else {
-          const i18nRouteAccessorUnsafeCtx = true;
-          const rTo = i18nRouteAccessor(route, i18nRouteAccessorUnsafeCtx);
-          const rElementRedirect = <Navigate key={`i18n-lang-mismatch-redirect-component-${matchKey}`} to={rTo} replace />;
-          elements.push(atomicRouteGenerator(matchKey, route, rElementRedirect));
+          return;
         }
+
+        const i18nRouteAccessorUnsafeCtx = true;
+        const rTo = i18nRouteAccessor(route, i18nRouteAccessorUnsafeCtx);
+        const rElementRedirect = <Navigate key={`i18n-lang-mismatch-redirect-component-${matchKey}`} to={rTo} replace />;
+        elements.push(atomicRouteGenerator(matchKey, route, rElementRedirect));
       });
     }
 

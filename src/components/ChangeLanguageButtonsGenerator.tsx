@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
-import Vocab, { VocabLanguageSymbol } from '../config/vocab/Vocab';
+import type { ReactElement } from 'react';
+import type { VocabLanguageSymbol } from '../config/vocab/Vocab';
+import Vocab from '../config/vocab/Vocab';
 import ChangeLanguageBtn from './ChangeLanguageButton';
 
 export function changeLanguageBtnsGenerator() {

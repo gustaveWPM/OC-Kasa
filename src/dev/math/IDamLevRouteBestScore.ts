@@ -13,7 +13,7 @@ do it and update the injections documentation section just here:
   - Injected in KasaPublicRoutes
 */
 
-import { KasaPublicRouteElementKey } from '../../config/router/KasaPublicRoutes';
+import type { KasaPublicRouteElementKey } from '../../config/router/KasaPublicRoutes';
 
 export interface IDamLevRouteBestScore {
   ROUTE_KEY?: KasaPublicRouteElementKey;

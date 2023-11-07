@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import i18nRoutesGenerator from '../config/router/i18nRoutesGenerator';
 import { KasaNavbar } from './KasaNavbar';
@@ -19,17 +19,15 @@ interface KasaRouterProps {}
 
 const KasaRouter: FunctionComponent<KasaRouterProps> = () => {
   return (
-    <>
-      <BrowserRouter>
-        <KasaNavbar />
-        <main className="main-wrapper">
-          <Routes>
-            {i18nRoutesGenerator()}
-            <Route path="*" element={<KasaRouterRescue />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <KasaNavbar />
+      <main className="main-wrapper">
+        <Routes>
+          {i18nRoutesGenerator()}
+          <Route path="*" element={<KasaRouterRescue />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 };
 

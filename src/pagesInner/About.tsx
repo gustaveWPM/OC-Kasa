@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react';
 import AboutPageBanner from '../components/AboutPageBanner';
 import Accordion from '../components/Accordion';
 import { VocabAccessor } from '../config/vocab/VocabAccessor';

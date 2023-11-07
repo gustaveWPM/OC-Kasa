@@ -2,9 +2,10 @@
 - https://dominicarrojado.com/posts/how-to-create-your-own-accordion-in-react-and-typescript-with-tests/
 */
 
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import type { FunctionComponent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getRefCurrentPtr } from '../dev/plainJS/getRefCurrentPtr';
-import { AccordionData } from './_types';
+import type { AccordionData } from './_types';
 
 import './styles/accordionItem.scss';
 
@@ -22,33 +23,28 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ data, isOpened, 
     function handleResize() {
       const DOMElementPtr = getRefCurrentPtr(contentRef);
 
-      if (DOMElementPtr) {
-        const computeHeight = () => {
-          const { height } = DOMElementPtr.getBoundingClientRect();
-          const { marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
-          const heightDeltas = [marginTop, marginBottom].map(parseFloat);
-          const computedHeight = height + heightDeltas.reduce((acc, value) => acc + value, 0);
-          return computedHeight;
-        };
-        setMaxHeight(computeHeight());
-      } else {
-        setMaxHeight(null);
+      function computeHeight() {
+        const { height } = DOMElementPtr.getBoundingClientRect();
+        const { marginTop, marginBottom } = getComputedStyle(DOMElementPtr);
+        const heightDeltas = [marginTop, marginBottom].map(parseFloat);
+        const computedHeight = height + heightDeltas.reduce((acc, value) => acc + value, 0);
+        return computedHeight;
       }
+
+      if (DOMElementPtr) {
+        setMaxHeight(computeHeight());
+      } else setMaxHeight(null);
     }
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   function getStyle() {
     const fallbackStyle = { maxHeight: '0px' };
 
-    if (isOpened && maxHeight !== null) {
-      return { maxHeight: `${maxHeight}` + 'px' };
-    }
+    if (isOpened && maxHeight !== null) return { maxHeight: `${maxHeight}` + 'px' };
     return fallbackStyle;
   }
 

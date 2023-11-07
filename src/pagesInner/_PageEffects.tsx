@@ -1,5 +1,6 @@
-import { FunctionComponent, ReactElement, useEffect } from 'react';
-import { VocabSchemaElementKey } from '../config/vocab/Vocab';
+import type { FunctionComponent, ReactElement } from 'react';
+import { useEffect } from 'react';
+import type { VocabSchemaElementKey } from '../config/vocab/Vocab';
 import { VocabAccessor, isVocabSchemaElementKey } from '../config/vocab/VocabAccessor';
 import { snapToTop } from '../dev/plainJS/cameraManager';
 import wpmDebugger from '../dev/wpmDebugger';
@@ -24,9 +25,7 @@ export function strictPageTitleBuilder(labelKey: VocabSchemaElementKey) {
 }
 
 export function weakPageTitleBuilder(labelKey: string, rescueMode: boolean = false) {
-  if (labelKey === undefined) {
-    return document.title;
-  }
+  if (labelKey === undefined) return document.title;
   if (rescueMode) {
     try {
       return strictPageTitleBuilder(labelKey as VocabSchemaElementKey);
@@ -47,13 +46,9 @@ export const OnPageChangeEffects: FunctionComponent<OnPageChangeEffectsProps> = 
 
   useEffect(() => {
     if (labelKey !== undefined) {
-      if (pageTitleBuilderStrictMode === undefined) {
-        setPageTitle(weakPageTitleBuilder(labelKey, RESCUE_MODE));
-      } else if (pageTitleBuilderStrictMode) {
-        setPageTitle(strictPageTitleBuilder(labelKey as VocabSchemaElementKey));
-      } else {
-        setPageTitle(weakPageTitleBuilder(labelKey));
-      }
+      if (pageTitleBuilderStrictMode === undefined) setPageTitle(weakPageTitleBuilder(labelKey, RESCUE_MODE));
+      else if (pageTitleBuilderStrictMode) setPageTitle(strictPageTitleBuilder(labelKey as VocabSchemaElementKey));
+      else setPageTitle(weakPageTitleBuilder(labelKey));
     }
   }, [labelKey]);
 

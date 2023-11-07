@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 interface HostButtonProps {
   host: { name: string; picture?: string };

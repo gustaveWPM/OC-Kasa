@@ -1,4 +1,5 @@
-import { FunctionComponent, memo } from 'react';
+import type { FunctionComponent } from 'react';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import kasaPublicRoutes from '../config/router/KasaPublicRoutes';
 import { i18nRouteAccessor } from '../config/vocab/VocabAccessor';
@@ -14,37 +15,27 @@ interface KasaCardProps {
 
 const DummyKasaCard: FunctionComponent<KasaCardProps> = ({ title }) => {
   return (
-    <>
-      <article className="housing-sheets-grid-gallery-item">
-        <div className="housing-sheets-grid-gallery-item-title-wrapper">
-          <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
-        </div>
-      </article>
-    </>
+    <article className="housing-sheets-grid-gallery-item">
+      <div className="housing-sheets-grid-gallery-item-title-wrapper">
+        <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
+      </div>
+    </article>
   );
 };
 
 export const KasaCard: FunctionComponent<KasaCardProps> = ({ id, title, cover }) => {
   wpmDebugger(DEBUGGER_LABEL, 'Rendered!');
 
-  if (id && cover) {
-    return (
-      <>
-        <Link to={`${i18nRouteAccessor(kasaPublicRoutes.HOUSING_SHEETS_PAGE)}/${id}`}>
-          <article className="housing-sheets-grid-gallery-item" style={{ backgroundImage: `url(${cover})`, backgroundSize: 'cover' }}>
-            <div className="housing-sheets-grid-gallery-item-title-wrapper">
-              <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
-            </div>
-          </article>
-        </Link>
-      </>
-    );
-  }
+  if (!id || !cover) return <DummyKasaCard title={title} />;
 
   return (
-    <>
-      <DummyKasaCard title={title} />
-    </>
+    <Link to={`${i18nRouteAccessor(kasaPublicRoutes.HOUSING_SHEETS_PAGE)}/${id}`}>
+      <article className="housing-sheets-grid-gallery-item" style={{ backgroundImage: `url(${cover})`, backgroundSize: 'cover' }}>
+        <div className="housing-sheets-grid-gallery-item-title-wrapper">
+          <h2 className="housing-sheets-grid-gallery-item-title">{title}</h2>
+        </div>
+      </article>
+    </Link>
   );
 };
 

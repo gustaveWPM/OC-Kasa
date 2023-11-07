@@ -1,7 +1,7 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import { getRouteParams as getHousingSheetsRouteParams } from '../../pagesInner/HousingSheets';
 import { VocabAccessor } from '../vocab/VocabAccessor';
-import { KasaPublicRoutes, KasaPublicRoutesTitles } from './types';
+import type { KasaPublicRoutes, KasaPublicRoutesTitles } from './types';
 
 export const DAMERAU_LEVENSHTEIN_RESCUE_REDIRECT_DISTANCE_THRESHOLD: number = 3;
 export const DAMERAU_LEVENSHTEIN_RESCUE_SUGGEST_DISTANCE_THRESHOLD: number = 4;
@@ -12,14 +12,14 @@ export const kasaPublicRoutes: KasaPublicRoutes = {
   ABOUT_PAGE: '/about-us',
   NOTFOUND_PAGE: '/404',
   HOUSING_SHEETS_PAGE: '/housing-sheets'
-};
+} as const;
 
 export const kasaPublicRoutesTitles: KasaPublicRoutesTitles = {
   HOME_PAGE: () => VocabAccessor('HOME_PAGE_LABEL'),
   ABOUT_PAGE: () => VocabAccessor('ABOUT_PAGE_LABEL'),
   HOUSING_SHEETS_PAGE: () => VocabAccessor('HOUSING_SHEETS_PAGE_LABEL'),
   NOTFOUND_PAGE: () => ''
-};
+} as const;
 
 export const SKIPPED_FROM_404_SUGGESTIONS_ROUTES: string[] = [kasaPublicRoutes.NOTFOUND_PAGE, kasaPublicRoutes.HOME_PAGE];
 export const SKIPPED_FROM_i18n_ROUTES: string[] = [kasaPublicRoutes.NOTFOUND_PAGE];

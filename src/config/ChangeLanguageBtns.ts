@@ -1,6 +1,6 @@
 import americanEnglishDictionnary from './dictionnaries/en-us';
 import frenchDictionnary from './dictionnaries/fr';
-import { VocabStrings } from './vocab/Vocab';
+import type { VocabStrings } from './vocab/Vocab';
 
 type ButtonData = {
   label: string;
@@ -20,7 +20,7 @@ export const changeLanguagesBtns: ButtonsLabelsAndTxt = {
     label: `Display the website in ${americanEnglishDictionnary.LANG}`,
     txt: '🇺🇸'
   }
-};
+} as const;
 
 export const SCROLL_LATENCY_MS = 352;
 

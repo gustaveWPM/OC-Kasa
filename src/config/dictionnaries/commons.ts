@@ -8,6 +8,6 @@ type Commons = {
 const COMMONS: Commons = {
   BRAND,
   KASA_COPYRIGHT: `© ${new Date().getFullYear()} ${BRAND}.`
-};
+} as const;
 
 export default COMMONS;
