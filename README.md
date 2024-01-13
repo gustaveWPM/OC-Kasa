@@ -1,6 +1,6 @@
 # Kasa's React App
 
-## You have ever done a web application with React?
+## Have you ever done a web application with React?
 
 I didn't either...  
 This is my first webapp made with React.
