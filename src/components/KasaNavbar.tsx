@@ -15,7 +15,9 @@ function navbarItemsGenerator(): ReactElement[] {
     const rTo = getPath();
     return (
       <li key={`navbar-item-${rTo}-${getTitle()}`}>
-        <NavLink to={rTo}>{getTitle()}</NavLink>
+        <NavLink to={rTo} end>
+          {getTitle()}
+        </NavLink>
       </li>
     );
   });
